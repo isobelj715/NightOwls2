@@ -1,5 +1,9 @@
-package com.example.addressbook;
+package com.example.addressbook.controller;
 
+import com.example.addressbook.model.Contact;
+import com.example.addressbook.model.IContactDAO;
+import com.example.addressbook.model.MockContactDAO;
+import com.example.addressbook.model.SqliteContactDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -22,7 +26,7 @@ public class MainController {
     @FXML
     private VBox contactContainer;
     public MainController() {
-        contactDAO = new MockContactDAO();
+        contactDAO = new SqliteContactDAO();
     }
 
     /**
