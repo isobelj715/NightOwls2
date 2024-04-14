@@ -7,7 +7,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
-
+/**
+ * The controller class for the Main view of the Address Book application.
+ * This class handles the user interactions in the Main view.
+ */
 public class MainController {
     @FXML
     private ListView<Contact> contactsListView;
@@ -24,6 +27,10 @@ public class MainController {
     private VBox contactContainer;
     @FXML
     private TextField searchTextField;
+    /**
+     * Constructs a new MainController with a ContactManager that uses a SqliteContactDAO
+     * to perform CRUD operations on contacts.
+     */
     public MainController() {
         contactManager = new ContactManager(new SqliteContactDAO());
     }
@@ -94,7 +101,10 @@ public class MainController {
         // Show / hide based on whether there are contacts
         contactContainer.setVisible(hasContact);
     }
-
+    /**
+     * Initializes the controller class by setting up the contacts list view and
+     * selecting the first contact in the list view.
+     */
     @FXML
     public void initialize() {
         contactsListView.setCellFactory(this::renderCell);
@@ -107,7 +117,10 @@ public class MainController {
         }
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> syncContacts());
     }
-
+    /**
+     * Handles the action of confirming the edit of a contact.
+     * Updates the selected contact's information in the database.
+     */
     @FXML
     private void onEditConfirm() {
         // Get the selected contact from the list view
@@ -121,7 +134,10 @@ public class MainController {
             syncContacts();
         }
     }
-
+    /**
+     * Handles the action of deleting a contact.
+     * Deletes the selected contact from the database.
+     */
     @FXML
     private void onDelete() {
         // Get the selected contact from the list view
@@ -131,7 +147,10 @@ public class MainController {
             syncContacts();
         }
     }
-
+    /**
+     * Handles the action of adding a new contact.
+     * Adds a new contact with default values to the database.
+     */
     @FXML
     private void onAdd() {
         // Default values for a new contact
@@ -148,7 +167,10 @@ public class MainController {
         selectContact(newContact);
         firstNameTextField.requestFocus();
     }
-
+    /**
+     * Handles the action of cancelling the edit of a contact.
+     * Reverts the text fields to the selected contact's information.
+     */
     @FXML
     private void onCancel() {
         // Find the selected contact

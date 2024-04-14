@@ -3,6 +3,9 @@ package com.example.addressbook.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A mock implementation of the IContactDAO interface that uses an in-memory list of contacts.
+ */
 public class MockContactDAO implements IContactDAO {
     /**
      * A static list of contacts to be used as a mock database.

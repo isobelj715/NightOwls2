@@ -4,9 +4,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A SQLite implementation of the IContactDAO interface that handles
+ * the CRUD operations for the Contact class with the SQLite database
+ * using JDBC.
+ */
 public class SqliteContactDAO implements IContactDAO {
     private Connection connection;
 
+    /**
+     * Constructs a new SqliteContactDAO with a connection to the SQLite database,
+     * and creates the contacts table if it does not exist.
+     */
     public SqliteContactDAO() {
         connection = SqliteConnection.getInstance();
         createTable();

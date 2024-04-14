@@ -1,3 +1,7 @@
+/**
+ * The main module that contains the Address Book JavaFX application,
+ * including the model, view, and controller classes.
+ */
 module com.example.addressbook {
     requires javafx.controls;
     requires javafx.fxml;

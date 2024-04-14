@@ -8,7 +8,10 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+/**
+ * The controller class for the Hello view of the Address Book application.
+ * This class handles the user interactions in the Hello view.
+ */
 public class HelloController {
     @FXML
     private TextArea termsAndConditions;
@@ -16,6 +19,10 @@ public class HelloController {
     private CheckBox agreeCheckBox;
     @FXML
     private Button nextButton;
+    /**
+     * Initializes the controller class. This method is automatically called
+     * after the fxml file has been loaded.
+     */
     @FXML
     public void initialize() {
         termsAndConditions.setText("""
@@ -35,13 +42,21 @@ Sapien pellentesque habitant morbi tristique.
 Lorem sed risus ultricies tristique nulla aliquet.
 Elementum nibh tellus molestie nunc non blandit massa.""");
     }
-
+    /**
+     * Handles the action of clicking the agree checkbox.
+     * Enables or disables the next button based on the checkbox state.
+     */
     @FXML
     protected void onAgreeCheckBoxClick() {
         boolean accepted = agreeCheckBox.isSelected();
         nextButton.setDisable(!accepted);
     }
-
+    /**
+     * Handles the action of clicking the next button.
+     * Loads the main view of the application.
+     *
+     * @throws IOException if the fxml file for the main view isn't found.
+     */
     @FXML
     protected void onNextButtonClick() throws IOException {
         Stage stage = (Stage) nextButton.getScene().getWindow();
@@ -49,7 +64,10 @@ Elementum nibh tellus molestie nunc non blandit massa.""");
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
-
+    /**
+     * Handles the action of clicking the cancel button.
+     * Closes the application.
+     */
     @FXML
     protected void onCancelButtonClick() {
         Stage stage = (Stage) nextButton.getScene().getWindow();
