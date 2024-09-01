@@ -1,0 +1,4 @@
+module:com.example.addressbook
+com.example.addressbook
+com.example.addressbook.controller
+com.example.addressbook.model
