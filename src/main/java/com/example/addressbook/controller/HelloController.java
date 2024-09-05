@@ -26,21 +26,45 @@ public class HelloController {
     @FXML
     public void initialize() {
         termsAndConditions.setText("""
-Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Eget dolor morbi non arcu risus. Quis lectus nulla at volutpat diam
-ut venenatis tellus in. Feugiat in fermentum posuere urna nec tincidunt
-praesent semper. Turpis tincidunt id aliquet risus feugiat in.
-Libero volutpat sed cras ornare. Facilisi morbi tempus iaculis urna.
-Bibendum est ultricies integer quis auctor. Eu augue ut lectus arcu.
-Tincidunt tortor aliquam nulla facilisi cras fermentum odio eu.
-Gravida neque convallis a cras. Elit ut aliquam purus sit.
-Suspendisse ultrices gravida dictum fusce ut placerat.
-Integer feugiat scelerisque varius morbi enim nunc.
-Amet justo donec enim diam vulputate ut pharetra.
-Sapien pellentesque habitant morbi tristique.
-Lorem sed risus ultricies tristique nulla aliquet.
-Elementum nibh tellus molestie nunc non blandit massa.""");
+1. User Account
+    - You must be at least 13 years old to create an account.
+    - You agree to provide accurate and complete information during registration.
+    - You are responsible for maintaining the confidentiality of your account information and password. [Website Name] is not liable for any loss or damage arising from unauthorised access to your account.
+
+2. Intellectual Property
+    - All content uploaded to [Website Name], including artwork, images, and text, remains your intellectual property.
+    - By posting your content, you grant [Website Name] a non-exclusive, worldwide, royalty-free license to display and promote your work within the platform.
+    - You agree not to upload content that infringes on the intellectual property rights of others.
+
+3. User Conduct
+    - You are solely responsible for any content you upload, share, or display on [Website Name].
+    - You agree not to use the platform for illegal activities, including but not limited to distributing copyrighted material without permission or uploading harmful, inappropriate, or offensive content.
+    - [Website Name] reserves the right to remove any content that violates these terms or is deemed inappropriate.
+
+4. Privacy
+    - We are committed to protecting your privacy. Please review our Privacy Policy to understand how we collect, use, and share your information.
+    - You agree that [Website Name] may use your information as outlined in the Privacy Policy.
+
+5. Termination of Account
+    - You may terminate your account at any time. [Website Name] reserves the right to terminate or suspend your account if you violate these Terms and Conditions or engage in conduct that harms the platform or other users.
+    - Upon termination, all licenses granted to [Website Name] for displaying your content will expire, but content already shared may remain on the platform.
+
+6. Disclaimer of Warranties
+    - [Website Name] is provided "as is" without any warranties of any kind. We do not guarantee the availability or accuracy of the website or that the platform will meet your expectations.
+
+7. Limitation of Liability
+    - [Website Name] will not be liable for any indirect, incidental, special, or consequential damages arising from your use of the platform, including loss of data or profit.
+
+8. Changes to the Terms
+    - [Website Name] reserves the right to update these Terms and Conditions at any time. We will notify users of any significant changes. Continued use of the platform after changes are made indicates your acceptance of the updated terms.
+
+9. Governing Law
+    - These Terms and Conditions are governed by the laws of Australia, without regard to conflict of law principles.
+
+By clicking "I Agree" and creating an account, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.
+
+If you have any questions or concerns, please contact us at [support email].
+""");
     }
     /**
      * Handles the action of clicking the agree checkbox.

@@ -151,6 +151,8 @@ public class MainController {
      * Handles the action of adding a new contact.
      * Adds a new contact with default values to the database.
      */
+
+    // USE ****************************************************
     @FXML
     private void onAdd() {
         // Default values for a new contact
@@ -164,6 +166,9 @@ public class MainController {
         syncContacts();
         // Select the new contact in the list view
         // and focus the first name text field
+
+
+        //REMOVING VIEW OF CONTACT:
         selectContact(newContact);
         firstNameTextField.requestFocus();
     }
