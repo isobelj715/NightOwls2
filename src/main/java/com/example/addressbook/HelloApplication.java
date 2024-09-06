@@ -15,7 +15,7 @@ public class HelloApplication extends Application {
     /**
      * The title of the application window.
      */
-    public static final String TITLE = "Foliart";
+    public static final String TITLE = "ArtTasker";
 
     /**
      * The width of the application window, in pixels.

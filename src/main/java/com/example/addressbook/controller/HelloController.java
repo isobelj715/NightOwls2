@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 /**
- * The controller class for the Hello view of the Address Book application.
+ * The controller class for the Hello view of the Art Tasker application.
  * This class handles the user interactions in the Hello view.
  */
 public class HelloController {
@@ -37,33 +37,33 @@ public class HelloController {
     - You agree not to upload content that infringes on the intellectual property rights of others.
 
 3. User Conduct
-    - You are solely responsible for any content you upload, share, or display on [Website Name].
+    - You are solely responsible for any content you upload, share, or display on ArtTasker.
     - You agree not to use the platform for illegal activities, including but not limited to distributing copyrighted material without permission or uploading harmful, inappropriate, or offensive content.
-    - [Website Name] reserves the right to remove any content that violates these terms or is deemed inappropriate.
+    - ArtTasker reserves the right to remove any content that violates these terms or is deemed inappropriate.
 
 4. Privacy
     - We are committed to protecting your privacy. Please review our Privacy Policy to understand how we collect, use, and share your information.
-    - You agree that [Website Name] may use your information as outlined in the Privacy Policy.
+    - You agree that ArtTasker may use your information as outlined in the Privacy Policy.
 
 5. Termination of Account
-    - You may terminate your account at any time. [Website Name] reserves the right to terminate or suspend your account if you violate these Terms and Conditions or engage in conduct that harms the platform or other users.
-    - Upon termination, all licenses granted to [Website Name] for displaying your content will expire, but content already shared may remain on the platform.
+    - You may terminate your account at any time. ArtTasker reserves the right to terminate or suspend your account if you violate these Terms and Conditions or engage in conduct that harms the platform or other users.
+    - Upon termination, all licenses granted to ArtTasker for displaying your content will expire, but content already shared may remain on the platform.
 
 6. Disclaimer of Warranties
-    - [Website Name] is provided "as is" without any warranties of any kind. We do not guarantee the availability or accuracy of the website or that the platform will meet your expectations.
+    - ArtTasker is provided "as is" without any warranties of any kind. We do not guarantee the availability or accuracy of the website or that the platform will meet your expectations.
 
 7. Limitation of Liability
-    - [Website Name] will not be liable for any indirect, incidental, special, or consequential damages arising from your use of the platform, including loss of data or profit.
+    - ArtTasker will not be liable for any indirect, incidental, special, or consequential damages arising from your use of the platform, including loss of data or profit.
 
 8. Changes to the Terms
-    - [Website Name] reserves the right to update these Terms and Conditions at any time. We will notify users of any significant changes. Continued use of the platform after changes are made indicates your acceptance of the updated terms.
+    - ArtTasker reserves the right to update these Terms and Conditions at any time. We will notify users of any significant changes. Continued use of the platform after changes are made indicates your acceptance of the updated terms.
 
 9. Governing Law
     - These Terms and Conditions are governed by the laws of Australia, without regard to conflict of law principles.
 
-By clicking "I Agree" and creating an account, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.
+By clicking "I agree to the terms and conditions" and creating an account, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.
 
-If you have any questions or concerns, please contact us at [support email].
+If you have any questions or concerns, please contact us at ArtTasker@gmail.com.
 """);
     }
     /**
