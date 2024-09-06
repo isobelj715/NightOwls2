@@ -87,7 +87,7 @@ public class CreateAccountController {
         final String DEFAULT_EMAIL = "";
         final String DEFAULT_PHONE = "";
         final String DEFAULT_PASSWORD = "";
-        Contact newContact = new Contact(DEFAULT_FIRST_NAME, DEFAULT_LAST_NAME, DEFAULT_EMAIL, DEFAULT_PHONE); //DEFAULT_PASSWORD);
+        Contact newContact = new Contact(DEFAULT_FIRST_NAME, DEFAULT_LAST_NAME, DEFAULT_EMAIL, DEFAULT_PHONE, DEFAULT_PASSWORD);
         // Add the new contact to the database
         contactManager.addContact(newContact);
 

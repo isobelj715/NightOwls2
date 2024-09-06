@@ -46,6 +46,7 @@ public class SqliteContactDAO implements IContactDAO {
             statement.setString(2, contact.getLastName());
             statement.setString(3, contact.getPhone());
             statement.setString(4, contact.getEmail());
+            statement.setString(5, contact.getPassword());
             statement.executeUpdate();
             // Set the id of the new contact
             ResultSet generatedKeys = statement.getGeneratedKeys();
@@ -64,7 +65,8 @@ public class SqliteContactDAO implements IContactDAO {
             statement.setString(2, contact.getLastName());
             statement.setString(3, contact.getPhone());
             statement.setString(4, contact.getEmail());
-            statement.setInt(5, contact.getId());
+            statement.setString(5, contact.getPassword());
+            statement.setInt(6, contact.getId());
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,7 +95,8 @@ public class SqliteContactDAO implements IContactDAO {
                 String lastName = resultSet.getString("lastName");
                 String phone = resultSet.getString("phone");
                 String email = resultSet.getString("email");
-                Contact contact = new Contact(firstName, lastName, phone, email);
+                String password = resultSet.getString("password");
+                Contact contact = new Contact(firstName, lastName, phone, email, password);
                 contact.setId(id);
                 return contact;
             }
@@ -116,7 +119,8 @@ public class SqliteContactDAO implements IContactDAO {
                 String lastName = resultSet.getString("lastName");
                 String phone = resultSet.getString("phone");
                 String email = resultSet.getString("email");
-                Contact contact = new Contact(firstName, lastName, phone, email);
+                String password = resultSet.getString("password");
+                Contact contact = new Contact(firstName, lastName, phone, email, password);
                 contact.setId(id);
                 contacts.add(contact);
             }
