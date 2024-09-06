@@ -29,11 +29,11 @@ public class HelloController {
 1. User Account
     - You must be at least 13 years old to create an account.
     - You agree to provide accurate and complete information during registration.
-    - You are responsible for maintaining the confidentiality of your account information and password. [Website Name] is not liable for any loss or damage arising from unauthorised access to your account.
+    - You are responsible for maintaining the confidentiality of your account information and password. ArtTasker is not liable for any loss or damage arising from unauthorised access to your account.
 
 2. Intellectual Property
-    - All content uploaded to [Website Name], including artwork, images, and text, remains your intellectual property.
-    - By posting your content, you grant [Website Name] a non-exclusive, worldwide, royalty-free license to display and promote your work within the platform.
+    - All content uploaded to ArtTasker, including artwork, images, and text, remains your intellectual property.
+    - By posting your content, you grant ArtTasker a non-exclusive, worldwide, royalty-free license to display and promote your work within the platform.
     - You agree not to upload content that infringes on the intellectual property rights of others.
 
 3. User Conduct
@@ -50,7 +50,7 @@ public class HelloController {
     - Upon termination, all licenses granted to ArtTasker for displaying your content will expire, but content already shared may remain on the platform.
 
 6. Disclaimer of Warranties
-    - ArtTasker is provided "as is" without any warranties of any kind. We do not guarantee the availability or accuracy of the website or that the platform will meet your expectations.
+    - ArtTasker is provided "as is" without any warranties of any kind. We do not guarantee the availability or accuracy of the app or that the platform will meet your expectations.
 
 7. Limitation of Liability
     - ArtTasker will not be liable for any indirect, incidental, special, or consequential damages arising from your use of the platform, including loss of data or profit.
