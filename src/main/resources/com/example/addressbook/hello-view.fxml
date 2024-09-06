@@ -14,7 +14,7 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
-    <Label text="Welcome to the Address Book Application.
+    <Label text="Welcome to the ArtTasker Application.
   You must agree to the following terms and conditions before you can use the application."
            wrapText="true"/>
     <TextArea fx:id="termsAndConditions"
