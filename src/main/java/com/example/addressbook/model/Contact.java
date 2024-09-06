@@ -8,6 +8,7 @@ public class Contact {
     private String lastName;
     private String email;
     private String phone;
+    private String password;
 
     /**
      * Constructs a new Contact with the specified first name, last name, email, and phone number.
@@ -16,12 +17,14 @@ public class Contact {
      * @param lastName The last name of the contact.
      * @param email The email of the contact.
      * @param phone The phone number of the contact.
+     * @param password The password number of the contact.
      */
-    public Contact(String firstName, String lastName, String email, String phone) {
+    public Contact(String firstName, String lastName, String email, String phone, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
+        this.password = password;
     }
 
     /**
@@ -122,4 +125,24 @@ public class Contact {
     public String getFullName() {
         return firstName + " " + lastName;
     }
+
+
+    /**
+     * Returns the password of the contact.
+     *
+     * @return The password of the contact.
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Sets the phone number of the contact.
+     *
+     * @param password The password to set.
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
+
