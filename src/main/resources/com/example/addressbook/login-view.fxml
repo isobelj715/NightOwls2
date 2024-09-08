@@ -8,36 +8,41 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.paint.Color?>
 
 <AnchorPane fx:controller="com.example.addressbook.controller.LoginController"
-            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+            prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            style="-fx-background-color: #E9E5F7;" stylesheets="@login-buttons.css">
     <children>
-        <Pane layoutX="183.0" layoutY="65.0" prefHeight="271.0" prefWidth="227.0">
+        <!-- Main Pane for the Login form -->
+        <Pane layoutX="250.0" layoutY="150.0" prefHeight="350.0" prefWidth="300.0"
+              style="-fx-background-color: #F4EFFC; -fx-border-color: #C4C4C4; -fx-border-radius: 10; -fx-background-radius: 10;">
             <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cfd5da" height="280.0" stroke="BLACK" strokeType="INSIDE" width="234.0" />
-                <Label layoutX="100.0" layoutY="26.0" text="Log In" />
-                <Label layoutX="53.0" layoutY="39.0" prefHeight="16.0" prefWidth="135.0" text="Enter your email and password to log in.">
-                    <font>
-                        <Font size="8.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="emailTextField" layoutX="62.0" layoutY="79.0" prefHeight="20.0" prefWidth="111.0" promptText="Email">
-                    <font>
-                        <Font size="10.0" />
-                    </font>
-                </TextField>
-                <PasswordField fx:id="passwordField" layoutX="62.0" layoutY="110.0" prefHeight="26.0" prefWidth="111.0" promptText="Password">
-                    <font>
-                        <Font size="10.0" />
-                    </font>
-                </PasswordField>
-                <Button layoutX="45.0" layoutY="149.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="141.0" text="Log In" onAction="#onLogin">
-                    <font>
-                        <Font size="12.0" />
-                    </font>
-                </Button>
-                <Label layoutX="112.0" layoutY="186.0" prefHeight="18.0" prefWidth="13.0" text="or" />
-                <Button fx:id = "createAccountButton" alignment="CENTER" layoutX="65.0" layoutY="212.0" mnemonicParsing="false" text="Create Account" onAction="#onCreateAccount" />
+                <!-- Title "Log In" -->
+                <Label layoutX="120.0" layoutY="20.0" text="Log In" style="-fx-font-size: 24px; -fx-text-fill: #000000;" />
+
+                <!-- Subtitle -->
+                <Label layoutX="45.0" layoutY="60.0" prefHeight="20.0" prefWidth="210.0" text="Enter your email and password."
+                       style="-fx-font-size: 12px; -fx-text-fill: #333333;" />
+
+                <!-- Email Text Field -->
+                <TextField fx:id="emailTextField" layoutX="50.0" layoutY="100.0" prefHeight="35.0" prefWidth="200.0" promptText="Email"
+                           style="-fx-font-size: 14px; -fx-background-color: #FFFFFF; -fx-border-color: #DADADA; -fx-border-radius: 5; -fx-background-radius: 5;" />
+
+                <!-- Password Field -->
+                <PasswordField fx:id="passwordField" layoutX="50.0" layoutY="150.0" prefHeight="35.0" prefWidth="200.0" promptText="Password"
+                               style="-fx-font-size: 14px; -fx-background-color: #FFFFFF; -fx-border-color: #DADADA; -fx-border-radius: 5; -fx-background-radius: 5;" />
+
+                <!-- Log In Button -->
+                <Button layoutX="50.0" layoutY="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Log In"
+                        styleClass="hover-button" onAction="#onLogin" />
+
+                <!-- Separator Label for 'or' -->
+                <Label layoutX="145.0" layoutY="255.0" text="or" style="-fx-font-size: 12px; -fx-text-fill: #333333;" />
+
+                <!-- Create Account Button (centered) -->
+                <Button fx:id="createAccountButton" alignment="CENTER" layoutX="50.0" layoutY="280.0" mnemonicParsing="false" text="Create Account"
+                        prefHeight="40.0" prefWidth="200.0" styleClass="hover-button" onAction="#onCreateAccount" />
             </children>
         </Pane>
     </children>
