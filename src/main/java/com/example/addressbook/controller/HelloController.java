@@ -88,7 +88,7 @@ If you have any questions or concerns, please contact us at ArtTasker@gmail.com.
         // EDIT THIS TO CHANGE WHERE BUTTON LEADS TO!!
         // FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("main-view.fxml"));
         // Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("createaccount-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }

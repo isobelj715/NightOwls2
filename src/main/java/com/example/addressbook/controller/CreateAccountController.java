@@ -9,8 +9,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class CreateAccountController {
     @FXML
@@ -51,8 +54,21 @@ public class CreateAccountController {
 
             showAlert("Success", "Account created successfully!");
             // close the window or navigate to the next screen
-            Stage stage = (Stage) firstNameTextField.getScene().getWindow();
-            stage.close();
+            //Stage stage = (Stage) firstNameTextField.getScene().getWindow();
+            //stage.close();
+            // Load the login page
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/login-view.fxml"));
+                AnchorPane loginPane = loader.load();
+                Scene loginScene = new Scene(loginPane);
+
+                // Get the current stage and set the new scene (Login page)
+                Stage stage = (Stage) firstNameTextField.getScene().getWindow();
+                stage.setScene(loginScene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

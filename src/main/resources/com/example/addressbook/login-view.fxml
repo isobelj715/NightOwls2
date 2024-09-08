@@ -2,8 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,15 +9,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="com.example.addressbook.controller.LoginController"
+            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <MenuButton layoutX="461.0" layoutY="39.0" mnemonicParsing="false" text="MenuButton">
-            <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-            </items>
-        </MenuButton>
         <Pane layoutX="183.0" layoutY="65.0" prefHeight="271.0" prefWidth="227.0">
             <children>
                 <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cfd5da" height="280.0" stroke="BLACK" strokeType="INSIDE" width="234.0" />
@@ -29,23 +21,23 @@
                         <Font size="8.0" />
                     </font>
                 </Label>
-                <TextField layoutX="62.0" layoutY="79.0" prefHeight="20.0" prefWidth="111.0" promptText="Email">
+                <TextField fx:id="emailTextField" layoutX="62.0" layoutY="79.0" prefHeight="20.0" prefWidth="111.0" promptText="Email">
                     <font>
                         <Font size="10.0" />
                     </font>
                 </TextField>
-                <PasswordField layoutX="62.0" layoutY="110.0" prefHeight="26.0" prefWidth="111.0" promptText="Password">
+                <PasswordField fx:id="passwordField" layoutX="62.0" layoutY="110.0" prefHeight="26.0" prefWidth="111.0" promptText="Password">
                     <font>
                         <Font size="10.0" />
                     </font>
                 </PasswordField>
-                <Button layoutX="45.0" layoutY="149.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="141.0" text="Log In">
+                <Button layoutX="45.0" layoutY="149.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="141.0" text="Log In" onAction="#onLogin">
                     <font>
                         <Font size="12.0" />
                     </font>
                 </Button>
                 <Label layoutX="112.0" layoutY="186.0" prefHeight="18.0" prefWidth="13.0" text="or" />
-                <Button alignment="CENTER" layoutX="65.0" layoutY="212.0" mnemonicParsing="false" text="Create Account" />
+                <Button fx:id = "createAccountButton" alignment="CENTER" layoutX="65.0" layoutY="212.0" mnemonicParsing="false" text="Create Account" onAction="#onCreateAccount" />
             </children>
         </Pane>
     </children>
