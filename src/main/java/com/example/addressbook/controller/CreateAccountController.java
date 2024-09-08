@@ -45,8 +45,9 @@ public class CreateAccountController {
         if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty()) {
             showAlert("Error", "Please fill out all fields.");
         } else {
-            // Proceed with account creation logic (e.g., store the data, etc.)
 
+            Contact newContact = new Contact(firstName, lastName, email, phone, password);
+            contactManager.addContact(newContact);
 
             showAlert("Success", "Account created successfully!");
             // close the window or navigate to the next screen
@@ -87,7 +88,7 @@ public class CreateAccountController {
         final String DEFAULT_EMAIL = "";
         final String DEFAULT_PHONE = "";
         final String DEFAULT_PASSWORD = "";
-        Contact newContact = new Contact(DEFAULT_FIRST_NAME, DEFAULT_LAST_NAME, DEFAULT_EMAIL, DEFAULT_PHONE); //DEFAULT_PASSWORD);
+        Contact newContact = new Contact(DEFAULT_FIRST_NAME, DEFAULT_LAST_NAME, DEFAULT_EMAIL, DEFAULT_PHONE, DEFAULT_PASSWORD);
         // Add the new contact to the database
         contactManager.addContact(newContact);
 
