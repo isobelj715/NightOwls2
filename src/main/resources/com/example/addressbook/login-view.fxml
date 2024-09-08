@@ -12,7 +12,7 @@
 
 <AnchorPane fx:controller="com.example.addressbook.controller.LoginController"
             prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            style="-fx-background-color: #E9E5F7;" stylesheets="@buttons.css">
+            style="-fx-background-color: #E9E5F7;" stylesheets="@login-buttons.css">
     <children>
         <!-- Main Pane for the Login form -->
         <Pane layoutX="250.0" layoutY="150.0" prefHeight="350.0" prefWidth="300.0"
