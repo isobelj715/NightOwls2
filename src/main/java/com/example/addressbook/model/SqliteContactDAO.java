@@ -19,6 +19,22 @@ public class SqliteContactDAO implements IContactDAO {
     public SqliteContactDAO() {
         connection = SqliteConnection.getInstance();
         createTable();
+        addPasswordColumnIfNotExists();
+    }
+
+    // Add the password column if it does not already exist
+    private void addPasswordColumnIfNotExists() {
+        try {
+            DatabaseMetaData metaData = connection.getMetaData();
+            ResultSet rs = metaData.getColumns(null, null, "contacts", "password");
+            if (!rs.next()) {
+                Statement statement = connection.createStatement();
+                String alterTableQuery = "ALTER TABLE contacts ADD COLUMN password VARCHAR";
+                statement.execute(alterTableQuery);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void createTable() {
@@ -30,7 +46,8 @@ public class SqliteContactDAO implements IContactDAO {
                     + "firstName VARCHAR NOT NULL,"
                     + "lastName VARCHAR NOT NULL,"
                     + "phone VARCHAR NOT NULL,"
-                    + "email VARCHAR NOT NULL"
+                    + "email VARCHAR NOT NULL,"
+                    + "password VARCHAR NOT NULL"
                     + ")";
             statement.execute(query);
         } catch (Exception e) {
@@ -41,7 +58,7 @@ public class SqliteContactDAO implements IContactDAO {
     @Override
     public void addContact(Contact contact) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO contacts (firstName, lastName, phone, email) VALUES (?, ?, ?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO contacts (firstName, lastName, phone, email, password) VALUES (?, ?, ?, ?, ?)");
             statement.setString(1, contact.getFirstName());
             statement.setString(2, contact.getLastName());
             statement.setString(3, contact.getPhone());
@@ -60,7 +77,7 @@ public class SqliteContactDAO implements IContactDAO {
     @Override
     public void updateContact(Contact contact) {
         try {
-            PreparedStatement statement = connection.prepareStatement("UPDATE contacts SET firstName = ?, lastName = ?, phone = ?, email = ? WHERE id = ?");
+            PreparedStatement statement = connection.prepareStatement("UPDATE contacts SET firstName = ?, lastName = ?, phone = ?, email = ?, password = ? WHERE id = ?");
             statement.setString(1, contact.getFirstName());
             statement.setString(2, contact.getLastName());
             statement.setString(3, contact.getPhone());
