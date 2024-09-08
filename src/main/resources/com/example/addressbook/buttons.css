@@ -1,0 +1,12 @@
+/* login.css */
+
+.hover-button {
+    -fx-background-color: #000000;
+    -fx-text-fill: white;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.hover-button:hover {
+    -fx-background-color: #444444;
+}

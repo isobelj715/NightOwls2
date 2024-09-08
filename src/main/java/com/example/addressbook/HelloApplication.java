@@ -20,11 +20,11 @@ public class HelloApplication extends Application {
     /**
      * The width of the application window, in pixels.
      */
-    public static final int WIDTH = 640;
+    public static final int WIDTH = 800;
     /**
      * The height of the application window, in pixels.
      */
-    public static final int HEIGHT = 360;
+    public static final int HEIGHT = 600;
 
     /**
      * The main entry point for all JavaFX applications.
@@ -37,7 +37,7 @@ public class HelloApplication extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), WIDTH, HEIGHT);
         stage.setTitle(TITLE);
         stage.setScene(scene);
