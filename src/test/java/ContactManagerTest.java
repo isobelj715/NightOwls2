@@ -1,19 +1,22 @@
 import com.example.addressbook.model.*;
 
 import org.junit.jupiter.api.*;
+
+import javax.swing.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 public class ContactManagerTest {
     private ContactManager contactManager;
     private Contact[] contacts = {
-            new Contact("John", "Doe", "johndoe@example.com", "0423423423"),
-            new Contact("Jane", "Doe", "janedoe@example.com", "0423423424"),
-            new Contact("Jay", "Doe", "jaydoe@example.com", "0423423425"),
-            new Contact("John", "Smith", "johnsmith@example.com", "0423423426"),
-            new Contact("Jane", "Smith", "janesmith@example.com", "0423423427"),
-            new Contact("Alice", "Graystone", "aliceg@gmail.com", "0423423428"),
-            new Contact("Shane", "Graystone", "shaneg@gmail.com", "0423423429")
+            new Contact("John", "Doe", "johndoe@example.com", "0423423423", "password123"),
+            new Contact("Jane", "Doe", "janedoe@example.com", "0423423424", "abc"),
+            new Contact("Jay", "Doe", "jaydoe@example.com", "0423423425", "123"),
+            new Contact("John", "Smith", "johnsmith@example.com", "0423423426", "password"),
+            new Contact("Jane", "Smith", "janesmith@example.com", "0423423427", "test"),
+            new Contact("Alice", "Graystone", "aliceg@gmail.com", "0423423428", "cab"),
+            new Contact("Shane", "Graystone", "shaneg@gmail.com", "0423423429", "cab302")
     };
 
     @BeforeEach

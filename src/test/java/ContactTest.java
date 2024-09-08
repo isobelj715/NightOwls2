@@ -9,7 +9,7 @@ public class ContactTest {
 
     @BeforeEach
     public void setUp() {
-        contact = new Contact("John", "Doe", "john.doe@example.com", "1234567890");
+        contact = new Contact("John", "Doe", "john.doe@example.com", "1234567890", "password123");
     }
 
     @Test
@@ -66,4 +66,17 @@ public class ContactTest {
     public void testGetFullName() {
         assertEquals("John Doe", contact.getFullName());
     }
+
+
+    @Test
+    public void testGetPassword() {
+        assertEquals("password123", contact.getPassword());
+    }
+
+    @Test
+    public void testSetPassword() {
+        contact.setPassword("newPassword");
+        assertEquals("newPassword", contact.getPassword());
+    }
+
 }
