@@ -89,3 +89,21 @@
     -fx-background-color: linear-gradient(to bottom, #FFFFFF, #D6C7E2);
     -fx-padding: 50 0;
 }
+
+/* VBox containing image and text */
+.image-text-vbox {
+    -fx-background-color: #F9F9F9;
+    -fx-padding: 20;
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+/* Text label below the image */
+.image-text-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+    -fx-padding: 10 0;
+    -fx-max-width: 250px;
+}
