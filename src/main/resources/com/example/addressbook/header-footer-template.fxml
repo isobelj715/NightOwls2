@@ -13,7 +13,7 @@
     <HBox styleClass="header" alignment="CENTER_LEFT" spacing="20">
         <!-- Logo -->
         <ImageView fitHeight="50" fitWidth="50">
-            <Image url="@logo.png" />
+            <Image url="@img/logo2.png" />
         </ImageView>
         <Label text="ArtTasker" styleClass="logo-text"/>
     </HBox>
