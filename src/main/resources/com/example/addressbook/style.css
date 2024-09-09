@@ -39,3 +39,53 @@
 .main-content {
     -fx-background-color: linear-gradient(to bottom, #FFFFFF, #D6C7E2);
 }
+
+/* Landing Page Title */
+.landing-title {
+    -fx-font-size: 32px;
+    -fx-text-fill: #444444;
+    -fx-font-weight: bold;
+    -fx-padding: 20 0 20 0;
+}
+
+/* Input Fields for Signup Form */
+.input-field {
+    -fx-pref-width: 300px;
+    -fx-pref-height: 40px;
+    -fx-padding: 10;
+    -fx-font-size: 16px;
+    -fx-background-radius: 10;
+    -fx-border-color: #CCCCCC;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+}
+
+/* Signup Button */
+.signup-button {
+    -fx-background-color: #5A67D8;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-padding: 10 40;
+    -fx-background-radius: 10;
+}
+
+.signup-button:hover {
+    -fx-background-color: #434190;
+}
+
+/* Link Label for login prompt */
+.link-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #5555FF;
+    -fx-cursor: hand;
+}
+
+.link-label:hover {
+    -fx-underline: true;
+}
+
+/* Main Content Background */
+.main-content {
+    -fx-background-color: linear-gradient(to bottom, #FFFFFF, #D6C7E2);
+    -fx-padding: 50 0;
+}
