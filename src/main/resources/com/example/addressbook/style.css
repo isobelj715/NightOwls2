@@ -1,0 +1,41 @@
+/* CSS file for styling the JavaFX components */
+.header {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 10 20;
+}
+
+.navbar {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 10 20;
+}
+
+.nav-button {
+    -fx-background-color: #000000;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
+}
+
+.nav-button:hover {
+    -fx-background-color: #555555;
+}
+
+.footer {
+    -fx-background-color: #E0E0E0;
+    -fx-padding: 10 20;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 2;
+    -fx-font-size: 12px;
+}
+
+.logo-text {
+    -fx-font-family: 'Arial';
+    -fx-font-size: 24px;
+    -fx-text-fill: #5555FF;
+}
+
+.main-content {
+    -fx-background-color: linear-gradient(to bottom, #FFFFFF, #D6C7E2);
+}
