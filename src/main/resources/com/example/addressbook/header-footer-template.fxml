@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Pos?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" spacing="10" prefWidth="1280" prefHeight="720" stylesheets="@style.css">
+
+    <HBox styleClass="header" spacing="20">
+    <!-- Header Section -->
+    <HBox styleClass="header" alignment="CENTER_LEFT" spacing="20">
+        <!-- Logo -->
+        <ImageView fitHeight="50" fitWidth="50">
+            <Image url="@logo.png" />
+        </ImageView>
+        <Label text="ArtTasker" styleClass="logo-text"/>
+    </HBox>
+    <HBox styleClass="navbar" prefWidth="520" alignment="CENTER_RIGHT" spacing="15">
+    </HBox>
+        <!-- Navigation Bar -->
+        <HBox styleClass="navbar" alignment="CENTER_RIGHT" spacing="15">
+            <Button text="Home" styleClass="nav-button"/>
+            <Button text="Upload" styleClass="nav-button"/>
+            <Button text="About Us" styleClass="nav-button"/>
+            <Button text="Profile" styleClass="nav-button"/>
+        </HBox>
+    </HBox>
+
+
+    <!-- Placeholder for Main Content -->
+    <VBox VBox.vgrow="ALWAYS" alignment="CENTER" styleClass="main-content">
+        <Label text="Main content goes here." />
+    </VBox>
+
+    <!-- Footer -->
+    <HBox styleClass="footer" alignment="CENTER">
+        <Label text="Contact Us" HBox.hgrow="ALWAYS"/>
+        <Label text="Site design / logo © 2024 URMOM Inc;" />
+    </HBox>
+</VBox>
