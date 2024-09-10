@@ -9,55 +9,63 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.addressbook.controller.UploadController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.image.ImageView?>
+<HBox xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.addressbook.controller.UploadController" spacing="20" prefWidth="1280" prefHeight="720" stylesheets="@style.css, @login-buttons.css">
 
-    <Label text="Upload Art" style="-fx-font-size: 20px;"/>
+    <!-- Left section for image browsing and preview, with main-content styling -->
+    <VBox spacing="10" alignment="CENTER" styleClass="main-content">
+        <Label text="Select Art File:" styleClass="landing-title"/>
+        <Button text="Browse..." onAction="#onBrowseFile" styleClass="hover-button"/>
 
-    <GridPane hgap="10.0" vgap="10.0">
-        <Label text="Title:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-        <TextField fx:id="artTitleTextField" GridPane.columnIndex="1" GridPane.rowIndex="0" promptText="Enter Art Title"/>
+        <!-- Image preview placeholder -->
+        <Label text="Preview:"/>
+        <ImageView fx:id="imagePreview" fitWidth="300" fitHeight="300" preserveRatio="true" styleClass="image-preview"/>
+    </VBox>
 
-        <Label text="Year:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-        <TextField fx:id="yearTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" promptText="Enter Year"/>
+    <!-- Right section for form fields, also with main-content styling -->
+    <VBox spacing="10" alignment="CENTER" styleClass="main-content" HBox.hgrow="ALWAYS">
+        <Label text="Upload Art" styleClass="landing-title"/>
 
-        <Label text="Category:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-        <TextField fx:id="categoryTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" promptText="Enter Category"/>
+        <GridPane hgap="10.0" vgap="10.0" alignment="CENTER">
+            <Label text="Title*:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="artTitleTextField" GridPane.columnIndex="1" GridPane.rowIndex="0" promptText="Enter Art Title" styleClass="input-field"/>
 
-        <Label text="Medium:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-        <TextField fx:id="mediumContainer" GridPane.columnIndex="1" GridPane.rowIndex="3" promptText="Enter Medium"/>
+            <Label text="Year*:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="yearTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" promptText="Enter Year" styleClass="input-field"/>
 
-        <Label text="Material:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-        <TextField fx:id="materialTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" promptText="Enter Material"/>
+            <Label text="Category:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="categoryTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" promptText="Enter Category" styleClass="input-field"/>
 
-        <Label text="Width:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-        <TextField fx:id="widthTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" promptText="Enter Width"/>
+            <Label text="Medium:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <TextField fx:id="mediumContainer" GridPane.columnIndex="1" GridPane.rowIndex="3" promptText="Enter Medium" styleClass="input-field"/>
 
-        <Label text="Height:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
-        <TextField fx:id="heightTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" promptText="Enter Height"/>
+            <Label text="Material:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <TextField fx:id="materialTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" promptText="Enter Material" styleClass="input-field"/>
 
-        <Label text="Depth:" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
-        <TextField fx:id="depthTextField" GridPane.columnIndex="1" GridPane.rowIndex="7" promptText="Enter Depth"/>
+            <Label text="Width:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+            <TextField fx:id="widthTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" promptText="Enter Width" styleClass="input-field"/>
 
-        <Label text="Units:" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
-        <TextField fx:id="unitsTextField" GridPane.columnIndex="1" GridPane.rowIndex="8" promptText="Enter Units (e.g., cm, inches)"/>
+            <Label text="Height:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+            <TextField fx:id="heightTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" promptText="Enter Height" styleClass="input-field"/>
 
-        <Label text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
-        <TextArea fx:id="descriptionTextField" GridPane.columnIndex="1" GridPane.rowIndex="9" promptText="Enter Description"/>
+            <Label text="Depth:" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+            <TextField fx:id="depthTextField" GridPane.columnIndex="1" GridPane.rowIndex="7" promptText="Enter Depth" styleClass="input-field"/>
 
-        <!-- File selection section -->
-        <Label text="Select Art File:" GridPane.columnIndex="0" GridPane.rowIndex="10"/>
-        <Button text="Browse..." onAction="#onBrowseFile" GridPane.columnIndex="1" GridPane.rowIndex="10"/>
+            <Label text="Units:" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+            <TextField fx:id="unitsTextField" GridPane.columnIndex="1" GridPane.rowIndex="8" promptText="Enter Units (e.g., cm, inches)" styleClass="input-field"/>
 
-        <!-- Display selected file path -->
-        <TextField fx:id="filePathTextField" GridPane.columnIndex="1" GridPane.rowIndex="11" promptText="Selected file path" editable="false"/>
-    </GridPane>
+            <Label text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="9"/>
+            <TextArea fx:id="descriptionTextField" GridPane.columnIndex="1" GridPane.rowIndex="9" promptText="Enter Description" styleClass="input-field"/>
 
-    <HBox spacing="10.0" alignment="CENTER">
-        <Button text="Upload Art" onAction="#onUpload"/>
-        <Button text="Cancel" onAction="#onCancel"/>
-    </HBox>
-</VBox>
+            <!-- File path display -->
+            <Label text="File Path:" GridPane.columnIndex="0" GridPane.rowIndex="10"/>
+            <TextField fx:id="filePathTextField" GridPane.columnIndex="1" GridPane.rowIndex="10" promptText="Selected file path" editable="false" styleClass="input-field"/>
+
+            <!-- Buttons for upload and cancel -->
+            <HBox spacing="10.0" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                <Button text="Upload Art" onAction="#onUpload" styleClass="nav-button"/>
+                <Button text="Cancel" onAction="#onCancel" styleClass="nav-button"/>
+            </HBox>
+        </GridPane>
+    </VBox>
+</HBox>

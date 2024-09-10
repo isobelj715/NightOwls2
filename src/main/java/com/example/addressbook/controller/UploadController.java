@@ -8,13 +8,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
 import java.io.File;
-
 public class UploadController {
 
+    @FXML
+    private ImageView imagePreview;
     @FXML
     private TextField artTitleTextField;
     @FXML
@@ -46,7 +49,7 @@ public class UploadController {
         artManager = new ArtManager(new SqliteArtDAO());
     }
 
-    // Handles the file selection
+    // Handles the file selection and updates image preview
     @FXML
     public void onBrowseFile(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
@@ -63,6 +66,14 @@ public class UploadController {
 
         if (selectedFile != null) {
             filePathTextField.setText(selectedFile.getAbsolutePath());
+
+            // Attempt to load the image and display in the preview
+            try {
+                Image image = new Image(selectedFile.toURI().toString());
+                imagePreview.setImage(image); // Update the imagePreview with the selected image
+            } catch (Exception e) {
+                showAlert("Error", "Selected file is not a valid image.");
+            }
         }
     }
 
