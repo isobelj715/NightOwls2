@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" spacing="10" prefWidth="1280" prefHeight="720" stylesheets="@style.css">
+
+    <!-- Placeholder for Main Content that grows -->
+    <VBox VBox.vgrow="ALWAYS" alignment="CENTER">
+        <Label text="Main content goes here." />
+    </VBox>
+
+    <!-- Footer that stays at the bottom -->
+    <HBox styleClass="footer" alignment="CENTER" prefHeight="50" VBox.vgrow="NEVER">
+        <Label text="Contact Us" HBox.hgrow="ALWAYS"/>
+        <Label text="Site design / logo © 2024 URMOM Inc;" />
+    </HBox>
+
+</VBox>

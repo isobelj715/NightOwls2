@@ -23,11 +23,16 @@
 }
 
 .footer {
-    -fx-background-color: #E0E0E0;
-    -fx-padding: 10 20;
-    -fx-border-color: #CCCCCC;
-    -fx-border-width: 2;
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 10px;
     -fx-font-size: 12px;
+    -fx-alignment: center;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-position: absolute;
+    -fx-bottom: 0;
+    -fx-width: 100%;
 }
 
 .logo-text {

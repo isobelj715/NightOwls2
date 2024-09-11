@@ -20,11 +20,11 @@ public class HelloApplication extends Application {
     /**
      * The width of the application window, in pixels.
      */
-    public static final int WIDTH = 800;
+    public static final int WIDTH = 1280;
     /**
      * The height of the application window, in pixels.
      */
-    public static final int HEIGHT = 600;
+    public static final int HEIGHT = 720;
 
     /**
      * The main entry point for all JavaFX applications.
