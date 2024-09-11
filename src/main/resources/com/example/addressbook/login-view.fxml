@@ -11,39 +11,50 @@
 <?import javafx.scene.paint.Color?>
 
 <AnchorPane fx:controller="com.example.addressbook.controller.LoginController"
-            prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            style="-fx-background-color: #E9E5F7;" stylesheets="@login-buttons.css">
-    <children>
-        <!-- Main Pane for the Login form -->
-        <Pane layoutX="250.0" layoutY="150.0" prefHeight="350.0" prefWidth="300.0"
-              style="-fx-background-color: #F4EFFC; -fx-border-color: #C4C4C4; -fx-border-radius: 10; -fx-background-radius: 10;">
-            <children>
-                <!-- Title "Log In" -->
-                <Label layoutX="120.0" layoutY="20.0" text="Log In" style="-fx-font-size: 24px; -fx-text-fill: #000000;" />
+    prefHeight="1280.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/17"
+    xmlns:fx="http://javafx.com/fxml/1"
+    style="-fx-background-color: #E9E5F7;" stylesheets="@login-buttons.css">
 
-                <!-- Subtitle -->
-                <Label layoutX="45.0" layoutY="60.0" prefHeight="20.0" prefWidth="210.0" text="Enter your email and password."
-                       style="-fx-font-size: 12px; -fx-text-fill: #333333;" />
 
-                <!-- Email Text Field -->
-                <TextField fx:id="emailTextField" layoutX="50.0" layoutY="100.0" prefHeight="35.0" prefWidth="200.0" promptText="Email"
-                           style="-fx-font-size: 14px; -fx-background-color: #FFFFFF; -fx-border-color: #DADADA; -fx-border-radius: 5; -fx-background-radius: 5;" />
+    <!-- Include Header -->
+    <fx:include source="header-template.fxml"/>
 
-                <!-- Password Field -->
-                <PasswordField fx:id="passwordField" layoutX="50.0" layoutY="150.0" prefHeight="35.0" prefWidth="200.0" promptText="Password"
-                               style="-fx-font-size: 14px; -fx-background-color: #FFFFFF; -fx-border-color: #DADADA; -fx-border-radius: 5; -fx-background-radius: 5;" />
+    <!-- Main Pane for the Login form -->
+    <Pane layoutX="250.0" layoutY="150.0" prefHeight="350.0" prefWidth="300.0"
+          style="-fx-background-color: #F4EFFC; -fx-border-color: #C4C4C4; -fx-border-radius: 10; -fx-background-radius: 10;">
+        <!-- Title "Log In" -->
+        <Label layoutX="120.0" layoutY="20.0" text="Log In" style="-fx-font-size: 24px; -fx-text-fill: #000000;"/>
 
-                <!-- Log In Button -->
-                <Button layoutX="50.0" layoutY="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Log In"
-                        styleClass="hover-button" onAction="#onLogin" />
+        <!-- Subtitle -->
+        <Label layoutX="45.0" layoutY="60.0" prefHeight="20.0" prefWidth="210.0"
+               text="Enter your email and password."
+               style="-fx-font-size: 12px; -fx-text-fill: #333333;"/>
 
-                <!-- Separator Label for 'or' -->
-                <Label layoutX="145.0" layoutY="255.0" text="or" style="-fx-font-size: 12px; -fx-text-fill: #333333;" />
+        <!-- Email Text Field -->
+        <TextField fx:id="emailTextField" layoutX="50.0" layoutY="100.0" prefHeight="35.0" prefWidth="200.0"
+                   promptText="Email"
+                   style="-fx-font-size: 14px; -fx-background-color: #FFFFFF; -fx-border-color: #DADADA; -fx-border-radius: 5; -fx-background-radius: 5;"/>
 
-                <!-- Create Account Button (centered) -->
-                <Button fx:id="createAccountButton" alignment="CENTER" layoutX="50.0" layoutY="280.0" mnemonicParsing="false" text="Create Account"
-                        prefHeight="40.0" prefWidth="200.0" styleClass="hover-button" onAction="#onCreateAccount" />
-            </children>
-        </Pane>
-    </children>
+        <!-- Password Field -->
+        <PasswordField fx:id="passwordField" layoutX="50.0" layoutY="150.0" prefHeight="35.0" prefWidth="200.0"
+                       promptText="Password"
+                       style="-fx-font-size: 14px; -fx-background-color: #FFFFFF; -fx-border-color: #DADADA; -fx-border-radius: 5; -fx-background-radius: 5;"/>
+
+        <!-- Log In Button -->
+        <Button layoutX="50.0" layoutY="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0"
+                text="Log In"
+                styleClass="hover-button" onAction="#onLogin"/>
+
+        <!-- Separator Label for 'or' -->
+        <Label layoutX="145.0" layoutY="255.0" text="or" style="-fx-font-size: 12px; -fx-text-fill: #333333;"/>
+
+        <!-- Create Account Button (centered) -->
+        <Button fx:id="createAccountButton" alignment="CENTER" layoutX="50.0" layoutY="280.0"
+                mnemonicParsing="false" text="Create Account"
+                prefHeight="40.0" prefWidth="200.0" styleClass="hover-button" onAction="#onCreateAccount"/>
+    </Pane>
+
+    <!-- Include Footer -->
+    <fx:include source="footer-template.fxml"/>
+
 </AnchorPane>
