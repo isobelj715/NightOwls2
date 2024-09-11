@@ -5,24 +5,27 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
-<VBox xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" spacing="10" prefWidth="1280" prefHeight="720" stylesheets="@style.css">
+<VBox xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" spacing="10" prefWidth="1280" prefHeight="80" stylesheets="@style.css">
 
-    <HBox styleClass="header" spacing="20">
+    <HBox styleClass="header" spacing="20" minHeight="80" maxHeight="80">
         <!-- Header Section -->
-        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="20">
+        <HBox styleClass="header transparent-box" alignment="CENTER_LEFT" spacing="1" minHeight="80" maxHeight="80">
             <!-- Logo -->
-            <ImageView fitHeight="50" fitWidth="50">
+            <ImageView fitHeight="100" fitWidth="100" preserveRatio="true" smooth="true">
                 <Image url="@img/logo2.png" />
             </ImageView>
             <Label text="ArtTasker" styleClass="logo-text"/>
         </HBox>
-        <HBox styleClass="navbar" prefWidth="520" alignment="CENTER_RIGHT" spacing="15">
-        </HBox>
+
+        <!-- Spacer Region -->
+        <Region fx:id="spacer" HBox.hgrow="ALWAYS" />
+
         <!-- Navigation Bar -->
-        <HBox styleClass="navbar" alignment="CENTER_RIGHT" spacing="15">
+        <HBox styleClass="navbar" alignment="CENTER_RIGHT" spacing="15" minHeight="80" maxHeight="80" prefWidth="600">
             <Button text="Home" styleClass="nav-button"/>
             <Button text="Upload" styleClass="nav-button"/>
             <Button text="About Us" styleClass="nav-button"/>
             <Button text="Profile" styleClass="nav-button"/>
         </HBox>
-    </HBox> </VBox>
+    </HBox>
+</VBox>

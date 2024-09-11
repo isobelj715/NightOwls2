@@ -1,12 +1,19 @@
 /* CSS file for styling the JavaFX components */
-.header {
-    -fx-background-color: #FFFFFF;
-    -fx-padding: 10 20;
-}
+.transparent-box {
+     -fx-background-color: transparent; /* Ensures full transparency */
+     -fx-padding: 0;  /* Removes padding */
+     -fx-border-insets: 0;
+     -fx-background-insets: 0;
+ }
+
+ .header {
+     -fx-background-color: #FFFFFF;  /* Ensures a white background */
+     -fx-padding: 0;
+ }
 
 .navbar {
     -fx-background-color: #FFFFFF;
-    -fx-padding: 10 20;
+    -fx-padding: 0 30px; /* Adding more padding on the right side */
 }
 
 .nav-button {
@@ -35,9 +42,11 @@
 }
 
 .logo-text {
-    -fx-font-family: 'Arial';
-    -fx-font-size: 24px;
-    -fx-text-fill: #5555FF;
+    -fx-font-family: 'Georgia';  /* other options: 'Segoe Script' */
+    -fx-font-size: 36px;
+    -fx-text-fill: #4B0082; /* Dark purple color */
+    -fx-font-weight: bold;
+    -fx-padding: 0; /* Ensure no padding */
 }
 
 .main-content {
