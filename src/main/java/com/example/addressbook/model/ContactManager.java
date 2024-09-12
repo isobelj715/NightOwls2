@@ -57,6 +57,13 @@ public class ContactManager {
         contactDAO.addContact(contact);
     }
 
+
+    public Contact getContactByEmail(String email) {
+        return contactDAO.getContactByEmail(email);
+    }
+
+
+
     /**
      * Deletes a contact.
      *
@@ -83,4 +90,6 @@ public class ContactManager {
     public List<Contact> getAllContacts() {
         return contactDAO.getAllContacts();
     }
+
+
 }

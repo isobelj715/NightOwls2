@@ -2,6 +2,7 @@ package com.example.addressbook.controller;
 
 import com.example.addressbook.model.Contact;
 import com.example.addressbook.model.ContactManager;
+import com.example.addressbook.model.SessionManager;
 import com.example.addressbook.model.SqliteContactDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;  // Import for VBox
 import javafx.stage.Stage;
 
@@ -32,7 +34,7 @@ public class LoginController {
     private Button createAccountButton;
     @FXML
     public void initialize() {
-        System.out.println("Create Account Button initialized: " + createAccountButton);
+        System.out.println("Create Account Button initialised: " + createAccountButton);
     }
 
     private ContactManager contactManager;
@@ -54,23 +56,34 @@ public class LoginController {
             return;
         }
 
-        // Check the database for matching credentials
-        List<Contact> contacts = contactManager.getAllContacts();
-        boolean isValid = false;
+        // Retrieve contact by email
+        Contact contact = contactManager.getContactByEmail(email);
 
-        for (Contact contact : contacts) {
-            // Debugging output to make sure correct data is being retrieved
-            System.out.println("Checking email: " + contact.getEmail() + " | password: " + contact.getPassword());
+        if (contact != null && contact.getPassword().trim().equals(password)) {
 
-            if (contact.getEmail().trim().equals(email) && contact.getPassword().trim().equals(password)) {
-                isValid = true;
-                break;
+            // Store the logged-in user in SessionManager
+            SessionManager.getInstance().setLoggedInUser(contact);
+
+            try {
+                // Load the "My Art" FXML file and switch the scene
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/my-art-view.fxml"));
+
+                AnchorPane myArtPane = loader.load();  // AnchorPane is the root element in your my-art-view.fxml
+                Scene myArtScene = new Scene(myArtPane);
+
+                // Get the current stage and set the new scene (My Art page)
+                Stage stage = (Stage) loginButton.getScene().getWindow();
+                stage.setScene(myArtScene);
+
+                // Disable the fullscreen exit hint
+                stage.setFullScreenExitHint("");
+                // Make the window fullscreen
+                stage.setFullScreen(true);
+
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        }
-
-        if (isValid) {
-            showAlert("Success", "Login successful!");
-            // Proceed to the next screen if needed (after successful login)
         } else {
             showAlert("Error", "Invalid email or password.");
         }
@@ -94,6 +107,8 @@ public class LoginController {
             e.printStackTrace();
         }
     }
+
+
 
     // Utility method to show alert dialogs
     private void showAlert(String title, String message) {

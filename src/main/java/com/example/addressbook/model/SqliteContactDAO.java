@@ -90,6 +90,35 @@ public class SqliteContactDAO implements IContactDAO {
         }
     }
 
+
+    @Override
+    public Contact getContactByEmail(String email) {
+        Contact contact = null;
+        String sql = "SELECT * FROM contacts WHERE email = ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, email);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                String phone = rs.getString("phone");
+                String password = rs.getString("password");
+
+                contact = new Contact(firstName, lastName, email, phone, password);
+                contact.setId(id);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return contact;
+    }
+
+
+
     @Override
     public void deleteContact(Contact contact) {
         try {

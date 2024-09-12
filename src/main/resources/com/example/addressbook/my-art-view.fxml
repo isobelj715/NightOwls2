@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:controller="com.example.addressbook.controller.MyArtController"
+            prefHeight="1280.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            style="-fx-background-color: #E9E5F7;" stylesheets="@login-buttons.css">
+
+    <!-- Include Header -->
+    <fx:include source="header-template.fxml"/>
+
+    <!-- Greeting Label to show the logged-in user's name -->
+    <Label fx:id="userGreetingLabel"
+           layoutX="50.0" layoutY="100.0"
+           text="Welcome!"
+           textFill="#2c3e50">
+        <font>
+            <Font name="System Bold" size="24.0" />
+        </font>
+    </Label>
+
+    <!-- Include Footer -->
+    <fx:include source="footer-template.fxml"/>
+
+</AnchorPane>
