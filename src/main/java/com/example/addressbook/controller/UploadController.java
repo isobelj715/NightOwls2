@@ -49,6 +49,8 @@ public class UploadController {
         artManager = new ArtManager(new SqliteArtDAO());
     }
 
+
+
     // Handles the file selection and updates image preview
     @FXML
     public void onBrowseFile(ActionEvent actionEvent) {

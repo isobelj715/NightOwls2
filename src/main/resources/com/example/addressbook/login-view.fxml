@@ -20,7 +20,7 @@
     <fx:include source="header-template.fxml"/>
 
     <!-- Main Pane for the Login form -->
-    <Pane layoutX="250.0" layoutY="150.0" prefHeight="350.0" prefWidth="300.0"
+    <Pane layoutX="490.0" layoutY="200.0" prefHeight="350.0" prefWidth="300.0"
           style="-fx-background-color: #F4EFFC; -fx-border-color: #C4C4C4; -fx-border-radius: 10; -fx-background-radius: 10;">
         <!-- Title "Log In" -->
         <Label layoutX="120.0" layoutY="20.0" text="Log In" style="-fx-font-size: 24px; -fx-text-fill: #000000;"/>

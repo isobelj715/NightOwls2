@@ -1,19 +1,13 @@
 /* CSS file for styling the JavaFX components */
-.transparent-box {
-     -fx-background-color: transparent; /* Ensures full transparency */
-     -fx-padding: 0;  /* Removes padding */
-     -fx-border-insets: 0;
-     -fx-background-insets: 0;
- }
 
  .header {
-     -fx-background-color: #FFFFFF;  /* Ensures a white background */
+     -fx-background-color: #FFFFFF;
      -fx-padding: 0;
  }
 
 .navbar {
     -fx-background-color: #FFFFFF;
-    -fx-padding: 0 30px; /* Adding more padding on the right side */
+    -fx-padding: 0 30px;
 }
 
 .nav-button {
@@ -38,7 +32,7 @@
     -fx-background-insets: 0;
     -fx-background-radius: 0;
     -fx-width: 100%;
-    -fx-height: 50px; /* Ensure the height is consistent */
+    -fx-height: 50px;
 }
 
 .logo-text {
@@ -46,11 +40,15 @@
     -fx-font-size: 36px;
     -fx-text-fill: #4B0082; /* Dark purple color */
     -fx-font-weight: bold;
-    -fx-padding: 0; /* Ensure no padding */
+    -fx-padding: 0;
 }
 
 .main-content {
-    -fx-background-color: linear-gradient(to bottom, #FFFFFF, #D6C7E2);
+    -fx-background-color: #F4EFFC; /*linear-gradient(to bottom, #FFFFFF, #D6C7E2);*/
+    -fx-padding: 50 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-radius: 0;
 }
 
 /* Landing Page Title */
@@ -97,11 +95,7 @@
     -fx-underline: true;
 }
 
-/* Main Content Background */
-.main-content {
-    -fx-background-color: linear-gradient(to bottom, #FFFFFF, #D6C7E2);
-    -fx-padding: 50 0;
-}
+
 
 /* VBox containing image and text */
 .image-text-vbox {
@@ -113,10 +107,53 @@
     -fx-background-radius: 10;
 }
 
+.transparent-box {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+}
+
 /* Text label below the image */
 .image-text-label {
     -fx-font-size: 14px;
     -fx-text-fill: #333333;
     -fx-padding: 10 0;
     -fx-max-width: 250px;
+}
+
+.upload-box {
+    -fx-background-color: #E9E5F7;
+    -fx-border-color: transparent;
+    -fx-border-width: 50;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
+    -fx-padding: 20;
+    -fx-alignment: center;
+
+}
+
+.upload-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 50%;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+}
+
+.upload-button:hover {
+    -fx-background-color: #F0F0F0;
+}
+
+.upload-button ImageView {
+    -fx-opacity: 0.7;
+}
+
+.upload-button:hover ImageView {
+    -fx-opacity: 1.0;
+}
+
+.image-preview {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
 }
