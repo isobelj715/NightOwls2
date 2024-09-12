@@ -33,4 +33,6 @@ public interface IContactDAO {
      * @return A list of all contacts in the database.
      */
     public List<Contact> getAllContacts();
+
+    Contact getContactByEmail(String email);
 }

@@ -49,4 +49,21 @@ public class MockContactDAO implements IContactDAO {
     public List<Contact> getAllContacts() {
         return new ArrayList<>(contacts);
     }
+
+
+    /**
+     * Retrieves a contact by email.
+     *
+     * @param email The email of the contact to retrieve.
+     * @return The contact with the matching email, or null if no contact is found.
+     */
+    @Override
+    public Contact getContactByEmail(String email) {
+        for (Contact contact : contacts) {
+            if (contact.getEmail().equalsIgnoreCase(email)) {
+                return contact;
+            }
+        }
+        return null;
+    }
 }
