@@ -19,9 +19,25 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
 }
 
+.confirm-button {
+    -fx-background-color: #aa80bf;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
+}
+
+
 .nav-button:hover {
     -fx-background-color: #555555;
 }
+
+.confirm-button:hover {
+    -fx-background-color: #555555;
+}
+
+
 
 .footer {
     -fx-background-color: #FFFFFF; /* Solid white background */
@@ -124,10 +140,10 @@
 
 .upload-box {
     -fx-background-color: #E9E5F7;
-    -fx-border-color: transparent;
+    -fx-border-color: #E9E5F7;
     -fx-border-width: 50;
-    -fx-border-radius: 50;
-    -fx-background-radius: 50;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
     -fx-padding: 20;
     -fx-alignment: center;
 

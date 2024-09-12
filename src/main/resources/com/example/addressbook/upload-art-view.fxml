@@ -77,8 +77,8 @@
 
                 <!-- Buttons for upload and cancel -->
                 <HBox spacing="10.0" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.columnSpan="3">
-                    <Button text="Confirm" onAction="#onUpload" styleClass="nav-button"/>
                     <Button text="Cancel" onAction="#onCancel" styleClass="nav-button"/>
+                    <Button text="Confirm" onAction="#onUpload" styleClass="confirm-button"/>
                 </HBox>
             </GridPane>
         </VBox>
