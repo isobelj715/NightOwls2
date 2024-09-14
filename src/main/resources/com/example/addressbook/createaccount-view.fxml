@@ -1,39 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 
-<?import javafx.scene.layout.HBox?>
-<VBox alignment="TOP_CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.addressbook.controller.CreateAccountController"
->
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<AnchorPane fx:controller="com.example.addressbook.controller.CreateAccountController"
+            prefHeight="1280.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            style="-fx-background-color: #E9E5F7;" stylesheets="@login-buttons.css">
 
-    <Label text="Create Account" style="-fx-font-size: 20px;"/>
+    <!-- Include Header -->
+    <fx:include source="header-template.fxml"/>
 
-    <GridPane hgap="10.0" vgap="10.0" >
-        <Label text="First Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <Label text="Last Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-        <Label text="Phone:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-        <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+    <!-- Main Pane for the Create Account form -->
+    <Pane layoutX="490.0" layoutY="150.0" prefHeight="450.0" prefWidth="300.0"
+          style="-fx-background-color: #F4EFFC; -fx-border-color: #C4C4C4; -fx-border-radius: 10; -fx-background-radius: 10;">
+        <!-- Title "Create Account" -->
+        <Label layoutX="80.0" layoutY="20.0" text="Create Account"
+               style="-fx-font-size: 24px; -fx-text-fill: #000000;"/>
 
-        <TextField fx:id="firstNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="0" promptText="Enter First Name"/>
-        <TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" promptText="Enter Last Name"/>
-        <TextField fx:id="emailTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" promptText="Enter Email"/>
-        <TextField fx:id="phoneTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" promptText="Enter Phone"/>
-        <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="4" promptText="Enter Password"/>
-    </GridPane>
+        <!-- Subtitle -->
+        <Label layoutX="45.0" layoutY="60.0" prefHeight="20.0" prefWidth="210.0"
+               text="Fill in the details below."
+               style="-fx-font-size: 12px; -fx-text-fill: #333333;"/>
 
-    <HBox spacing="10.0" alignment="CENTER">
-        <Button text="Create Account" onAction="#onCreateAccount"/>
-        <Button text="Cancel" onAction="#onCancel"/>
-    </HBox>
-</VBox>
+        <!-- Form GridPane -->
+        <GridPane layoutX="30.0" layoutY="90.0" hgap="10.0" vgap="10.0">
+            <!-- First Name Field -->
+            <TextField fx:id="firstNameTextField" promptText="Enter First Name"
+                       style="-fx-font-size: 14px; -fx-background-color: #FFFFFF; -fx-border-color: #DADADA; -fx-border-radius: 5; -fx-background-radius: 5;"
+                       GridPane.columnIndex="0" GridPane.rowIndex="0" prefHeight="35.0" prefWidth="240.0"/>
+
+            <!-- Last Name Field -->
+            <TextField fx:id="lastNameTextField" promptText="Enter Last Name"
+                       style="-fx-font-size: 14px; -fx-background-color: #FFFFFF; -fx-border-color: #DADADA; -fx-border-radius: 5; -fx-background-radius: 5;"
+                       GridPane.columnIndex="0" GridPane.rowIndex="1" prefHeight="35.0" prefWidth="240.0"/>
+
+            <!-- Email Field -->
+            <TextField fx:id="emailTextField" promptText="Enter Email"
+                       style="-fx-font-size: 14px; -fx-background-color: #FFFFFF; -fx-border-color: #DADADA; -fx-border-radius: 5; -fx-background-radius: 5;"
+                       GridPane.columnIndex="0" GridPane.rowIndex="2" prefHeight="35.0" prefWidth="240.0"/>
+
+            <!-- Phone Field -->
+            <TextField fx:id="phoneTextField" promptText="Enter Phone"
+                       style="-fx-font-size: 14px; -fx-background-color: #FFFFFF; -fx-border-color: #DADADA; -fx-border-radius: 5; -fx-background-radius: 5;"
+                       GridPane.columnIndex="0" GridPane.rowIndex="3" prefHeight="35.0" prefWidth="240.0"/>
+
+            <!-- Password Field -->
+            <PasswordField fx:id="passwordField" promptText="Enter Password"
+                           style="-fx-font-size: 14px; -fx-background-color: #FFFFFF; -fx-border-color: #DADADA; -fx-border-radius: 5; -fx-background-radius: 5;"
+                           GridPane.columnIndex="0" GridPane.rowIndex="4" prefHeight="35.0" prefWidth="240.0"/>
+        </GridPane>
+
+        <!-- Create Account Button -->
+        <Button fx:id="createAccountButton" layoutX="50.0" layoutY="330.0"
+                mnemonicParsing="false" text="Create Account"
+                prefHeight="40.0" prefWidth="200.0" styleClass="hover-button"
+                onAction="#onCreateAccount"/>
+
+        <!-- Cancel Button -->
+        <Button fx:id="cancelButton" layoutX="50.0" layoutY="380.0"
+                mnemonicParsing="false" text="Cancel"
+                prefHeight="40.0" prefWidth="200.0" styleClass="hover-button"
+                onAction="#onCancel"/>
+
+    </Pane>
+
+    <!-- Include Footer -->
+    <fx:include source="footer-template.fxml"/>
+
+</AnchorPane>
