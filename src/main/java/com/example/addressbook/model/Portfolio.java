@@ -4,9 +4,12 @@ public class Portfolio {
     private int id;
     private String portfolioName;
     private String portfolioDescription;
+    private Integer contactID;
 
-    public Portfolio(String portfolioName, String portfolioDescription) {
+    public Portfolio(String portfolioName, String portfolioDescription, Integer contactID) {
         this.portfolioName = portfolioName;
+        this.portfolioDescription = portfolioDescription;
+        this.contactID = contactID;  // Initialize contact_id in the constructor
     }
 
     public int getId(){
@@ -30,6 +33,14 @@ public class Portfolio {
 
     public void setPortfolioDescription(String portfolioDescription) {
         this.portfolioDescription = portfolioDescription;
+    }
+
+    public Integer getContactID() {
+        return contactID;
+    }
+
+    public void setContactID(Integer contactID) {
+        this.contactID = contactID;
     }
 
 

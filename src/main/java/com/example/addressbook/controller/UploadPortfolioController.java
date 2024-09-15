@@ -1,10 +1,6 @@
 package com.example.addressbook.controller;
 
-import com.example.addressbook.model.Art;
-import com.example.addressbook.model.ArtManager;
-import com.example.addressbook.model.SqliteArtDAO;
-import com.example.addressbook.model.Portfolio;
-import com.example.addressbook.model.SqlitePortfolioDAO;
+import com.example.addressbook.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -88,8 +84,16 @@ public class UploadPortfolioController {
             return;
         }
 
-        // Create a new portfolio with name and description
-        Portfolio newPortfolio = new Portfolio(portfolioName, portfolioDescription);
+        // Get the current logged-in user
+        Contact loggedInUser = SessionManager.getInstance().getLoggedInUser();
+
+        if (loggedInUser == null) {
+            showAlert("Error", "No user is logged in.");
+            return;
+        }
+
+        // Create a new portfolio with name, description, and contact ID
+        Portfolio newPortfolio = new Portfolio(portfolioName, portfolioDescription, loggedInUser.getId());
         portfolioDAO.addPortfolio(newPortfolio);  // Add the new portfolio to the database
         loadPortfolios();  // Reload the portfolios into the ComboBox
         portfolioComboBox.getSelectionModel().select(newPortfolio);  // Select the newly created portfolio

@@ -66,9 +66,9 @@ public class LoginController {
 
             try {
                 // Load the "My Art" FXML file and switch the scene
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/my-art-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/upload-art-view.fxml"));
 
-                AnchorPane myArtPane = loader.load();  // AnchorPane is the root element in your my-art-view.fxml
+                VBox myArtPane = loader.load();  // AnchorPane is the root element in your my-art-view.fxml
                 Scene myArtScene = new Scene(myArtPane);
 
                 // Get the current stage and set the new scene (My Art page)
