@@ -28,6 +28,9 @@ public class MyPortfoliosController {
     @FXML
     private ListView<Portfolio> portfolioListView;
 
+    @FXML
+    private Button createPortfolioButton;
+
     private final SqlitePortfolioDAO portfolioDAO;
 
     public MyPortfoliosController() {
@@ -153,4 +156,32 @@ public class MyPortfoliosController {
             }
         }
     }
+    @FXML
+    public void onCreatePortfolio(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/create-portfolio-popup.fxml"));
+            Parent root = loader.load();
+
+            CreatePortfolioController dialogController = loader.getController();
+            dialogController.setPortfolioDAO(portfolioDAO);
+
+            // Create a new stage for the dialog
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Create New Portfolio");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(createPortfolioButton.getScene().getWindow());
+            dialogStage.setScene(new Scene(root));
+            dialogStage.showAndWait();
+
+            // After the dialog is closed, refresh the portfolio list
+            if (dialogController.isPortfolioCreated()) {
+                loadPortfolios();
+                showAlert("Success", "Portfolio created successfully!");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to open the create portfolio dialog.");
+        }
+    }
+
 }

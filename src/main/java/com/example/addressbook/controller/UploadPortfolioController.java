@@ -68,9 +68,48 @@ public class UploadPortfolioController {
 
     // Load all portfolios into the ComboBox
     private void loadPortfolios() {
-        List<Portfolio> portfolios = portfolioDAO.getAllPortfolio();  // Fetch all portfolios from the database
+        // Get the current logged-in user
+        Contact loggedInUser = SessionManager.getInstance().getLoggedInUser();
+        int userId = loggedInUser.getId();
+
+        if (userId == -1) {
+            showAlert("Error", "No user is logged in.");
+            return;
+        }
+
+        // Fetch portfolios for the logged-in user
+        List<Portfolio> portfolios = portfolioDAO.getAllPortfolio();
+
+        // Convert to ObservableList
         ObservableList<Portfolio> portfolioList = FXCollections.observableArrayList(portfolios);
+
+        // Set the items in the ComboBox
         portfolioComboBox.setItems(portfolioList);
+
+        // Set up a custom CellFactory to display portfolio titles
+        portfolioComboBox.setCellFactory(param -> new ListCell<Portfolio>() {
+            @Override
+            protected void updateItem(Portfolio item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getPortfolioName());
+                }
+            }
+        });
+        // Ensure the selected item displays correctly
+        portfolioComboBox.setButtonCell(new ListCell<Portfolio>() {
+            @Override
+            protected void updateItem(Portfolio item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getPortfolioName());
+                }
+            }
+        });
     }
 
     // Handle the creation of a new portfolio when the user clicks the "Create New Portfolio" button
