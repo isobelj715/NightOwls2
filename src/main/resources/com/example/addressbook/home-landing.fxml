@@ -8,27 +8,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" spacing="10" prefWidth="1280" prefHeight="720" stylesheets="@style.css">
 
-    <HBox styleClass="header" spacing="20">
-        <!-- Header Section -->
-        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="20">
-            <!-- Logo -->
-            <ImageView fitHeight="50" fitWidth="50">
-                <Image url="@img/logo2.png" />
-            </ImageView>
-            <Label text="ArtTasker" styleClass="logo-text"/>
-        </HBox>
-<!--        Spacer box-->
-        <HBox styleClass="navbar" prefWidth="520" alignment="CENTER_RIGHT" spacing="15">
-        </HBox>
-        <!-- Navigation Bar -->
-        <HBox styleClass="navbar" alignment="CENTER_RIGHT" spacing="15">
-            <Button text="Home" styleClass="nav-button"/>
-            <Button text="Upload" styleClass="nav-button"/>
-            <Button text="About Us" styleClass="nav-button"/>
-            <Button text="Profile" styleClass="nav-button"/>
-        </HBox>
-    </HBox>
-
+    <fx:include source="header-template.fxml"/>
 <!--Main Content-->
     <HBox  alignment="CENTER" spacing="20" styleClass="main-content">
 
@@ -47,20 +27,13 @@
         <!--        Spacer box-->
         <VBox  prefWidth="100" alignment="CENTER_RIGHT" spacing="15">
         </VBox>
-        <!-- Signup Form -->
+        <!-- home page buttons -->
         <VBox alignment="CENTER" spacing="10">
-            <Label text="Sign Up to ArtTasker" styleClass="landing-title"/>
-            <TextField promptText="Username" styleClass="input-field"/>
-            <TextField promptText="Email" styleClass="input-field"/>
-            <PasswordField promptText="Password" styleClass="input-field"/>
+            <Button text="Log in" styleClass="signup-button"/>
             <Button text="Sign Up" styleClass="signup-button"/>
-            <Label text="Already have an account? Log in" styleClass="link-label"/>
         </VBox>
 
     </HBox>
-    <!-- Footer -->
-    <HBox styleClass="footer" alignment="CENTER">
-        <Label text="Contact Us" HBox.hgrow="ALWAYS"/>
-        <Label text="Site design / logo © 2024 URMOM Inc;" />
-    </HBox>
+    <!-- Include Footer -->
+    <fx:include source="footer-template.fxml"/>
 </VBox>
