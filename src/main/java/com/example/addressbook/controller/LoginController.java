@@ -96,12 +96,19 @@ public class LoginController {
             // Load the "Create Account" FXML file and switch the scene
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/createaccount-view.fxml"));
 
-            VBox createAccountPane = loader.load();  // Use VBox since your root element is VBox in the FXML
+            AnchorPane createAccountPane = loader.load();  // Use VBox since your root element is VBox in the FXML
             Scene createAccountScene = new Scene(createAccountPane);
 
             // Get the current stage and set the new scene (Create Account page)
             Stage stage = (Stage) createAccountButton.getScene().getWindow();
             stage.setScene(createAccountScene);
+
+            // Disable the fullscreen exit hint
+            stage.setFullScreenExitHint("");
+            // Make the window fullscreen
+            stage.setFullScreen(true);
+
+
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
