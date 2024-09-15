@@ -40,7 +40,8 @@ public class SqliteArtDAO implements IArtDAO {
                     + "depth INTEGER, "
                     + "units VARCHAR, "
                     + "description TEXT, "
-                    + "filePath TEXT"  // Column for file path
+                    + "filePath TEXT,"
+                    + "portfolio_id"
                     + ")";
             statement.execute(query);
         } catch (Exception e) {
@@ -51,8 +52,8 @@ public class SqliteArtDAO implements IArtDAO {
     @Override
     public void addArt(Art art) {
         try {
-            String query = "INSERT INTO art (artTitle, year, category, medium, material, width, height, depth, units, description, filePath) "
-                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO art (artTitle, year, category, medium, material, width, height, depth, units, description, filePath, portfolio_id) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, art.getArtTitle());
             statement.setInt(2, art.getYear());
@@ -76,7 +77,15 @@ public class SqliteArtDAO implements IArtDAO {
             }
             statement.setString(9, art.getUnits());
             statement.setString(10, art.getDescription());
-            statement.setString(11, art.getFilePath()); // Store file path
+            statement.setString(11, art.getFilePath());
+
+            // Set portfolio_id (can be null)
+            if (art.getPortfolioId() != null) {
+                statement.setInt(12, art.getPortfolioId());
+            } else {
+                statement.setNull(12, Types.INTEGER);
+            }
+
             statement.executeUpdate();
 
             ResultSet generatedKeys = statement.getGeneratedKeys();
@@ -93,7 +102,7 @@ public class SqliteArtDAO implements IArtDAO {
     @Override
     public void updateArt(Art art) {
         try {
-            String query = "UPDATE art SET artTitle = ?, year = ?, category = ?, medium = ?, material = ?, width = ?, height = ?, depth = ?, units = ?, description = ?, filePath = ? WHERE id = ?";
+            String query = "UPDATE art SET artTitle = ?, year = ?, category = ?, medium = ?, material = ?, width = ?, height = ?, depth = ?, units = ?, description = ?, filePath = ?, portfolio_id = ? WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, art.getArtTitle());
             statement.setInt(2, art.getYear());
@@ -106,7 +115,15 @@ public class SqliteArtDAO implements IArtDAO {
             statement.setString(9, art.getUnits());
             statement.setString(10, art.getDescription());
             statement.setString(11, art.getFilePath());
-            statement.setInt(12, art.getId());
+
+            // Update portfolio_id (can be null)
+            if (art.getPortfolioId() != null) {
+                statement.setInt(12, art.getPortfolioId());
+            } else {
+                statement.setNull(12, Types.INTEGER);
+            }
+
+            statement.setInt(13, art.getId());
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -135,6 +152,7 @@ public class SqliteArtDAO implements IArtDAO {
                 Integer year = resultSet.getInt("year");
                 Art art = new Art(artTitle, year);
                 art.setId(id);
+                art.setPortfolioId(resultSet.getInt("portfolio_id")); // Set portfolio_id
                 return art;
             }
         } catch (Exception e) {
@@ -156,6 +174,7 @@ public class SqliteArtDAO implements IArtDAO {
                 Integer year = resultSet.getInt("year");
                 Art art = new Art(artTitle, year);
                 art.setId(id);
+                art.setPortfolioId(resultSet.getInt("portfolio_id")); // Set portfolio_id
                 arts.add(art);
             }
         } catch (Exception e) {
@@ -163,6 +182,5 @@ public class SqliteArtDAO implements IArtDAO {
         }
         return arts;
     }
-
 
 }
