@@ -173,3 +173,36 @@
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
+
+
+/* Portfolio List Cell */
+.portfolio-list-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 10;
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+}
+
+.portfolio-title {
+    -fx-font-size: 16px;
+    -fx-text-fill: #4B0082; /* Match the title color */
+    -fx-font-weight: bold;
+}
+
+.portfolio-description {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555;
+}
+
+.portfolio-button {
+    -fx-background-color: #5A67D8; /* Use the same color as the signup button */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 5 10;
+    -fx-background-radius: 10;
+}
+
+.portfolio-button:hover {
+    -fx-background-color: #434190; /* Darken on hover */
+}

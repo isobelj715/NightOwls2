@@ -7,13 +7,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ListView;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 
 public class MyPortfoliosController {
@@ -76,9 +83,9 @@ public class MyPortfoliosController {
         alert.showAndWait();
     }
 
-    // Custom ListCell for portfolio items with "Open" and "Delete" buttons
+    // Custom ListCell for portfolio items with a GridPane layout
     private class PortfolioListCell extends ListCell<Portfolio> {
-        private final HBox content;
+        private final GridPane content;
         private final Label portfolioNameLabel;
         private final Label portfolioDescriptionLabel;
         private final Button openButton;
@@ -90,12 +97,29 @@ public class MyPortfoliosController {
             openButton = new Button("Open");
             deleteButton = new Button("Delete");
 
+            // Apply CSS classes
+            portfolioNameLabel.getStyleClass().add("portfolio-title");
+            portfolioDescriptionLabel.getStyleClass().add("portfolio-description");
+            openButton.getStyleClass().add("portfolio-button");
+            deleteButton.getStyleClass().add("portfolio-button");
+
             openButton.setOnAction(event -> onOpenPortfolio(getItem()));
             deleteButton.setOnAction(event -> onDeletePortfolio(new ActionEvent()));
 
-            // Adding the labels and buttons to the HBox
-            content = new HBox(portfolioNameLabel, portfolioDescriptionLabel, openButton, deleteButton);
-            content.setSpacing(10); // Adjust spacing if necessary
+            // Setting up the GridPane layout
+            content = new GridPane();
+            content.getStyleClass().add("portfolio-list-cell");
+            content.setHgap(20); // Horizontal gap between columns
+
+            // Adding elements to the GridPane
+            content.add(portfolioNameLabel, 0, 0);
+            content.add(portfolioDescriptionLabel, 1, 0);
+            HBox buttonBox = new HBox(10, openButton, deleteButton); // HBox for buttons with spacing
+            content.add(buttonBox, 2, 0);
+
+            // Making columns stretch to fill available space
+            GridPane.setHgrow(portfolioNameLabel, Priority.ALWAYS);
+            GridPane.setHgrow(portfolioDescriptionLabel, Priority.ALWAYS);
         }
 
         @Override
@@ -112,7 +136,21 @@ public class MyPortfoliosController {
 
         // Open the selected portfolio (for now, just show an alert)
         private void onOpenPortfolio(Portfolio portfolio) {
-            showAlert("Open Portfolio", "Open portfolio: " + portfolio.getPortfolioName());
+            try {
+                // Load the portfolio overview FXML file and switch the scene
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/portfolio-overview.fxml"));
+                AnchorPane overviewPane = loader.load();
+                Scene overviewScene = new Scene(overviewPane);
+
+                // Get the current stage and set the new scene (Portfolio Overview page)
+                Stage stage = (Stage) openButton.getScene().getWindow();
+                stage.setScene(overviewScene);
+                stage.setFullScreenExitHint("");
+                stage.setFullScreen(true);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
