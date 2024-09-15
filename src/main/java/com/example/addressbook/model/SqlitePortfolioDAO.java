@@ -67,12 +67,18 @@ public class SqlitePortfolioDAO implements IPortfolioDAO {
         }
     }
 
+
     @Override
     public void deletePortfolio(Portfolio portfolio) {
         try {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM portfolios WHERE id = ?");
+            // Correct the SQL query to have only one parameter (id)
+            String query = "DELETE FROM portfolios WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+
+            // Set only the portfolio ID as the parameter
             statement.setInt(1, portfolio.getId());
-            statement.setInt(2, sessionManager.getLoggedInUser().getId());
+
+            // Execute the delete query
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
