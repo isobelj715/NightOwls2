@@ -65,10 +65,10 @@ public class LoginController {
             SessionManager.getInstance().setLoggedInUser(contact);
 
             try {
-                // Load the "My Art" FXML file and switch the scene
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/upload-art-view.fxml"));
+                // switch the address between my-portfolios-view or upload-art-view
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/my-portfolios-view.fxml"));
 
-                VBox myArtPane = loader.load();  // AnchorPane is the root element in your my-art-view.fxml
+                AnchorPane myArtPane = loader.load(); // Anchorpane for portfolios view and Vbox for upload art
                 Scene myArtScene = new Scene(myArtPane);
 
                 // Get the current stage and set the new scene (My Art page)

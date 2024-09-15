@@ -27,6 +27,17 @@ public class Portfolio {
         this.portfolioDescription = portfolioDescription;
     }
 
+
+
+    // added for MyPortfoliosController - edit title only
+    public String getPortfolioTitle() {
+        return portfolioName;
+    }
+
+    public void setPortfolioTitle(String portfolioName) {
+        this.portfolioName = portfolioName;
+    }
+
     public String getPortfolioDescription() {
         return portfolioDescription;
     }
