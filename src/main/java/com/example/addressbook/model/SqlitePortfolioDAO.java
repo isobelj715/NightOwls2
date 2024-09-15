@@ -4,44 +4,42 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SqlitePortfolioDAO implements IPortfolioDAO{
+public class SqlitePortfolioDAO implements IPortfolioDAO {
     private Connection connection;
+    private SessionManager sessionManager;
 
     public SqlitePortfolioDAO() {
         connection = SqliteConnection.getInstance();
+        sessionManager = SessionManager.getInstance();
         createTable();
     }
 
     private void createTable() {
-        // Drop the existing table (if any) - TODO: This is just for development, will need to be changed for final
         try {
             Statement statement = connection.createStatement();
-            statement.executeUpdate("DROP TABLE IF EXISTS portfolios");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // Create the new table with all the required columns
-        try {
-            Statement statement = connection.createStatement();
+            // Create the new table with all the required columns
             String query = "CREATE TABLE IF NOT EXISTS portfolios ("
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + "portfolioName VARCHAR NOT NULL, "
-                    + "portfolioDescription TEXT"
+                    + "portfolioName TEXT NOT NULL, "
+                    + "portfolioDescription TEXT, "
+                    + "contact_id INTEGER, "
+                    + "FOREIGN KEY(contact_id) REFERENCES contacts(id) ON DELETE CASCADE"
                     + ")";
             statement.execute(query);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     @Override
     public void addPortfolio(Portfolio portfolio) {
         try {
-            String query = "INSERT INTO portfolios (portfolioName, portfolioDescription) "
-                    + "VALUES (?, ?)";
+            String query = "INSERT INTO portfolios (portfolioName, portfolioDescription, contact_id) "
+                    + "VALUES (?, ?, ?)";  // Correctly include the third placeholder for contact_id
             PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, portfolio.getPortfolioName());
             statement.setString(2, portfolio.getPortfolioDescription());
+            statement.setInt(3, portfolio.getContactID());
             statement.executeUpdate();
 
             ResultSet generatedKeys = statement.getGeneratedKeys();
@@ -56,11 +54,13 @@ public class SqlitePortfolioDAO implements IPortfolioDAO{
     @Override
     public void updatePortfolio(Portfolio portfolio) {
         try {
-            String query = "UPDATE portfolios SET portfolioName = ?, portfolioDescription = ? WHERE id = ?";
+            String query = "UPDATE portfolios SET portfolioName = ?, portfolioDescription = ?, contact_id = ? WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, portfolio.getPortfolioName());
             statement.setString(2, portfolio.getPortfolioDescription());
-            statement.setInt(3, portfolio.getId());
+            statement.setInt(3, portfolio.getContactID());
+            statement.setInt(4, portfolio.getId());
+            statement.setInt(5, sessionManager.getLoggedInUser().getId());
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,6 +72,7 @@ public class SqlitePortfolioDAO implements IPortfolioDAO{
         try {
             PreparedStatement statement = connection.prepareStatement("DELETE FROM portfolios WHERE id = ?");
             statement.setInt(1, portfolio.getId());
+            statement.setInt(2, sessionManager.getLoggedInUser().getId());
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,13 +82,17 @@ public class SqlitePortfolioDAO implements IPortfolioDAO{
     @Override
     public Portfolio getPortfolio(int id) {
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM portfolios WHERE id = ?");
+            String query = "SELECT * FROM portfolios WHERE id = ? AND contact_id = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, id);
+            statement.setInt(2, sessionManager.getLoggedInUser().getId());
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 String portfolioName = resultSet.getString("portfolioName");
                 String portfolioDescription = resultSet.getString("portfolioDescription");
-                Portfolio portfolio = new Portfolio(portfolioName, portfolioDescription);
+                Integer contactID = resultSet.getInt("contact_id");
+
+                Portfolio portfolio = new Portfolio(portfolioName, portfolioDescription, contactID);
                 portfolio.setId(id);
                 return portfolio;
             }
@@ -101,14 +106,17 @@ public class SqlitePortfolioDAO implements IPortfolioDAO{
     public List<Portfolio> getAllPortfolio() {
         List<Portfolio> portfolios = new ArrayList<>();
         try {
-            Statement statement = connection.createStatement();
-            String query = "SELECT * FROM portfolios";
-            ResultSet resultSet = statement.executeQuery(query);
+            String query = "SELECT * FROM portfolios WHERE contact_id = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, sessionManager.getLoggedInUser().getId());
+            ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String portfolioName = resultSet.getString("portfolioName");
                 String portfolioDescription = resultSet.getString("portfolioDescription");
-                Portfolio portfolio = new Portfolio(portfolioName, portfolioDescription);
+                Integer contactID = resultSet.getInt("contact_id");
+
+                Portfolio portfolio = new Portfolio(portfolioName, portfolioDescription, contactID);
                 portfolio.setId(id);
                 portfolios.add(portfolio);
             }
@@ -117,5 +125,4 @@ public class SqlitePortfolioDAO implements IPortfolioDAO{
         }
         return portfolios;
     }
-
 }

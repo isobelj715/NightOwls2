@@ -17,15 +17,6 @@ public class SqliteArtDAO implements IArtDAO {
     }
 
     private void createTable() {
-        // Drop the existing table (if any) - TODO: This is just for development, will need to be changed for final
-        try {
-            Statement statement = connection.createStatement();
-            statement.executeUpdate("DROP TABLE IF EXISTS art");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // Create the new table with all the required columns
         try {
             Statement statement = connection.createStatement();
             String query = "CREATE TABLE IF NOT EXISTS art ("
@@ -41,7 +32,7 @@ public class SqliteArtDAO implements IArtDAO {
                     + "units VARCHAR, "
                     + "description TEXT, "
                     + "filePath TEXT,"
-                    + "portfolio_id"
+                    + "portfolio_id INTEGER"
                     + ")";
             statement.execute(query);
         } catch (Exception e) {
