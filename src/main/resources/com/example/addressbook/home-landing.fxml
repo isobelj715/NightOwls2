@@ -8,26 +8,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" spacing="10" prefWidth="1280" prefHeight="720" stylesheets="@style.css">
 
-    <HBox styleClass="header" spacing="20">
-        <!-- Header Section -->
-        <HBox styleClass="header" alignment="CENTER_LEFT" spacing="20">
-            <!-- Logo -->
-            <ImageView fitHeight="50" fitWidth="50">
-                <Image url="@img/logo2.png" />
-            </ImageView>
-            <Label text="ArtTasker" styleClass="logo-text"/>
-        </HBox>
-<!--        Spacer box-->
-        <HBox styleClass="navbar" prefWidth="520" alignment="CENTER_RIGHT" spacing="15">
-        </HBox>
-        <!-- Navigation Bar -->
-        <HBox styleClass="navbar" alignment="CENTER_RIGHT" spacing="15">
-            <Button text="Home" styleClass="nav-button"/>
-            <Button text="Upload" styleClass="nav-button"/>
-            <Button text="About Us" styleClass="nav-button"/>
-            <Button text="Profile" styleClass="nav-button"/>
-        </HBox>
-    </HBox>
+    <fx:include source="header-template.fxml"/>
 
 <!--Main Content-->
     <VBox  alignment="CENTER" spacing="20" styleClass="main-content">
@@ -55,10 +36,7 @@
         </VBox>
 
     </HBox>
-    </VBox>
-    <!-- Footer -->
-    <HBox styleClass="footer" alignment="CENTER">
-        <Label text="Contact Us" HBox.hgrow="ALWAYS"/>
-        <Label text="Site design / logo © 2024 URMOM Inc;" />
-    </HBox>
+    <!-- Include Footer -->
+    <fx:include source="footer-template.fxml"/>
+
 </VBox>
