@@ -48,14 +48,10 @@
         <!--        Spacer box-->
         <VBox  prefWidth="100" alignment="CENTER_RIGHT" spacing="15">
         </VBox>
-        <!-- Signup Form -->
+        <!-- home page buttons-->
         <VBox alignment="CENTER" spacing="10">
-            <Label text="Sign Up to ArtTasker" styleClass="landing-title"/>
-            <TextField promptText="Username" styleClass="input-field"/>
-            <TextField promptText="Email" styleClass="input-field"/>
-            <PasswordField promptText="Password" styleClass="input-field"/>
+            <Button text="Log in" styleClass="signup-button"/>
             <Button text="Sign Up" styleClass="signup-button"/>
-            <Label text="Already have an account? Log in" styleClass="link-label"/>
         </VBox>
 
     </HBox>
