@@ -8,10 +8,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ComboBox?>
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<VBox xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.addressbook.controller.UploadController" spacing="10" prefWidth="1280" prefHeight="720" stylesheets="@style.css, @login-buttons.css">
+<VBox xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.addressbook.controller.UploadPortfolioController" spacing="10" prefWidth="1280" prefHeight="720" stylesheets="@style.css, @login-buttons.css">
 
     <!-- Include Header -->
     <fx:include source="header-template.fxml"/>
@@ -25,18 +26,9 @@
             <!-- Browse Button -->
             <Button text="Browse..." onAction="#onBrowseFile" styleClass="nav-button"/>
 
-
-            <!-- Add Image below the Browse button -->
-            <!--
-            <ImageView fitWidth="100" preserveRatio="true">
-                <Image url="@img/upload-purple.png"/>
-            </ImageView>
-            -->
-
             <!-- Image preview placeholder -->
             <ImageView fx:id="imagePreview" fitWidth="300" fitHeight="300" preserveRatio="true" styleClass="image-preview"/>
         </VBox>
-
 
         <!-- Right section for form fields, also with main-content styling -->
         <VBox spacing="10" alignment="CENTER" styleClass="main-content, transparent-box" HBox.hgrow="ALWAYS">
@@ -62,9 +54,21 @@
                 <Label text="Medium:" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
                 <TextField fx:id="mediumContainer" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.hgrow="ALWAYS" promptText="Enter Medium" styleClass="input-field"/>
 
+                <!-- Portfolio Section -->
+                <Label text="Portfolio:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <ComboBox fx:id="portfolioComboBox" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.hgrow="ALWAYS"/>
+
+                <Label text="New Portfolio Name:" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+                <TextField fx:id="portfolioNameTextField" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.hgrow="ALWAYS" promptText="Enter Portfolio Name" styleClass="input-field"/>
+
+                <Label text="New Portfolio Description:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                <TextArea fx:id="portfolioDescriptionTextArea" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" promptText="Enter Portfolio Description" styleClass="input-field"/>
+
+                <Button text="Create Portfolio" onAction="#onCreatePortfolio" GridPane.columnIndex="3" GridPane.rowIndex="6" styleClass="confirm-button"/>
+
                 <!-- Dimensions fields stretched across the row with even spacing -->
-                <Label text="Dimensions:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-                <HBox spacing="20" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS">
+                <Label text="Dimensions:" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+                <HBox spacing="20" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS">
                     <TextField fx:id="widthTextField" promptText="Width" styleClass="input-field" HBox.hgrow="ALWAYS"/>
                     <TextField fx:id="heightTextField" promptText="Height" styleClass="input-field" HBox.hgrow="ALWAYS"/>
                     <TextField fx:id="depthTextField" promptText="Depth" styleClass="input-field" HBox.hgrow="ALWAYS"/>
@@ -72,13 +76,13 @@
                 </HBox>
 
                 <!-- File Path display -->
-                <Label text="File Path:" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="3"/>
-                <TextField fx:id="filePathTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" promptText="Selected file path" editable="false" styleClass="input-field"/>
+                <Label text="File Path:" GridPane.columnIndex="0" GridPane.rowIndex="8" GridPane.columnSpan="3"/>
+                <TextField fx:id="filePathTextField" GridPane.columnIndex="1" GridPane.rowIndex="8" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" promptText="Selected file path" editable="false" styleClass="input-field"/>
 
                 <!-- Buttons for upload and cancel -->
-                <HBox spacing="10.0" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.columnSpan="3">
-                    <Button text="Confirm" onAction="#onUpload" styleClass="nav-button"/>
+                <HBox spacing="10.0" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="9" GridPane.columnSpan="3">
                     <Button text="Cancel" onAction="#onCancel" styleClass="nav-button"/>
+                    <Button text="Confirm" onAction="#onUpload" styleClass="confirm-button"/>
                 </HBox>
             </GridPane>
         </VBox>

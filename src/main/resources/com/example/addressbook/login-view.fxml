@@ -41,7 +41,7 @@
                        style="-fx-font-size: 14px; -fx-background-color: #FFFFFF; -fx-border-color: #DADADA; -fx-border-radius: 5; -fx-background-radius: 5;"/>
 
         <!-- Log In Button -->
-        <Button layoutX="50.0" layoutY="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0"
+        <Button fx:id="loginButton" layoutX="50.0" layoutY="200.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0"
                 text="Log In"
                 styleClass="hover-button" onAction="#onLogin"/>
 

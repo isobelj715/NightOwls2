@@ -11,6 +11,7 @@
     <fx:include source="header-template.fxml"/>
 
 <!--Main Content-->
+    <VBox  alignment="CENTER" spacing="20" styleClass="main-content">
     <HBox  alignment="CENTER" spacing="20" styleClass="main-content">
 
 <!--        marketing side box-->
@@ -37,4 +38,5 @@
     </HBox>
     <!-- Include Footer -->
     <fx:include source="footer-template.fxml"/>
+
 </VBox>

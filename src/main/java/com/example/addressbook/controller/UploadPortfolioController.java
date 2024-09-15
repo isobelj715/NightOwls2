@@ -1,21 +1,30 @@
 package com.example.addressbook.controller;
 
-import com.example.addressbook.model.Art;
-import com.example.addressbook.model.ArtManager;
-import com.example.addressbook.model.SqliteArtDAO;
+import com.example.addressbook.model.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.scene.image.Image;
 
 import java.io.File;
-public class UploadController {
+import java.util.List;
 
+public class UploadPortfolioController {
+
+    // Portfolio Section
+    @FXML
+    private ComboBox<Portfolio> portfolioComboBox;
+    @FXML
+    private TextField portfolioNameTextField;
+    @FXML
+    private TextArea portfolioDescriptionTextArea;
+
+    // Art Upload Section
     @FXML
     private ImageView imagePreview;
     @FXML
@@ -44,14 +53,54 @@ public class UploadController {
     private File selectedFile;
 
     private final ArtManager artManager;
+    private final SqlitePortfolioDAO portfolioDAO;
 
-    public UploadController() {
+    public UploadPortfolioController() {
         artManager = new ArtManager(new SqliteArtDAO());
+        portfolioDAO = new SqlitePortfolioDAO();
     }
 
+    // Initialize portfolios in the ComboBox when the UI is loaded
+    @FXML
+    public void initialize() {
+        loadPortfolios();  // Load portfolios into the ComboBox
+    }
 
+    // Load all portfolios into the ComboBox
+    private void loadPortfolios() {
+        List<Portfolio> portfolios = portfolioDAO.getAllPortfolio();  // Fetch all portfolios from the database
+        ObservableList<Portfolio> portfolioList = FXCollections.observableArrayList(portfolios);
+        portfolioComboBox.setItems(portfolioList);
+    }
 
-    // Handles the file selection and updates image preview
+    // Handle the creation of a new portfolio when the user clicks the "Create New Portfolio" button
+    @FXML
+    public void onCreatePortfolio(ActionEvent event) {
+        String portfolioName = portfolioNameTextField.getText().trim();
+        String portfolioDescription = portfolioDescriptionTextArea.getText().trim();
+
+        if (portfolioName.isEmpty()) {
+            showAlert("Error", "Portfolio name cannot be empty.");
+            return;
+        }
+
+        // Get the current logged-in user
+        Contact loggedInUser = SessionManager.getInstance().getLoggedInUser();
+
+        if (loggedInUser == null) {
+            showAlert("Error", "No user is logged in.");
+            return;
+        }
+
+        // Create a new portfolio with name, description, and contact ID
+        Portfolio newPortfolio = new Portfolio(portfolioName, portfolioDescription, loggedInUser.getId());
+        portfolioDAO.addPortfolio(newPortfolio);  // Add the new portfolio to the database
+        loadPortfolios();  // Reload the portfolios into the ComboBox
+        portfolioComboBox.getSelectionModel().select(newPortfolio);  // Select the newly created portfolio
+        showAlert("Success", "Portfolio created successfully!");
+    }
+
+    // Handle file selection and image preview
     @FXML
     public void onBrowseFile(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
@@ -69,26 +118,34 @@ public class UploadController {
         if (selectedFile != null) {
             filePathTextField.setText(selectedFile.getAbsolutePath());
 
-            // Attempt to load the image and display in the preview
+            // Attempt to load the image and display it in the preview
             try {
                 Image image = new Image(selectedFile.toURI().toString());
-                imagePreview.setImage(image); // Update the imagePreview with the selected image
+                imagePreview.setImage(image);  // Update the imagePreview with the selected image
             } catch (Exception e) {
                 showAlert("Error", "Selected file is not a valid image.");
             }
         }
     }
 
-    // Handles the upload action
+    // Handle the upload action
     @FXML
     public void onUpload(ActionEvent actionEvent) {
         // Get required inputs
         String artTitle = artTitleTextField.getText();
         String yearString = yearTextField.getText();
 
+        // Get the selected portfolio
+        Portfolio selectedPortfolio = portfolioComboBox.getSelectionModel().getSelectedItem();
+
         // Validate required inputs
         if (artTitle.isEmpty() || yearString.isEmpty() || selectedFile == null) {
             showAlert("Error", "Art Title, Year, and File are required.");
+            return;
+        }
+
+        if (selectedPortfolio == null) {
+            showAlert("Error", "Please select a portfolio.");
             return;
         }
 
@@ -102,6 +159,7 @@ public class UploadController {
 
         // Create the Art object with the required fields
         Art newArt = new Art(artTitle, year);
+        newArt.setPortfolioId(selectedPortfolio.getId());
 
         // Set optional fields
         newArt.setCategory(categoryTextField.getText());

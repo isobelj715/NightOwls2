@@ -12,7 +12,8 @@ public class Art {
     private Integer depth;
     private String units;
     private String description;
-    private String filePath; // New field for file path
+    private String filePath;
+    private Integer portfolioId;
 
     /**
      * Constructs a new ArtPiece with the specified Title and Year.
@@ -126,5 +127,14 @@ public class Art {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    // Getters and Setters for portfolioId
+    public Integer getPortfolioId() {
+        return portfolioId;
+    }
+
+    public void setPortfolioId(Integer portfolioId) {
+        this.portfolioId = portfolioId;
     }
 }

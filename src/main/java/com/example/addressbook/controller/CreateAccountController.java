@@ -52,8 +52,7 @@ public class CreateAccountController {
             Contact newContact = new Contact(firstName, lastName, email, phone, password);
             contactManager.addContact(newContact);
 
-            showAlert("Success", "Account created successfully!");
-            // close the window or navigate to the next screen
+
             //Stage stage = (Stage) firstNameTextField.getScene().getWindow();
             //stage.close();
             // Load the login page
@@ -65,6 +64,9 @@ public class CreateAccountController {
                 // Get the current stage and set the new scene (Login page)
                 Stage stage = (Stage) firstNameTextField.getScene().getWindow();
                 stage.setScene(loginScene);
+
+                stage.setFullScreenExitHint("");
+                stage.setFullScreen(true);
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -75,9 +77,21 @@ public class CreateAccountController {
     // Handles the action when the "Cancel" button is clicked
     @FXML
     public void onCancel(ActionEvent actionEvent) {
-        // Close the window without saving anything
-        Stage stage = (Stage) firstNameTextField.getScene().getWindow();
-        stage.close();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/login-view.fxml"));
+            AnchorPane loginPane = loader.load();
+            Scene loginScene = new Scene(loginPane);
+
+            // Get the current stage and set the new scene (Login page)
+            Stage stage = (Stage) firstNameTextField.getScene().getWindow();
+            stage.setScene(loginScene);
+
+            stage.setFullScreenExitHint("");
+            stage.setFullScreen(true);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // Utility method to show alert dialogs
