@@ -7,19 +7,28 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.ListCell;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 
 public class MyPortfoliosController {
 
     @FXML
     private ListView<Portfolio> portfolioListView;
+
+    @FXML
+    private Button createPortfolioButton;
 
     private final SqlitePortfolioDAO portfolioDAO;
 
@@ -115,4 +124,32 @@ public class MyPortfoliosController {
             showAlert("Open Portfolio", "Open portfolio: " + portfolio.getPortfolioName());
         }
     }
+    @FXML
+    public void onCreatePortfolio(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/create-portfolio-popup.fxml"));
+            Parent root = loader.load();
+
+            CreatePortfolioController dialogController = loader.getController();
+            dialogController.setPortfolioDAO(portfolioDAO);
+
+            // Create a new stage for the dialog
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Create New Portfolio");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(createPortfolioButton.getScene().getWindow());
+            dialogStage.setScene(new Scene(root));
+            dialogStage.showAndWait();
+
+            // After the dialog is closed, refresh the portfolio list
+            if (dialogController.isPortfolioCreated()) {
+                loadPortfolios();
+                showAlert("Success", "Portfolio created successfully!");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to open the create portfolio dialog.");
+        }
+    }
+
 }
