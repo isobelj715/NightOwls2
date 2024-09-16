@@ -94,7 +94,7 @@ public class UploadPortfolioController {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    setText(item.getPortfolioName());
+                    setText(item.getPortfolioDescription());
                 }
             }
         });
@@ -106,7 +106,7 @@ public class UploadPortfolioController {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    setText(item.getPortfolioName());
+                    setText(item.getPortfolioDescription());
                 }
             }
         });
