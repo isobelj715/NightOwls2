@@ -173,3 +173,68 @@
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
+
+
+
+/* Portfolio List Cell */
+.portfolio-list-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 10;
+    -fx-border-color: #E0E0E0;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+}
+
+.portfolio-description {
+    -fx-font-size: 16px;
+    -fx-text-fill: #4B0082; /* Match the title color */
+    -fx-font-weight: bold;
+}
+
+.portfolio-title {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555;
+}
+
+/* Open Button - Purple */
+.portfolio-open-button {
+    -fx-background-color: #aa80bf; /* Purple shade */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 5 10; /* Make sure this matches the nav-button size */
+    -fx-background-radius: 10;
+}
+
+.portfolio-open-button:hover {
+    -fx-background-color: #804c99; /* Darken on hover */
+}
+
+/* Delete Button - Black (Reuse nav-button class) */
+.delete-portfolio-button {
+    -fx-background-color: #000000;
+    -fx-text-fill: white;
+    -fx-font-size: 14px; /* Ensure font size matches the open button */
+    -fx-padding: 5 10; /* Ensure padding matches the open button */
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
+}
+
+.delete-portfolio-button:hover {
+    -fx-background-color: #555555; /* Darken on hover */
+}
+
+
+
+/* Slightly reduce the size of the Create Portfolio button */
+.create-portfolio-button {
+    -fx-background-color: #aa80bf;
+    -fx-text-fill: white;
+    -fx-font-size: 14px; /* Reduced font size */
+    -fx-padding: 8 30; /* Reduced padding */
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
+}
+
+.create-portfolio-button:hover {
+    -fx-background-color: #804c99; /* Darken on hover */
+}

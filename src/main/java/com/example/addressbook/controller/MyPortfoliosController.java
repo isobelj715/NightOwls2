@@ -8,15 +8,18 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.scene.control.ListCell;
 import javafx.stage.Modality;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -63,9 +66,39 @@ public class MyPortfoliosController {
             return;
         }
 
-        portfolioDAO.deletePortfolio(selectedPortfolio);
-        loadPortfolios(); // Reload the portfolio list
-        showAlert("Success", "Portfolio deleted successfully!");
+        // Show the delete confirmation dialog
+        boolean confirmed = showDeleteConfirmationDialog();
+
+        // Proceed with deletion if confirmed
+        if (confirmed) {
+            portfolioDAO.deletePortfolio(selectedPortfolio);
+            loadPortfolios(); // Reload the portfolio list
+
+        }
+    }
+
+    // Show the delete confirmation dialog
+    private boolean showDeleteConfirmationDialog() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/delete-confirmation-popup.fxml"));
+            Parent root = loader.load();
+
+            DeleteConfirmationController controller = loader.getController();
+
+            // Create a new stage for the dialog
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Confirm Delete");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(createPortfolioButton.getScene().getWindow()); // Use any existing window as the owner
+            dialogStage.setScene(new Scene(root));
+            dialogStage.showAndWait();
+
+            // Return true if the user confirmed the deletion
+            return controller.isConfirmed();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     // Get the logged-in user ID
@@ -85,9 +118,9 @@ public class MyPortfoliosController {
         alert.showAndWait();
     }
 
-    // Custom ListCell for portfolio items with "Open" and "Delete" buttons
+    // Custom ListCell for portfolio items with "Open" and "Delete" buttons with a GridPane layout
     private class PortfolioListCell extends ListCell<Portfolio> {
-        private final HBox content;
+        private final GridPane content;
         private final Label portfolioNameLabel;
         private final Label portfolioDescriptionLabel;
         private final Button openButton;
@@ -99,12 +132,61 @@ public class MyPortfoliosController {
             openButton = new Button("Open");
             deleteButton = new Button("Delete");
 
+            // Apply CSS classes
+            portfolioNameLabel.getStyleClass().add("portfolio-title");
+            portfolioDescriptionLabel.getStyleClass().add("portfolio-description");
+            openButton.getStyleClass().add("portfolio-open-button"); // New style class for open button
+            deleteButton.getStyleClass().add("delete-portfolio-button"); // Use the existing .nav-button style for delete
+
+            // Enable text wrapping for both title and description
+            portfolioNameLabel.setWrapText(true);
+            portfolioDescriptionLabel.setWrapText(true);
+
+            // Set alignment for description label to the left
+            //portfolioNameLabel.setAlignment(Pos.CENTER_LEFT);
+            //GridPane.setHalignment(portfolioNameLabel, HPos.LEFT); // Align the name to the left
+            // Set alignment for description label to the left
+            portfolioDescriptionLabel.setAlignment(Pos.CENTER_LEFT);
+            //GridPane.setHalignment(portfolioDescriptionLabel, HPos.LEFT); // Align the description to the left
+
+
+            // Setting up the GridPane layout
+            content = new GridPane();
+            content.getStyleClass().add("portfolio-list-cell");
+            content.setHgap(10); // Horizontal gap between columns
+
+            // Set maximum width for the title and description to allow wrapping
+            portfolioNameLabel.setMaxWidth(400); // Adjust as needed
+            portfolioDescriptionLabel.setMaxWidth(200); // Adjust as needed
+
+            // Allow labels to grow in the GridPane
+            //GridPane.setHgrow(portfolioNameLabel, Priority.ALWAYS);
+            //GridPane.setHgrow(portfolioDescriptionLabel, Priority.ALWAYS);
+
+            // Set column constraints to align the description correctly
+            // Make the first column (description) fixed-width
+            ColumnConstraints descriptionCol = new ColumnConstraints();
+            descriptionCol.setMinWidth(300); // Set minimum width for the description column
+            descriptionCol.setHalignment(HPos.LEFT); // Align content to the left
+
+            // Set the second column (title) to grow if needed
+            ColumnConstraints titleCol = new ColumnConstraints();
+            titleCol.setHgrow(Priority.ALWAYS);
+            titleCol.setHalignment(HPos.LEFT);
+
+            // Add column constraints to the GridPane
+            content.getColumnConstraints().addAll(descriptionCol, titleCol);
+
+
+
+            // Adding elements to the GridPane with flipped order: Title first, then Description
+            content.add(portfolioNameLabel, 1, 0);       // Title on the left
+            content.add(portfolioDescriptionLabel, 0, 0); // Description next to title
+            HBox buttonBox = new HBox(10, openButton, deleteButton); // HBox for buttons with spacing
+            content.add(buttonBox, 2, 0); // Buttons to the right
+
             openButton.setOnAction(event -> onOpenPortfolio(getItem()));
             deleteButton.setOnAction(event -> onDeletePortfolio(new ActionEvent()));
-
-            // Adding the labels and buttons to the HBox
-            content = new HBox(portfolioNameLabel, portfolioDescriptionLabel, openButton, deleteButton);
-            content.setSpacing(10); // Adjust spacing if necessary
         }
 
         @Override
@@ -121,9 +203,25 @@ public class MyPortfoliosController {
 
         // Open the selected portfolio (for now, just show an alert)
         private void onOpenPortfolio(Portfolio portfolio) {
-            showAlert("Open Portfolio", "Open portfolio: " + portfolio.getPortfolioName());
+            try {
+                // Load the portfolio overview FXML file and switch the scene
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/inside-portfolio-view.fxml"));
+                AnchorPane overviewPane = loader.load();
+                Scene overviewScene = new Scene(overviewPane);
+
+                // Get the current stage and set the new scene (Portfolio Overview page)
+                Stage stage = (Stage) openButton.getScene().getWindow();
+                stage.setScene(overviewScene);
+                stage.setFullScreenExitHint("");
+                stage.setFullScreen(true);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
+
+
     @FXML
     public void onCreatePortfolio(ActionEvent event) {
         try {
