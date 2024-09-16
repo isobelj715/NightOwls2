@@ -6,9 +6,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.geometry.Pos?>
 
-<VBox xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" spacing="10" prefWidth="1280" prefHeight="720" stylesheets="@style.css">
+<VBox xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" spacing="10" prefWidth="1280" prefHeight="720" stylesheets="@style.css" fx:controller="com.example.addressbook.controller.landingHomeController">
 
-    <fx:include source="header-template.fxml"/>
+    <fx:include source="landing-page-header-template.fxml"/>
 
 <!--Main Content-->
     <VBox  alignment="CENTER" spacing="20" styleClass="main-content">
@@ -31,8 +31,8 @@
         </VBox>
         <!-- home page buttons-->
         <VBox alignment="CENTER" spacing="10">
-            <Button text="Log in" styleClass="signup-button"/>
-            <Button text="Sign Up" styleClass="signup-button"/>
+            <Button fx:id="login" text="Log in" styleClass="signup-button" onAction="#handleButtonClick"/>
+            <Button fx:id="signup" text="Sign Up" styleClass="signup-button" onAction="#handleButtonClick"/>
         </VBox>
 
     </HBox>

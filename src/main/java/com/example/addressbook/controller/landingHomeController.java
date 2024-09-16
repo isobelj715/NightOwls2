@@ -9,7 +9,9 @@ import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 import java.io.IOException;
-public class headerController {
+
+public class landingHomeController {
+
     @FXML
     public void handleButtonClick(ActionEvent event) {
         // Determine which button was clicked by its fx:id
@@ -18,11 +20,11 @@ public class headerController {
         // Determine which FXML file to load based on the button clicked
         String fxmlFile = "";
         switch (buttonId) {
-            case "headerHome":
-                fxmlFile = "/com/example/addressbook/my-portfolios-view.fxml";
+            case "login":
+                fxmlFile = "/com/example/addressbook/login-view.fxml";
                 break;
-            case "headerUpload":
-                fxmlFile = "/com/example/addressbook/upload-art-view.fxml";
+            case "signup":
+                fxmlFile = "/com/example/addressbook/createaccount-view.fxml";
                 break;
 //                when pages created add in
 //            case "headerProfile":

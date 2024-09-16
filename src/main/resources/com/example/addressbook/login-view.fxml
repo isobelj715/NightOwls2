@@ -17,7 +17,7 @@
 
 
     <!-- Include Header -->
-    <fx:include source="header-template.fxml"/>
+    <fx:include source="landing-page-header-template.fxml"/>
 
     <!-- Main Pane for the Login form -->
     <Pane layoutX="490.0" layoutY="200.0" prefHeight="350.0" prefWidth="300.0"
