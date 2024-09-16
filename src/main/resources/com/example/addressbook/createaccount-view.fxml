@@ -15,7 +15,7 @@
             style="-fx-background-color: #E9E5F7;" stylesheets="@login-buttons.css">
 
     <!-- Include Header -->
-    <fx:include source="header-template.fxml"/>
+    <fx:include source="landing-page-header-template.fxml"/>
 
     <!-- Main Pane for the Create Account form -->
     <Pane layoutX="490.0" layoutY="150.0" prefHeight="450.0" prefWidth="300.0"
