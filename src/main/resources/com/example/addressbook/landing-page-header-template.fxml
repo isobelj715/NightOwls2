@@ -20,11 +20,5 @@
         <!-- Spacer Region -->
         <Region fx:id="spacer" HBox.hgrow="ALWAYS" />
 
-        <!-- Navigation Bar -->
-        <HBox styleClass="navbar" alignment="CENTER_RIGHT" spacing="15" minHeight="80" maxHeight="80" prefWidth="600" >
-            <Button fx:id="headerHome" text="Home" styleClass="nav-button" onAction="#handleButtonClick"/>
-            <Button fx:id="headerUpload" text="Upload" styleClass="nav-button"  onAction="#handleButtonClick"/>
-            <Button fx:id="headerProfile" text="Profile" styleClass="nav-button" onAction="#handleButtonClick"/>
-        </HBox>
     </HBox>
 </VBox>
