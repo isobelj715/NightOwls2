@@ -17,7 +17,6 @@ import javafx.scene.layout.VBox;  // Import for VBox
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.List;
 
 public class LoginController {
 
@@ -66,9 +65,9 @@ public class LoginController {
 
             try {
                 // switch the address between my-portfolios-view or upload-art-view
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/upload-art-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/my-portfolios-view.fxml"));
 
-                VBox myArtPane = loader.load(); // Anchorpane for portfolios view and Vbox for upload art
+                AnchorPane myArtPane = loader.load(); // Anchorpane for portfolios view and Vbox for upload art
                 Scene myArtScene = new Scene(myArtPane);
 
                 // Get the current stage and set the new scene (My Art page)
