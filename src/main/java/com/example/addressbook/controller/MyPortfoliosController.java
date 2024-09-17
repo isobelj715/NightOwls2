@@ -201,7 +201,7 @@ public class MyPortfoliosController {
             }
         }
 
-        // Open the selected portfolio (for now, just show an alert)
+        // Open the selected portfolio
         private void onOpenPortfolio(Portfolio portfolio) {
             try {
                 // Load the portfolio overview FXML file and switch the scene
@@ -242,7 +242,7 @@ public class MyPortfoliosController {
             // After the dialog is closed, refresh the portfolio list
             if (dialogController.isPortfolioCreated()) {
                 loadPortfolios();
-                showAlert("Success", "Portfolio created successfully!");
+
             }
         } catch (IOException e) {
             e.printStackTrace();

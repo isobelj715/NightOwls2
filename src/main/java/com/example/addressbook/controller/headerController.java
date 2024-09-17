@@ -22,7 +22,7 @@ public class headerController {
                 fxmlFile = "/com/example/addressbook/my-portfolios-view.fxml";
                 break;
             case "headerUpload":
-                fxmlFile = "/com/example/addressbook/upload-art-view.fxml";
+                fxmlFile = "/com/example/addressbook/upload-portfolio-view.fxml";
                 break;
 //                when pages created add in
 //            case "headerProfile":

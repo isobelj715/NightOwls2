@@ -5,13 +5,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class UploadPortfolioController {
@@ -50,6 +55,15 @@ public class UploadPortfolioController {
     @FXML
     private TextField filePathTextField;
 
+
+    @FXML
+    private Button uploadButton;
+
+    @FXML
+    private Button cancelButton;
+
+
+
     private File selectedFile;
 
     private final ArtManager artManager;
@@ -60,7 +74,7 @@ public class UploadPortfolioController {
         portfolioDAO = new SqlitePortfolioDAO();
     }
 
-    // Initialize portfolios in the ComboBox when the UI is loaded
+    // Initialise portfolios in the ComboBox when the UI is loaded
     @FXML
     public void initialize() {
         loadPortfolios();  // Load portfolios into the ComboBox
@@ -224,7 +238,29 @@ public class UploadPortfolioController {
         // Add the new art to the database
         artManager.addArt(newArt);
 
-        showAlert("Success", "Art uploaded successfully!");
+        //showAlert("Success", "Art uploaded successfully!");
+        try {
+            // switch the address between my-portfolios-view or upload-art-view
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/upload-portfolio-view.fxml"));
+
+            VBox myArtPane = loader.load(); // Anchorpane for portfolios view and Vbox for upload art
+            Scene myArtScene = new Scene(myArtPane);
+
+            // Get the current stage and set the new scene (My Art page)
+            Stage stage = (Stage) uploadButton.getScene().getWindow();
+            stage.setScene(myArtScene);
+
+            // Disable the fullscreen exit hint
+            stage.setFullScreenExitHint("");
+            // Make the window fullscreen
+            stage.setFullScreen(true);
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         Stage stage = (Stage) artTitleTextField.getScene().getWindow();
         stage.close();
     }
@@ -232,8 +268,26 @@ public class UploadPortfolioController {
     // Cancel action
     @FXML
     public void onCancel(ActionEvent actionEvent) {
-        Stage stage = (Stage) artTitleTextField.getScene().getWindow();
-        stage.close();
+        try {
+            // switch the address between my-portfolios-view or upload-art-view
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/my-portfolios-view.fxml"));
+
+            AnchorPane myArtPane = loader.load(); // Anchorpane for portfolios view and Vbox for upload art
+            Scene myArtScene = new Scene(myArtPane);
+
+            // Get the current stage and set the new scene (My Art page)
+            Stage stage = (Stage) cancelButton.getScene().getWindow();
+            stage.setScene(myArtScene);
+
+            // Disable the fullscreen exit hint
+            stage.setFullScreenExitHint("");
+            // Make the window fullscreen
+            stage.setFullScreen(true);
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // Utility method to show alert dialogs
