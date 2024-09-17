@@ -238,12 +238,9 @@ public class UploadPortfolioController {
         // Add the new art to the database
         artManager.addArt(newArt);
 
-        //showAlert("Success", "Art uploaded successfully!");
         try {
-            // switch the address between my-portfolios-view or upload-art-view
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/upload-portfolio-view.fxml"));
-
-            VBox myArtPane = loader.load(); // Anchorpane for portfolios view and Vbox for upload art
+            VBox myArtPane = loader.load(); // AnchorPane for portfolios view and VBox for upload art
             Scene myArtScene = new Scene(myArtPane);
 
             // Get the current stage and set the new scene (My Art page)
@@ -259,11 +256,8 @@ public class UploadPortfolioController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        Stage stage = (Stage) artTitleTextField.getScene().getWindow();
-        stage.close();
     }
+
 
     // Cancel action
     @FXML
