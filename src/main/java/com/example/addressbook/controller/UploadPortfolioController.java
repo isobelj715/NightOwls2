@@ -239,8 +239,8 @@ public class UploadPortfolioController {
         artManager.addArt(newArt);
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/upload-portfolio-view.fxml"));
-            VBox myArtPane = loader.load(); // AnchorPane for portfolios view and VBox for upload art
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/my-portfolios-view.fxml"));
+            AnchorPane myArtPane = loader.load(); // AnchorPane for portfolios view and VBox for upload art
             Scene myArtScene = new Scene(myArtPane);
 
             // Get the current stage and set the new scene (My Art page)
