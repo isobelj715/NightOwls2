@@ -77,5 +77,14 @@ public class ArtManager {
     public List<Art> getAllArt() {
         return artDAO.getAllArt();
     }
+
+
+    public Art getFirstArtInPortfolio(int portfolioId) {
+        return artDAO.getAllArt()
+                .stream()
+                .filter(art -> art.getPortfolioId() != null && art.getPortfolioId() == portfolioId)
+                .findFirst()
+                .orElse(null);
+    }
 }
 

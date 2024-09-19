@@ -6,7 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.geometry.Pos?>
 
-<VBox xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" spacing="10" prefWidth="1280" prefHeight="720" stylesheets="@style.css" fx:controller="com.example.addressbook.controller.landingHomeController">
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="10" prefWidth="1280" prefHeight="720" stylesheets="@style.css" fx:controller="com.example.addressbook.controller.landingHomeController">
 
     <fx:include source="landing-page-header-template.fxml"/>
 

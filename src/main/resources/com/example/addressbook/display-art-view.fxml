@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.addressbook.controller.DisplayArtController"
+            prefHeight="720.0" prefWidth="1280.0"
+            style="-fx-background-color: #E9E5F7;" stylesheets="@style.css">
+
+
+    <!-- Main Container VBox -->
+    <VBox spacing="20" style="-fx-padding: 20;">
+
+        <!-- Include Header -->
+        <fx:include source="header-template.fxml"/>
+
+
+
+        <!-- Portfolio Title Label -->
+        <Label fx:id="portfolioTitleLabel" styleClass="portfolio-title-label"/>
+
+        <!-- Main Content Area in a GridPane -->
+        <GridPane hgap="20" vgap="20">
+            <!-- ImageView for Art Image -->
+            <ImageView fx:id="artImageView" fitWidth="600" fitHeight="600" preserveRatio="true" GridPane.columnIndex="0" />
+
+            <!-- VBox for Art Information -->
+            <VBox spacing="10" GridPane.columnIndex="1">
+                <Label fx:id="artTitleLabel" text="Art Title" styleClass="art-detail-title"/>
+                <Label fx:id="artYearLabel" text="Year"/>
+                <Label fx:id="artCategoryLabel" text="Category"/>
+                <Label fx:id="artMediumLabel" text="Medium"/>
+                <Label fx:id="artMaterialLabel" text="Material"/>
+                <Label fx:id="artDimensionsLabel" text="Dimensions"/>
+                <Label fx:id="artDescriptionLabel" text="Description" wrapText="true"/>
+            </VBox>
+        </GridPane>
+
+
+    </VBox>
+
+    <!-- Include Footer -->
+    <fx:include source="footer-template.fxml"/>
+</AnchorPane>
