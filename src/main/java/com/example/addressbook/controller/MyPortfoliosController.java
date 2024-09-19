@@ -1,8 +1,6 @@
 package com.example.addressbook.controller;
 
-import com.example.addressbook.model.Portfolio;
-import com.example.addressbook.model.SqlitePortfolioDAO;
-import com.example.addressbook.model.SessionManager;
+import com.example.addressbook.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -204,14 +202,29 @@ public class MyPortfoliosController {
         // Open the selected portfolio
         private void onOpenPortfolio(Portfolio portfolio) {
             try {
+                // Get the first artwork in the portfolio
+                ArtManager artManager = new ArtManager(new SqliteArtDAO());
+                Art firstArt = artManager.getFirstArtInPortfolio(portfolio.getId());
+
+
                 // Load the portfolio overview FXML file and switch the scene
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/inside-portfolio-view.fxml"));
-                AnchorPane overviewPane = loader.load();
-                Scene overviewScene = new Scene(overviewPane);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/display-art-view.fxml"));
+
+                //AnchorPane overviewPane = loader.load();
+                //Scene overviewScene = new Scene(overviewPane);
+
+                Parent enlargedArtRoot = loader.load();
+
+                // Pass the artwork to the controller
+                DisplayArtController controller = loader.getController();
+                controller.displayArt(firstArt); // Display the first piece of art
+
+                controller.setPortfolioTitle(portfolio.getPortfolioDescription()); // Set the portfolio title
 
                 // Get the current stage and set the new scene (Portfolio Overview page)
+                Scene displayArtScene = new Scene(enlargedArtRoot);
                 Stage stage = (Stage) openButton.getScene().getWindow();
-                stage.setScene(overviewScene);
+                stage.setScene(displayArtScene);
                 stage.setFullScreenExitHint("");
                 stage.setFullScreen(true);
                 stage.show();

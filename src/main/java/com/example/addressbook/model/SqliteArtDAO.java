@@ -143,6 +143,15 @@ public class SqliteArtDAO implements IArtDAO {
                 Integer year = resultSet.getInt("year");
                 Art art = new Art(artTitle, year);
                 art.setId(id);
+                art.setCategory(resultSet.getString("category"));
+                art.setMedium(resultSet.getString("medium"));
+                art.setMaterial(resultSet.getString("material"));
+                art.setWidth(resultSet.getObject("width", Integer.class));
+                art.setHeight(resultSet.getObject("height", Integer.class));
+                art.setDepth(resultSet.getObject("depth", Integer.class));
+                art.setUnits(resultSet.getString("units"));
+                art.setDescription(resultSet.getString("description"));
+                art.setFilePath(resultSet.getString("filePath"));
                 art.setPortfolioId(resultSet.getInt("portfolio_id")); // Set portfolio_id
                 return art;
             }
@@ -165,7 +174,22 @@ public class SqliteArtDAO implements IArtDAO {
                 Integer year = resultSet.getInt("year");
                 Art art = new Art(artTitle, year);
                 art.setId(id);
-                art.setPortfolioId(resultSet.getInt("portfolio_id")); // Set portfolio_id
+
+                // Retrieve optional fields, checking for nulls
+                art.setCategory(resultSet.getString("category"));
+                art.setMedium(resultSet.getString("medium"));
+                art.setMaterial(resultSet.getString("material"));
+
+                // Use getObject to handle nullable integer fields
+                art.setWidth((Integer) resultSet.getObject("width"));
+                art.setHeight((Integer) resultSet.getObject("height"));
+                art.setDepth((Integer) resultSet.getObject("depth"));
+
+                art.setUnits(resultSet.getString("units"));
+                art.setDescription(resultSet.getString("description"));
+
+                art.setFilePath(resultSet.getString("filePath"));
+                art.setPortfolioId(resultSet.getInt("portfolio_id"));
                 arts.add(art);
             }
         } catch (Exception e) {
