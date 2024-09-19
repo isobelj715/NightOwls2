@@ -44,6 +44,9 @@ public class portfolioViewController {
     public void  setPortfolioID(int portfolioID){
         this.portfolioID = portfolioID;
     }
+    public int getPortfolioID(){
+        return  portfolioID;
+    }
 
     // Utility method to show alert dialogs
     private void showAlert(String title, String message) {

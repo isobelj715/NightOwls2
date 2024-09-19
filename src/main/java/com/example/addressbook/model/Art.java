@@ -1,5 +1,7 @@
 package com.example.addressbook.model;
 
+import java.lang.annotation.Documented;
+
 public class Art {
     private int id;
     private String artTitle;
@@ -137,4 +139,12 @@ public class Art {
     public void setPortfolioId(Integer portfolioId) {
         this.portfolioId = portfolioId;
     }
+    @Override
+    public String toString(){
+        return "Art{"+
+                "id"+ id +
+                ", filepath" + filePath +
+                ", portfolioID" + portfolioId;
+    }
+
 }

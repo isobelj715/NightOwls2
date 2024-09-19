@@ -183,7 +183,8 @@ public class MyPortfoliosController {
             HBox buttonBox = new HBox(10, openButton, deleteButton); // HBox for buttons with spacing
             content.add(buttonBox, 2, 0); // Buttons to the right
 
-            openButton.setOnAction(event -> portfolioRedirect(getItem()));
+            openButton.setOnAction(event -> portfolioRedirect(gportfolio.getId()+1etItem()));
+            rtfolio
             deleteButton.setOnAction(event -> onDeletePortfolio(new ActionEvent()));
         }
 
@@ -202,8 +203,8 @@ public class MyPortfoliosController {
         private void portfolioRedirect(Portfolio portfolio){
 
             //setPortfolioID in the portfolioViewController Class
-            portfolioViewController.setPortfolioID(portfolio.getId());
-
+            portfolioViewController.setPortfolioID(portfolio.getId()+1);
+            System.out.println(portfolio.getId()+1);
             String fxmlFile = "/com/example/addressbook/portfolio-views.fxml";
 
                 // Load the corresponding FXML file and switch scenes
