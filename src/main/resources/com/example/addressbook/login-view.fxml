@@ -15,7 +15,6 @@
     xmlns:fx="http://javafx.com/fxml/1"
     style="-fx-background-color: #E9E5F7;" stylesheets="@login-buttons.css">
 
-
     <!-- Include Header -->
     <fx:include source="landing-page-header-template.fxml"/>
 
