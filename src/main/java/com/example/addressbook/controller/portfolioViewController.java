@@ -31,13 +31,17 @@ public class portfolioViewController {
     private SqliteArtDAO artDAO;
     private int portfolioID;
 
+    //This references the front end
+    @FXML
+    private ListView<Art> artworksListView;
+
     @FXML
     public void initialize(){
         //Code to run on load of page
 
     }
 
-    public void setPortfolioID(int portfolioID){
+    public void  setPortfolioID(int portfolioID){
         this.portfolioID = portfolioID;
     }
 
@@ -56,7 +60,11 @@ public class portfolioViewController {
             return;
         }
         String filter = "portfolio_ID = " + portfolioID;
-        List<Artworks> artworks = artDAO.getAllArtFiltered(filter);
+        List<Art> artworks = artDAO.getAllArtFiltered(filter);
+        ObservableList<Art> artworksList = FXCollections.observableArrayList(artworks);
+        //This needs to reference the front end--------------------------------------------------------------------!!!!!!!!
+        artworksListView.setItems(artworksList);
+        artworksListView.
     }
 
     @FXML

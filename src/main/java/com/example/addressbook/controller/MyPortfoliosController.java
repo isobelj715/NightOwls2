@@ -123,6 +123,7 @@ public class MyPortfoliosController {
         private final Label portfolioDescriptionLabel;
         private final Button openButton;
         private final Button deleteButton;
+        private portfolioViewController portfolioViewController;
 
         public PortfolioListCell() {
             portfolioNameLabel = new Label();
@@ -176,7 +177,6 @@ public class MyPortfoliosController {
             content.getColumnConstraints().addAll(descriptionCol, titleCol);
 
 
-
             // Adding elements to the GridPane with flipped order: Title first, then Description
             content.add(portfolioNameLabel, 1, 0);       // Title on the left
             content.add(portfolioDescriptionLabel, 0, 0); // Description next to title
@@ -206,6 +206,8 @@ public class MyPortfoliosController {
                 ArtManager artManager = new ArtManager(new SqliteArtDAO());
                 Art firstArt = artManager.getFirstArtInPortfolio(portfolio.getId());
 
+                //setPortfolioID in the portfolioViewController Class
+                portfolioViewController.setPortfolioID(portfolio.getId());
 
                 // Load the portfolio overview FXML file and switch the scene
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/display-art-view.fxml"));
