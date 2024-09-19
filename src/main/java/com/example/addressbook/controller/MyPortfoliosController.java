@@ -25,6 +25,7 @@ import java.util.List;
 
 public class MyPortfoliosController {
 
+    private portfolioViewController portfolioViewController = new portfolioViewController();
     @FXML
     private ListView<Portfolio> portfolioListView;
 
@@ -123,7 +124,6 @@ public class MyPortfoliosController {
         private final Label portfolioDescriptionLabel;
         private final Button openButton;
         private final Button deleteButton;
-        private portfolioViewController portfolioViewController;
 
         public PortfolioListCell() {
             portfolioNameLabel = new Label();
