@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Pos?>
+
+
+<HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="10" prefWidth="500" prefHeight="600" stylesheets="@style.css" fx:controller="com.example.addressbook.controller.artworkDisplayCanvasController" styleClass="main-content">
+    <HBox fx:id="imageDisplay">
+
+    </HBox>
+</HBox>
+

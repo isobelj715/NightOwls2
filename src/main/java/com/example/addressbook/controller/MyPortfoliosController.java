@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -19,7 +20,6 @@ import javafx.scene.control.ListCell;
 import javafx.stage.Modality;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -183,7 +183,7 @@ public class MyPortfoliosController {
             HBox buttonBox = new HBox(10, openButton, deleteButton); // HBox for buttons with spacing
             content.add(buttonBox, 2, 0); // Buttons to the right
 
-            openButton.setOnAction(event -> onOpenPortfolio(getItem()));
+            openButton.setOnAction(event -> portfolioRedirect(getItem()));
             deleteButton.setOnAction(event -> onDeletePortfolio(new ActionEvent()));
         }
 
@@ -197,6 +197,26 @@ public class MyPortfoliosController {
                 portfolioDescriptionLabel.setText(portfolio.getPortfolioDescription()); // Display description
                 setGraphic(content);
             }
+        }
+
+        private void portfolioRedirect(Portfolio portfolio){
+
+            //setPortfolioID in the portfolioViewController Class
+            portfolioViewController.setPortfolioID(portfolio.getId());
+
+            String fxmlFile = "/com/example/addressbook/portfolio-views.fxml";
+
+                // Load the corresponding FXML file and switch scenes
+                try {
+                    Parent newSceneRoot = FXMLLoader.load(getClass().getResource(fxmlFile));
+                    Stage stage = (Stage) openButton.getScene().getWindow();
+                    Scene scene = new Scene(newSceneRoot);
+                    stage.setScene(scene);
+                    stage.show();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
         }
 
         // Open the selected portfolio

@@ -27,8 +27,8 @@ public class landingHomeController {
                 fxmlFile = "/com/example/addressbook/createaccount-view.fxml";
                 break;
 //                when pages created add in
-//            case "headerProfile":
-//                fxmlFile = "/com/example/arttasker/profile-view.fxml";
+//            case "displayartworkcanvas":
+//                fxmlFile = "/com/example/addressbook/artwork-display-canvas.fxml";
 //                break;
         }
 

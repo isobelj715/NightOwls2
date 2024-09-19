@@ -64,6 +64,7 @@ public class portfolioViewController {
         ObservableList<Art> artworksList = FXCollections.observableArrayList(artworks);
         //This needs to reference the front end--------------------------------------------------------------------!!!!!!!!
         artworksListView.setItems(artworksList);
+//        artworksListView.setCellFactory(param -> new artworksListCell());
     }
 
     @FXML
