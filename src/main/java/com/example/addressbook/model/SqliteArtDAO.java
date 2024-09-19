@@ -198,4 +198,40 @@ public class SqliteArtDAO implements IArtDAO {
         return arts;
     }
 
+
+    public List<Art> getAllArtFiltered(String filter) {
+        List<Art> arts = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            String query = "SELECT * FROM art WHERE " + filter;
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String artTitle = resultSet.getString("artTitle");
+                Integer year = resultSet.getInt("year");
+                Art art = new Art(artTitle, year);
+                art.setId(id);
+
+                // Retrieve optional fields, checking for nulls
+                art.setCategory(resultSet.getString("category"));
+                art.setMedium(resultSet.getString("medium"));
+                art.setMaterial(resultSet.getString("material"));
+
+                // Use getObject to handle nullable integer fields
+                art.setWidth((Integer) resultSet.getObject("width"));
+                art.setHeight((Integer) resultSet.getObject("height"));
+                art.setDepth((Integer) resultSet.getObject("depth"));
+
+                art.setUnits(resultSet.getString("units"));
+                art.setDescription(resultSet.getString("description"));
+
+                art.setFilePath(resultSet.getString("filePath"));
+                art.setPortfolioId(resultSet.getInt("portfolio_id"));
+                arts.add(art);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return arts;
+    }
 }
