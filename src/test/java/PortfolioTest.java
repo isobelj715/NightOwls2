@@ -11,7 +11,6 @@ public class PortfolioTest {
         artPortfolio = new Portfolio("Modern Art Collection", "A curated selection of modern art pieces", 1);
     }
 
-
     @Test
     public void testGetId() {
         artPortfolio.setId(1);
