@@ -41,7 +41,7 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), WIDTH, HEIGHT);
         stage.setTitle(TITLE);
         stage.setScene(scene);
-        // Disable the fullscreen exit hint
+        // Disable the fullscreen  exit hint
         stage.setFullScreenExitHint("");
         // Make the window fullscreen
         stage.setFullScreen(true);

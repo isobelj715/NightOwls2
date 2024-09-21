@@ -6,6 +6,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.addressbook.controller.DisplayArtController"
             prefHeight="720.0" prefWidth="1280.0"
@@ -15,7 +17,7 @@
     <fx:include source="header-template.fxml"/>
 
     <!-- Main Container VBox -->
-    <VBox spacing="20" style="-fx-padding: 100;">
+    <Pane layoutX="100.0" layoutY="150.0" prefHeight="720.0" prefWidth="1280.0">
 
         <!-- Portfolio Title Label -->
         <Label fx:id="portfolioTitleLabel" styleClass="landing-title"/>
@@ -37,10 +39,7 @@
                 <Label fx:id="artDescriptionLabel" text="Description" wrapText="true"/>
             </VBox>
         </GridPane>
-
-
-    </VBox>
-
+    </Pane>
     <!-- Include Footer -->
     <fx:include source="footer-template.fxml"/>
 </AnchorPane>

@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="10" prefWidth="1280" prefHeight="80" stylesheets="@style.css" fx:controller="com.example.addressbook.controller.headerController">
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="10" prefWidth="1280" prefHeight="80" stylesheets="@style.css" fx:controller="com.example.addressbook.controller.headerController" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 
     <HBox styleClass="header" spacing="20" minHeight="80" maxHeight="80">
         <!-- Header Section -->

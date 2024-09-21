@@ -34,9 +34,9 @@ import java.io.IOException;public class HeaderControllerTest {
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(newSceneRoot));
 
-                if (!stage.isFullScreen()) {
-                    stage.setFullScreen(true);
-                }
+                // if (!stage.isFullScreen()) {
+                   // stage.setFullScreen(true);
+                // }
 
                 stage.show();
             } catch (IOException e) {
