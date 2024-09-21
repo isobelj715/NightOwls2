@@ -24,10 +24,9 @@ public class headerController {
             case "headerUpload":
                 fxmlFile = "/com/example/addressbook/upload-portfolio-view.fxml";
                 break;
-//                when pages created add in
-//            case "headerProfile":
-//                fxmlFile = "/com/example/arttasker/profile-view.fxml";
-//                break;
+            case "headerProfile":
+               fxmlFile = "/com/example/addressbook/profile-views.fxml";
+                break;
         }
 
         // Load the corresponding FXML file and switch scenes
