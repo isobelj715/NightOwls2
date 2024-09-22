@@ -28,6 +28,14 @@ public class CreatePortfolioController {
         return portfolioCreated;
     }
 
+    public void setPortfolioNameField(TextField portfolioNameField) {
+        this.portfolioNameField = portfolioNameField;
+    }
+
+    public void setPortfolioDescriptionField(TextField portfolioDescriptionField) {
+        this.portfolioDescriptionField = portfolioDescriptionField;
+    }
+
     @FXML
     private void onCreate() {
         String name = portfolioNameField.getText().trim();
