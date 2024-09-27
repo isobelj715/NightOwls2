@@ -208,7 +208,7 @@ public class MyPortfoliosController {
 
 
                 // Load the portfolio overview FXML file and switch the scene
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/display-art-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/portfolio-content-view.fxml"));
 
                 //AnchorPane overviewPane = loader.load();
                 //Scene overviewScene = new Scene(overviewPane);
