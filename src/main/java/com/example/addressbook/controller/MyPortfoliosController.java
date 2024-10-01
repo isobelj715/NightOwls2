@@ -220,6 +220,8 @@ public class MyPortfoliosController {
                 controller.displayArt(firstArt); // Display the first piece of art
 
                 controller.setPortfolioTitle(portfolio.getPortfolioDescription()); // Set the portfolio title
+                controller.setPortfolioDescription(portfolio.getPortfolioTitle()); // Set the portfolio description
+
 
                 // Get the current stage and set the new scene (Portfolio Overview page)
                 Scene displayArtScene = new Scene(enlargedArtRoot);

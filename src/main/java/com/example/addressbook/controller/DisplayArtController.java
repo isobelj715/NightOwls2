@@ -28,20 +28,26 @@ public class DisplayArtController {
     @FXML
     private Label artDescriptionLabel;
 
+
     @FXML
     private Label portfolioTitleLabel;
+    @FXML
+    private Label portfolioDescriptionLabel;
 
-    public void setPortfolioTitle(String portfolioTitle) {
-        portfolioTitleLabel.setText(portfolioTitle);
-    }
+
+    public void setPortfolioTitle(String portfolioTitle) {portfolioTitleLabel.setText(portfolioTitle);}
+    public void setPortfolioDescription(String portfolioDescription) {portfolioDescriptionLabel.setText(portfolioDescription);}
+
+
 
     private ArtManager artManager;
+
 
     public DisplayArtController() {
         this.artManager = new ArtManager(new SqliteArtDAO());
     }
 
-    /**
+    /*
      * Load and display the given artwork.
      *
      * @param art The artwork to display.
