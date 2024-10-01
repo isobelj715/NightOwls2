@@ -83,7 +83,7 @@ public class ArtManager {
         return artDAO.getAllArt()
                 .stream()
                 .filter(art -> art.getPortfolioId() != null && art.getPortfolioId() == portfolioId)
-                .findFirst()
+                .findFirst()//if I remove this line will it return everything?
                 .orElse(null);
     }
 }

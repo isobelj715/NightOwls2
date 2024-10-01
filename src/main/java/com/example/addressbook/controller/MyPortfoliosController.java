@@ -204,22 +204,21 @@ public class MyPortfoliosController {
             try {
                 // Get the first artwork in the portfolio
                 ArtManager artManager = new ArtManager(new SqliteArtDAO());
-                Art firstArt = artManager.getFirstArtInPortfolio(portfolio.getId());
+                Art firstArt = artManager.getFirstArtInPortfolio(portfolio.getId());//This needs to be changed----------------------------------------------------------------------------------------------------------------------------
 
 
                 // Load the portfolio overview FXML file and switch the scene
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/portfolio-content-view.fxml"));
 
-                //AnchorPane overviewPane = loader.load();
-                //Scene overviewScene = new Scene(overviewPane);
-
                 Parent enlargedArtRoot = loader.load();
 
-                // Pass the artwork to the controller
-                DisplayArtController controller = loader.getController();
-                controller.displayArt(firstArt); // Display the first piece of art
+                PortfolioContentController controller = loader.getController();
 
-                controller.setPortfolioTitle(portfolio.getPortfolioDescription()); // Set the portfolio title
+
+
+//                controller.displayArt(firstArt); // Display the first piece of art --------------------------- All displayArt controler functions needs to be fucked off from here and moved into Portfolio Content Controller
+                controller.setPortfolioTitle(portfolio.getPortfolioTitle());
+                controller.setPortfolioDescription(portfolio.getPortfolioDescription());
 
                 // Get the current stage and set the new scene (Portfolio Overview page)
                 Scene displayArtScene = new Scene(enlargedArtRoot);
