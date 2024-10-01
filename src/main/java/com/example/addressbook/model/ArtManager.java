@@ -1,6 +1,7 @@
 package com.example.addressbook.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ArtManager {
     private IArtDAO artDAO;
@@ -83,8 +84,15 @@ public class ArtManager {
         return artDAO.getAllArt()
                 .stream()
                 .filter(art -> art.getPortfolioId() != null && art.getPortfolioId() == portfolioId)
-                .findFirst()//if I remove this line will it return everything?
+                .findFirst()
                 .orElse(null);
+    }
+
+    public List <Art> getAllArtInPortfolio(int portfolioId) {
+        return (List<Art>) artDAO.getAllArt()
+                .stream()
+                .filter(art -> art.getPortfolioId() != null && art.getPortfolioId() == portfolioId)
+                .collect(Collectors.toList());
     }
 }
 

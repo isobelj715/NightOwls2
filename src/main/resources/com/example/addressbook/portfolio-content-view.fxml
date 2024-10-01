@@ -44,7 +44,7 @@
                        <content>
                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                               <children>
-                                 <GridPane layoutX="40.0" layoutY="42.0" prefHeight="336.0" prefWidth="744.0">
+                                 <GridPane fx:id="artGrid" layoutX="40.0" layoutY="42.0" prefHeight="336.0" prefWidth="744.0">
                                    <columnConstraints>
                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

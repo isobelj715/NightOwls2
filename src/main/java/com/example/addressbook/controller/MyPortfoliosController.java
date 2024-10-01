@@ -204,8 +204,18 @@ public class MyPortfoliosController {
             try {
                 // Get the first artwork in the portfolio
                 ArtManager artManager = new ArtManager(new SqliteArtDAO());
-                Art firstArt = artManager.getFirstArtInPortfolio(portfolio.getId());//This needs to be changed----------------------------------------------------------------------------------------------------------------------------
+                List <Art> artworks = artManager.getAllArtInPortfolio(portfolio.getId());//This needs to be changed----------------------------------------------------------------------------------------------------------------------------
 
+                // Check if the list is empty or contains artworks
+                if (artworks.isEmpty()) {
+                    System.out.println("No artworks found for portfolio ID: " + portfolio.getId());
+                } else {
+                    // Loop through the artworks and print each one
+                    System.out.println("Artworks for portfolio ID: " + portfolio.getId());
+                    for (Art artwork : artworks) {
+                        System.out.println(artwork);  // Assuming Art has a meaningful toString() method
+                    }
+                }
 
                 // Load the portfolio overview FXML file and switch the scene
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/portfolio-content-view.fxml"));
@@ -219,6 +229,7 @@ public class MyPortfoliosController {
 //                controller.displayArt(firstArt); // Display the first piece of art --------------------------- All displayArt controler functions needs to be fucked off from here and moved into Portfolio Content Controller
                 controller.setPortfolioTitle(portfolio.getPortfolioTitle());
                 controller.setPortfolioDescription(portfolio.getPortfolioDescription());
+                controller.loadPortfolioArtworks(artworks);
 
                 // Get the current stage and set the new scene (Portfolio Overview page)
                 Scene displayArtScene = new Scene(enlargedArtRoot);
