@@ -33,10 +33,13 @@
             </VBox>
          <SplitPane dividerPositions="0.1588628762541806" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
            <items>
-             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="92.0" prefWidth="844.0">
                   <children>
                      <Button layoutX="695.0" layoutY="34.0" mnemonicParsing="false" styleClass="nav-button" stylesheets="@style.css" text="Delete" />
                      <Button layoutX="571.0" layoutY="34.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="75.0" styleClass="nav-button" stylesheets="@style.css" text="Edit" />
+                  
+                       <!-- Portfolio Title Label -->
+                       <Label fx:id="portfolioTitleLabel" layoutX="27.0" layoutY="3.0" styleClass="landing-title" />
                   </children></AnchorPane>
              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                   <children>
@@ -71,9 +74,6 @@
             <RowConstraints />
          </rowConstraints>
         </GridPane>
-   
-        <!-- Portfolio Title Label -->
-        <Label fx:id="portfolioTitleLabel" styleClass="landing-title" />
     </Pane>
     <!-- Include Footer -->
     <fx:include source="footer-template.fxml" />
