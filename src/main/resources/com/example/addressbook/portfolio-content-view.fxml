@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #E9E5F7;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.addressbook.controller.DisplayArtController">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #E9E5F7;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.addressbook.controller.PortfolioContentController">
 
     <!-- Include Header -->
     <fx:include source="header-template.fxml" />
@@ -24,12 +24,12 @@
         <GridPane hgap="20" vgap="20">
 
             <!-- ImageView for Art Image -->
-            <ImageView fx:id="artImageView" fitHeight="600" fitWidth="908.0" preserveRatio="true" GridPane.columnIndex="0" />
+            <ImageView fitHeight="600" fitWidth="908.0" preserveRatio="true" GridPane.columnIndex="0" />
 
             <!-- VBox for Art Information -->
             <VBox prefHeight="600" prefWidth="600" spacing="10" style="-fx-padding: 10 20 10 20;" styleClass="main-content" GridPane.columnIndex="1">
-                <Label fx:id="artTitleLabel" styleClass="landing-title" text="Description" />
-            <Label alignment="TOP_LEFT" prefHeight="468.0" prefWidth="271.0" styleClass="header" stylesheets="@style.css" />
+                <Label  styleClass="landing-title" text="Description" />
+            <Label fx:id="portfolioDescriptionLabel" alignment="TOP_LEFT" prefHeight="468.0" prefWidth="271.0" styleClass="header" stylesheets="@style.css" />
             </VBox>
          <SplitPane dividerPositions="0.1588628762541806" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
            <items>
@@ -44,7 +44,7 @@
                        <content>
                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                               <children>
-                                 <GridPane layoutX="40.0" layoutY="42.0" prefHeight="336.0" prefWidth="744.0">
+                                 <GridPane fx:id="artGrid" layoutX="40.0" layoutY="42.0" prefHeight="336.0" prefWidth="744.0">
                                    <columnConstraints>
                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
