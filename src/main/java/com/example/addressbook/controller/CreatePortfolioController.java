@@ -53,7 +53,7 @@ public class CreatePortfolioController {
         }
 
         // Create a new Portfolio using the constructor that expects three arguments
-        Portfolio newPortfolio = new Portfolio(description, name, userId);
+        Portfolio newPortfolio = new Portfolio(name, description, userId);
 
         portfolioDAO.addPortfolio(newPortfolio);
         portfolioCreated = true;

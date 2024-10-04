@@ -27,11 +27,10 @@ public class DisplayArtController {
     private Label artDimensionsLabel;
     @FXML
     private Label artDescriptionLabel;
-
     @FXML
-    private Label portfolioTitleLabel;
+    private Label portfolioTitleLabel;//This will need to change
 
-    public void setPortfolioTitle(String portfolioTitle) {
+    public void setPortfolioTitle(String portfolioTitle) {// WIll need to change this to be set artwork title
         portfolioTitleLabel.setText(portfolioTitle);
     }
 
