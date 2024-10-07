@@ -1,3 +1,5 @@
+ //COMMENTING EVERYTHING OUT FOR GITHUB MAVEN BUILD
+
 import com.example.addressbook.controller.MyPortfoliosController;
 import com.example.addressbook.model.Portfolio;
 import com.example.addressbook.model.SqlitePortfolioDAO;
@@ -80,6 +82,8 @@ public class MyPortfoliosControllerTest {
         controller.setPortfolioListView(listView);
     }
 
+
+
     @Test
     public void testLoadPortfolios_WhenUserIsLoggedOut() throws InterruptedException {
         // Simulate no logged-in user
@@ -116,6 +120,8 @@ public class MyPortfoliosControllerTest {
         });
         latch.await(5, TimeUnit.SECONDS);
     }
+
+
 
     @Test
     public void testOnDeletePortfolio_NoPortfolioSelected() throws InterruptedException {
