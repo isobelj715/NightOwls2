@@ -9,7 +9,7 @@ public class Portfolio {
     public Portfolio(String portfolioName, String portfolioDescription, Integer contactID) {
         this.portfolioName = portfolioName;
         this.portfolioDescription = portfolioDescription;
-        this.contactID = contactID;  // Initialize contact_id in the constructor
+        this.contactID = contactID;  // Initialise contact_id in the constructor
     }
 
     public int getId(){
@@ -22,7 +22,7 @@ public class Portfolio {
         return portfolioName;
     }
 
-    public void setPortfolioName(String portfolioName, String portfolioDescription) {
+    public void setPortfolioName(String portfolioName) {
         this.portfolioName = portfolioName;
         //this.portfolioDescription = portfolioDescription;
     }

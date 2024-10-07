@@ -33,9 +33,30 @@ public class MyPortfoliosController {
 
     private final SqlitePortfolioDAO portfolioDAO;
 
+    //public MyPortfoliosController() {
+    //    portfolioDAO = new SqlitePortfolioDAO();
+    //}
+
+    // trying to get unit testing to work :
+    // Default constructor
     public MyPortfoliosController() {
-        portfolioDAO = new SqlitePortfolioDAO();
+        this.portfolioDAO = new SqlitePortfolioDAO();
     }
+
+    // Constructor for dependency injection (used in testing)
+    public MyPortfoliosController(SqlitePortfolioDAO portfolioDAO) {
+        this.portfolioDAO = portfolioDAO;
+    }
+
+    // Setter for portfolioListView for testing purposes
+    public void setPortfolioListView(ListView<Portfolio> portfolioListView) {
+        this.portfolioListView = portfolioListView;
+    }
+
+    public ListView<Portfolio> getPortfolioListView() {
+        return portfolioListView;
+    }
+    //
 
     @FXML
     public void initialize() {
@@ -53,6 +74,10 @@ public class MyPortfoliosController {
         portfolioListView.setItems(portfolioList);
         portfolioListView.setCellFactory(param -> new PortfolioListCell());
     }
+
+
+
+
 
     // Handle deleting a selected portfolio
     @FXML
@@ -131,7 +156,7 @@ public class MyPortfoliosController {
             deleteButton = new Button("Delete");
 
             // Apply CSS classes
-            portfolioNameLabel.getStyleClass().add("portfolio-title");
+            portfolioNameLabel.getStyleClass().add("portfolio-name");
             portfolioDescriptionLabel.getStyleClass().add("portfolio-description");
             openButton.getStyleClass().add("portfolio-open-button"); // New style class for open button
             deleteButton.getStyleClass().add("delete-portfolio-button"); // Use the existing .nav-button style for delete
@@ -154,7 +179,7 @@ public class MyPortfoliosController {
             content.setHgap(10); // Horizontal gap between columns
 
             // Set maximum width for the title and description to allow wrapping
-            portfolioNameLabel.setMaxWidth(400); // Adjust as needed
+            portfolioNameLabel.setMaxWidth(200); // Adjust as needed
             portfolioDescriptionLabel.setMaxWidth(200); // Adjust as needed
 
             // Allow labels to grow in the GridPane
@@ -272,5 +297,10 @@ public class MyPortfoliosController {
             showAlert("Error", "Failed to open the create portfolio dialog.");
         }
     }
+
+
+
+
+
 
 }
