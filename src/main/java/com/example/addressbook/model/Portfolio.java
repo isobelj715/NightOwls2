@@ -24,12 +24,12 @@ public class Portfolio {
 
     public void setPortfolioName(String portfolioName, String portfolioDescription) {
         this.portfolioName = portfolioName;
-        this.portfolioDescription = portfolioDescription;
+        //this.portfolioDescription = portfolioDescription;
     }
 
 
 
-    // added for MyPortfoliosController - edit title only
+    // added for MyPortfoliosController - edit title only. why is this here ??? maybe remove
     public String getPortfolioTitle() {
         return portfolioName;
     }
