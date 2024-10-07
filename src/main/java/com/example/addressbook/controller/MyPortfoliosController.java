@@ -178,8 +178,8 @@ public class MyPortfoliosController {
 
 
             // Adding elements to the GridPane with flipped order: Title first, then Description
-            content.add(portfolioNameLabel, 1, 0);       // Title on the left
-            content.add(portfolioDescriptionLabel, 0, 0); // Description next to title
+            content.add(portfolioNameLabel, 0, 0);       // Title on the left
+            content.add(portfolioDescriptionLabel, 1, 0); // Description next to title
             HBox buttonBox = new HBox(10, openButton, deleteButton); // HBox for buttons with spacing
             content.add(buttonBox, 2, 0); // Buttons to the right
 
