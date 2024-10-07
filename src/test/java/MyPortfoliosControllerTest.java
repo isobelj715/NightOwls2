@@ -1,3 +1,5 @@
+ //COMMENTING EVERYTHING OUT FOR GITHUB MAVEN BUILD
+
 import com.example.addressbook.controller.MyPortfoliosController;
 import com.example.addressbook.model.Portfolio;
 import com.example.addressbook.model.SqlitePortfolioDAO;
@@ -80,21 +82,23 @@ public class MyPortfoliosControllerTest {
         controller.setPortfolioListView(listView);
     }
 
-    // @Test
-// public void testLoadPortfolios_WhenUserIsLoggedOut() throws InterruptedException {
-//     // Simulate no logged-in user
-//     SessionManager.getInstance().clearSession();
-//
-//     CountDownLatch latch = new CountDownLatch(1);
-//     Platform.runLater(() -> {
-//         controller.initialize();
-//
-//         // Assert that the ListView remains empty when no user is logged in
-//         assertTrue(listView.getItems().isEmpty());
-//         latch.countDown();
-//     });
-//     latch.await(5, TimeUnit.SECONDS);
-// }
+
+
+    @Test
+    public void testLoadPortfolios_WhenUserIsLoggedOut() throws InterruptedException {
+        // Simulate no logged-in user
+        SessionManager.getInstance().clearSession();
+
+        CountDownLatch latch = new CountDownLatch(1);
+        Platform.runLater(() -> {
+            controller.initialize();
+
+            // Assert that the ListView remains empty when no user is logged in
+            assertTrue(listView.getItems().isEmpty());
+            latch.countDown();
+        });
+        latch.await(5, TimeUnit.SECONDS);
+    }
 
     @Test
     public void testLoadPortfolios_WhenUserIsLoggedIn() throws InterruptedException {
@@ -117,19 +121,21 @@ public class MyPortfoliosControllerTest {
         latch.await(5, TimeUnit.SECONDS);
     }
 
-    // @Test
-// public void testOnDeletePortfolio_NoPortfolioSelected() throws InterruptedException {
-//     CountDownLatch latch = new CountDownLatch(1);
-//     Platform.runLater(() -> {
-//         // Attempt to delete with no portfolio selected
-//         controller.onDeletePortfolio(null);
-//
-//         // The list should remain unchanged (i.e., empty)
-//         assertTrue(listView.getItems().isEmpty());
-//         latch.countDown();
-//     });
-//     latch.await(5, TimeUnit.SECONDS);
-// }
+
+
+    @Test
+    public void testOnDeletePortfolio_NoPortfolioSelected() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
+        Platform.runLater(() -> {
+            // Attempt to delete with no portfolio selected
+            controller.onDeletePortfolio(null);
+
+            // The list should remain unchanged (i.e., empty)
+            assertTrue(listView.getItems().isEmpty());
+            latch.countDown();
+        });
+        latch.await(5, TimeUnit.SECONDS);
+    }
 
     @Test
     public void testOnDeletePortfolio_PortfolioSelected() throws InterruptedException {
@@ -149,23 +155,23 @@ public class MyPortfoliosControllerTest {
         latch.await(5, TimeUnit.SECONDS);
     }
 
-    // @Test
-// public void testOnCreatePortfolio() throws InterruptedException {
-//     CountDownLatch latch = new CountDownLatch(1);
-//     Platform.runLater(() -> {
-//         controller.onCreatePortfolio(null);
-//
-//         // Simulate portfolio creation dialog and adding a new portfolio
-//         Portfolio newPortfolio = new Portfolio("New Portfolio", "New Description", 1);
-//         portfolioDAO.addPortfolio(newPortfolio);
-//         controller.initialize();
-//
-//         // Verify that the new portfolio is added to the ListView
-//         assertTrue(listView.getItems().contains(newPortfolio));
-//         latch.countDown();
-//     });
-//     latch.await(5, TimeUnit.SECONDS);
-// }
+    @Test
+    public void testOnCreatePortfolio() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
+        Platform.runLater(() -> {
+            controller.onCreatePortfolio(null);
+
+            // Simulate portfolio creation dialog and adding a new portfolio
+            Portfolio newPortfolio = new Portfolio("New Portfolio", "New Description", 1);
+            portfolioDAO.addPortfolio(newPortfolio);
+            controller.initialize();
+
+            // Verify that the new portfolio is added to the ListView
+            assertTrue(listView.getItems().contains(newPortfolio));
+            latch.countDown();
+        });
+        latch.await(5, TimeUnit.SECONDS);
+    }
 
     @Test
     public void testEmptyPortfolioList_Loading() throws InterruptedException {
@@ -180,38 +186,38 @@ public class MyPortfoliosControllerTest {
         latch.await(5, TimeUnit.SECONDS);
     }
 
-    // @Test
-// public void testDeleteButtonInPortfolioListCell() throws InterruptedException {
-//     // Add a portfolio and set it as selected
-//     Portfolio portfolio = new Portfolio("Portfolio 1", "Description 1", 1);
-//     listView.getItems().add(portfolio);
-//     listView.getSelectionModel().select(portfolio);
-//
-//     CountDownLatch latch = new CountDownLatch(1);
-//     Platform.runLater(() -> {
-//         // Simulate clicking the delete button in the PortfolioListCell
-//         controller.onDeletePortfolio(null);
-//
-//         // Verify that the portfolio is removed from the ListView
-//         assertFalse(listView.getItems().contains(portfolio));
-//         latch.countDown();
-//     });
-//     latch.await(5, TimeUnit.SECONDS);
-// }
+    @Test
+    public void testDeleteButtonInPortfolioListCell() throws InterruptedException {
+        // Add a portfolio and set it as selected
+        Portfolio portfolio = new Portfolio("Portfolio 1", "Description 1", 1);
+        listView.getItems().add(portfolio);
+        listView.getSelectionModel().select(portfolio);
 
-    // @Test
-// public void testOpenButtonInPortfolioListCell() throws InterruptedException {
-//     Portfolio portfolio = new Portfolio("Portfolio 1", "Description 1", 1);
-//     listView.getItems().add(portfolio);
-//     listView.getSelectionModel().select(portfolio);
-//
-//     CountDownLatch latch = new CountDownLatch(1);
-//     Platform.runLater(() -> {
-//         // Simulate clicking the open button in the PortfolioListCell
-//         // Currently, just verify that the open action does not cause errors
-//         assertDoesNotThrow(() -> controller.initialize());
-//         latch.countDown();
-//     });
-//     latch.await(5, TimeUnit.SECONDS);
-// }
+        CountDownLatch latch = new CountDownLatch(1);
+        Platform.runLater(() -> {
+            // Simulate clicking the delete button in the PortfolioListCell
+            controller.onDeletePortfolio(null);
+
+            // Verify that the portfolio is removed from the ListView
+            assertFalse(listView.getItems().contains(portfolio));
+            latch.countDown();
+        });
+        latch.await(5, TimeUnit.SECONDS);
+    }
+
+    @Test
+    public void testOpenButtonInPortfolioListCell() throws InterruptedException {
+        Portfolio portfolio = new Portfolio("Portfolio 1", "Description 1", 1);
+        listView.getItems().add(portfolio);
+        listView.getSelectionModel().select(portfolio);
+
+        CountDownLatch latch = new CountDownLatch(1);
+        Platform.runLater(() -> {
+            // Simulate clicking the open button in the PortfolioListCell
+            // Currently, just verify that the open action does not cause errors
+            assertDoesNotThrow(() -> controller.initialize());
+            latch.countDown();
+        });
+        latch.await(5, TimeUnit.SECONDS);
+    }
 }
