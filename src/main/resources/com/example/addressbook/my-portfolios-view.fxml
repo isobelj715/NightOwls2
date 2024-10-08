@@ -16,7 +16,7 @@
     <fx:include source="header-template.fxml"/>
 
     <!-- Main Pane for Portfolios, wrapped in a ScrollPane -->
-    <ScrollPane layoutX="100.0" layoutY="150.0" prefWidth="1080.0" fitToWidth="true"
+    <ScrollPane layoutX="100.0" layoutY="150.0" fitToWidth="true" fitToHeight="true"
                 AnchorPane.topAnchor="150.0" AnchorPane.leftAnchor="100.0"
                 AnchorPane.rightAnchor="100.0" AnchorPane.bottomAnchor="60.0">
         <!-- Using style attribute for padding -->
@@ -27,9 +27,8 @@
             <!-- Create Portfolio Button -->
             <Button fx:id="createPortfolioButton" text="Create Portfolio" onAction="#onCreatePortfolio" styleClass="create-portfolio-button" />
 
-
-            <!-- ListView for displaying portfolios -->
-            <ListView fx:id="portfolioListView" prefWidth="1000" />
+            <!-- ListView for displaying portfolios, allowing it to grow -->
+            <ListView fx:id="portfolioListView" prefWidth="1000" VBox.vgrow="ALWAYS" />
         </VBox>
     </ScrollPane>
 

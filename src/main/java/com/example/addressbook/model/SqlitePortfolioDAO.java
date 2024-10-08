@@ -54,18 +54,19 @@ public class SqlitePortfolioDAO implements IPortfolioDAO {
     @Override
     public void updatePortfolio(Portfolio portfolio) {
         try {
+            // The SQL query only has four placeholders, so only four parameters should be set
             String query = "UPDATE portfolios SET portfolioName = ?, portfolioDescription = ?, contact_id = ? WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, portfolio.getPortfolioName());
             statement.setString(2, portfolio.getPortfolioDescription());
             statement.setInt(3, portfolio.getContactID());
             statement.setInt(4, portfolio.getId());
-            statement.setInt(5, sessionManager.getLoggedInUser().getId());
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
 
     @Override
