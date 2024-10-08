@@ -31,6 +31,8 @@ public class MyPortfoliosController {
     @FXML
     private Button createPortfolioButton;
 
+
+
     private final SqlitePortfolioDAO portfolioDAO;
 
     //public MyPortfoliosController() {
@@ -80,12 +82,30 @@ public class MyPortfoliosController {
 
 
     // Handle deleting a selected portfolio
-    @FXML
-    public void onDeletePortfolio(ActionEvent event) {
-        Portfolio selectedPortfolio = portfolioListView.getSelectionModel().getSelectedItem();
+//    @FXML
+//    public void onDeletePortfolio(ActionEvent event) {
+//        Portfolio selectedPortfolio = portfolioListView.getSelectionModel().getSelectedItem();
+//
+//        if (selectedPortfolio == null) {
+//            showAlert("Error", "Please select a portfolio to delete.");
+//            return;
+//        }
+//
+//        // Show the delete confirmation dialog
+//        boolean confirmed = showDeleteConfirmationDialog();
+//
+//        // Proceed with deletion if confirmed
+//        if (confirmed) {
+//            portfolioDAO.deletePortfolio(selectedPortfolio);
+//            loadPortfolios(); // Reload the portfolio list
+//
+//        }
+//    }
 
-        if (selectedPortfolio == null) {
-            showAlert("Error", "Please select a portfolio to delete.");
+    // Handle deleting a portfolio (no need for it to be selected from the ListView)
+    public void onDeletePortfolio(Portfolio portfolio) {
+        if (portfolio == null) {
+            showAlert("Error", "Unable to delete portfolio.");
             return;
         }
 
@@ -94,9 +114,8 @@ public class MyPortfoliosController {
 
         // Proceed with deletion if confirmed
         if (confirmed) {
-            portfolioDAO.deletePortfolio(selectedPortfolio);
+            portfolioDAO.deletePortfolio(portfolio);
             loadPortfolios(); // Reload the portfolio list
-
         }
     }
 
@@ -148,17 +167,20 @@ public class MyPortfoliosController {
         private final Label portfolioDescriptionLabel;
         private final Button openButton;
         private final Button deleteButton;
+        private final Button editButton;
 
         public PortfolioListCell() {
             portfolioNameLabel = new Label();
             portfolioDescriptionLabel = new Label();
             openButton = new Button("Open");
             deleteButton = new Button("Delete");
+            editButton = new Button("Edit");
 
             // Apply CSS classes
             portfolioNameLabel.getStyleClass().add("portfolio-name");
             portfolioDescriptionLabel.getStyleClass().add("portfolio-description");
             openButton.getStyleClass().add("portfolio-open-button"); // New style class for open button
+            editButton.getStyleClass().add("portfolio-open-button"); // same as open button for now
             deleteButton.getStyleClass().add("delete-portfolio-button"); // Use the existing .nav-button style for delete
 
             // Enable text wrapping for both title and description
@@ -205,11 +227,15 @@ public class MyPortfoliosController {
             // Adding elements to the GridPane with flipped order: Title first, then Description
             content.add(portfolioNameLabel, 0, 0);       // Title on the left
             content.add(portfolioDescriptionLabel, 1, 0); // Description next to title
-            HBox buttonBox = new HBox(10, openButton, deleteButton); // HBox for buttons with spacing
+            HBox buttonBox = new HBox(10, openButton, editButton, deleteButton); // HBox for buttons with spacing
             content.add(buttonBox, 2, 0); // Buttons to the right
 
             openButton.setOnAction(event -> onOpenPortfolio(getItem()));
-            deleteButton.setOnAction(event -> onDeletePortfolio(new ActionEvent()));
+            editButton.setOnAction(event -> onEditPortfolio(getItem()));
+            deleteButton.setOnAction(event -> onDeletePortfolio(getItem()));
+
+
+
         }
 
         @Override
@@ -297,6 +323,45 @@ public class MyPortfoliosController {
             showAlert("Error", "Failed to open the create portfolio dialog.");
         }
     }
+
+
+    // Handle editing a portfolio
+    private void onEditPortfolio(Portfolio portfolio) {
+        if (portfolio == null) {
+            showAlert("Error", "Unable to edit portfolio.");
+            return;
+        }
+
+        try {
+            // Load the edit portfolio popup FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/edit-portfolio-view.fxml"));
+            Parent root = loader.load();
+
+            // Get the controller and pass the portfolio data
+            EditPortfolioController editController = loader.getController();
+            editController.setPortfolioDAO(portfolioDAO);
+            editController.setPortfolio(portfolio); // Pass the portfolio to the edit controller
+
+            // Create a new stage for the dialog
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Edit Portfolio");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            // Instead of using editButton, we use createPortfolioButton or portfolioListView to get the window
+            dialogStage.initOwner(portfolioListView.getScene().getWindow());
+            dialogStage.setScene(new Scene(root));
+            dialogStage.showAndWait();
+
+            // After closing the dialog, check if the portfolio was updated and refresh the list
+            if (editController.isPortfolioUpdated()) {
+                loadPortfolios(); // Reload the updated portfolio list
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to open the edit portfolio dialog.");
+        }
+    }
+
+
 
 
 
