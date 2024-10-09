@@ -16,18 +16,7 @@ public class headerController {
         String buttonId = ((Node) event.getSource()).getId();
 
         // Determine which FXML file to load based on the button clicked
-        String fxmlFile = "";
-        switch (buttonId) {
-            case "headerHome":
-                fxmlFile = "/com/example/addressbook/my-portfolios-view.fxml";
-                break;
-            case "headerUpload":
-                fxmlFile = "/com/example/addressbook/upload-portfolio-view.fxml";
-                break;
-            case "headerProfile":
-               fxmlFile = "/com/example/addressbook/profile-views.fxml";
-                break;
-        }
+        String fxmlFile = fileLocation(buttonId);
 
         // Load the corresponding FXML file and switch scenes
         if (!fxmlFile.isEmpty()) {
@@ -47,4 +36,22 @@ public class headerController {
             }
         }
     }
+
+    public String fileLocation(String id){
+
+        String fxmlFile = "";
+        switch (id) {
+            case "headerHome":
+                fxmlFile = "/com/example/addressbook/my-portfolios-view.fxml";
+                break;
+            case "headerUpload":
+                fxmlFile = "/com/example/addressbook/upload-portfolio-view.fxml";
+                break;
+            case "headerProfile":
+                fxmlFile = "/com/example/addressbook/profile-views.fxml";
+                break;
+        }
+        return fxmlFile;
+    }
 }
+
