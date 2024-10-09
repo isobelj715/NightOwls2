@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.addressbook.controller.MyPortfoliosController"
+            prefHeight="720.0" prefWidth="1280.0"
+            style="-fx-background-color: #E9E5F7;" stylesheets="@style.css">
+
+    <!-- Include Header -->
+    <fx:include source="header-template.fxml" />
+
+    <!-- Main Content -->
+    <VBox layoutX="50.0" layoutY="150.0" spacing="20" prefWidth="1180" alignment="TOP_CENTER"
+          AnchorPane.topAnchor="150.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+        <HBox alignment="CENTER_LEFT" spacing="20" prefWidth="1080">
+            <!-- Portfolio Name -->
+            <Label text="My Portfolios" styleClass="portfolio-title" />
+        </HBox>
+
+        <!-- Grid for Portfolio Thumbnails -->
+        <GridPane fx:id="portfolioGrid" hgap="20" vgap="20" alignment="CENTER" prefWidth="1080" prefHeight="400">
+            <!-- This grid will dynamically load the thumbnails for the portfolios -->
+            <!-- Initially placeholders will be displayed -->
+            <ImageView fx:id="portfolioImage1" fitWidth="200" fitHeight="200" preserveRatio="true" onMouseClicked="#onPortfolioClick1"/>
+            <ImageView fx:id="portfolioImage2" fitWidth="200" fitHeight="200" preserveRatio="true" onMouseClicked="#onPortfolioClick2"/>
+            <ImageView fx:id="portfolioImage3" fitWidth="200" fitHeight="200" preserveRatio="true" onMouseClicked="#onPortfolioClick3"/>
+            <ImageView fx:id="portfolioImage4" fitWidth="200" fitHeight="200" preserveRatio="true" onMouseClicked="#onPortfolioClick4"/>
+            <ImageView fx:id="portfolioImage5" fitWidth="200" fitHeight="200" preserveRatio="true" onMouseClicked="#onPortfolioClick5"/>
+            <ImageView fx:id="portfolioImage6" fitWidth="200" fitHeight="200" preserveRatio="true" onMouseClicked="#onPortfolioClick6"/>
+            <ImageView fx:id="portfolioImage7" fitWidth="200" fitHeight="200" preserveRatio="true" onMouseClicked="#onPortfolioClick7"/>
+            <ImageView fx:id="portfolioImage8" fitWidth="200" fitHeight="200" preserveRatio="true" onMouseClicked="#onPortfolioClick8"/>
+            <ImageView fx:id="portfolioImage9" fitWidth="200" fitHeight="200" preserveRatio="true" onMouseClicked="#onPortfolioClick9"/>
+        </GridPane>
+
+        <!-- Portfolio Description Pane -->
+        <HBox alignment="CENTER" spacing="50" prefWidth="1080">
+            <Label text="Select a portfolio to view its contents" styleClass="description-title" />
+        </HBox>
+    </VBox>
+
+    <!-- Include Footer -->
+    <fx:include source="footer-template.fxml" AnchorPane.bottomAnchor="0.0"/>
+</AnchorPane>
