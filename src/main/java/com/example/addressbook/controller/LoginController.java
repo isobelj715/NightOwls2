@@ -23,7 +23,7 @@ import java.io.IOException;
  * It validates user credentials, allows navigation between the login screen and the
  * account creation screen, and manages session data for logged-in users.
  */
-public class LoginController {
+public class LoginController extends BaseController{
 
     @FXML
     private TextField emailTextField;
@@ -36,12 +36,6 @@ public class LoginController {
 
     @FXML
     private Button createAccountButton;
-
-
-//    @FXML
-//    public void initialize() {
-//        System.out.println("Create Account Button initialised: " + createAccountButton);
-//    }
 
     private ContactManager contactManager;
 
@@ -112,42 +106,7 @@ public class LoginController {
      */
     @FXML
     private void onCreateAccount(ActionEvent event) {
-        try {
-            // Load the "Create Account" FXML file and switch the scene
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/createaccount-view.fxml"));
-
-            AnchorPane createAccountPane = loader.load();  // Use VBox since your root element is VBox in the FXML
-            Scene createAccountScene = new Scene(createAccountPane);
-
-            // Get the current stage and set the new scene (Create Account page)
-            Stage stage = (Stage) createAccountButton.getScene().getWindow();
-            stage.setScene(createAccountScene);
-
-            // Disable the fullscreen exit hint
-            stage.setFullScreenExitHint("");
-            // Make the window fullscreen
-            stage.setFullScreen(true);
-
-
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-    /**
-     * Utility method to display alert dialogs.
-     *
-     * @param title   the title of the alert dialog.
-     * @param message the message content of the alert dialog.
-     */
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+        // Load the "Create Account" view using the loadPage method from BaseController
+        loadPage(event, "/com/example/addressbook/createaccount-view.fxml");
     }
 }

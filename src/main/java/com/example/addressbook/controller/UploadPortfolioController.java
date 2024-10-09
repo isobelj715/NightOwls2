@@ -23,7 +23,7 @@ import java.util.List;
  * The UploadPortfolioController class manages the upload of new art pieces to a user's portfolio.
  * It provides functionality for creating new portfolios, uploading art, previewing images, and managing input fields.
  */
-public class UploadPortfolioController {
+public class UploadPortfolioController extends BaseController{
 
     // Portfolio Section
     @FXML
@@ -266,24 +266,7 @@ public class UploadPortfolioController {
         // Add the new art to the database
         artManager.addArt(newArt);
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/my-portfolios-view.fxml"));
-            AnchorPane myArtPane = loader.load(); // AnchorPane for portfolios view and VBox for upload art
-            Scene myArtScene = new Scene(myArtPane);
-
-            // Get the current stage and set the new scene (My Art page)
-            Stage stage = (Stage) uploadButton.getScene().getWindow();
-            stage.setScene(myArtScene);
-
-            // Disable the fullscreen exit hint
-            stage.setFullScreenExitHint("");
-            // Make the window fullscreen
-            stage.setFullScreen(true);
-
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        loadPage(actionEvent, "/com/example/addressbook/my-portfolios-view.fxml");
     }
 
 
@@ -295,34 +278,8 @@ public class UploadPortfolioController {
      */
     @FXML
     public void onCancel(ActionEvent actionEvent) {
-        try {
-            // switch the address between my-portfolios-view or upload-art-view
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/my-portfolios-view.fxml"));
+        loadPage(actionEvent, "/com/example/addressbook/my-portfolios-view.fxml");
 
-            AnchorPane myArtPane = loader.load(); // Anchorpane for portfolios view and Vbox for upload art
-            Scene myArtScene = new Scene(myArtPane);
-
-            // Get the current stage and set the new scene (My Art page)
-            Stage stage = (Stage) cancelButton.getScene().getWindow();
-            stage.setScene(myArtScene);
-
-            // Disable the fullscreen exit hint
-            stage.setFullScreenExitHint("");
-            // Make the window fullscreen
-            stage.setFullScreen(true);
-
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
-
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 }

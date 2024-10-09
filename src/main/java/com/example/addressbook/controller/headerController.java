@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 import java.io.IOException;
-public class headerController {
+public class headerController extends BaseController{
     @FXML
     public void handleButtonClick(ActionEvent event) {
         // Determine which button was clicked by its fx:id
@@ -19,22 +19,9 @@ public class headerController {
         String fxmlFile = fileLocation(buttonId);
 
         // Load the corresponding FXML file and switch scenes
-        if (!fxmlFile.isEmpty()) {
-            try {
-                Parent newSceneRoot = FXMLLoader.load(getClass().getResource(fxmlFile));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(newSceneRoot));
+        loadPage(event, fxmlFile);
 
 
-                if (!stage.isFullScreen()) {
-                    stage.setFullScreen(true);
-                }
-
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     public String fileLocation(String id){

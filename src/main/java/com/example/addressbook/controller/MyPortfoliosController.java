@@ -29,7 +29,7 @@ import java.util.List;
  * It allows users to view, create, edit, and delete portfolios. It also handles loading portfolios
  * from the database and provides custom UI components for each portfolio.
  */
-public class MyPortfoliosController {
+public class MyPortfoliosController extends BaseController{
 
     @FXML
     private ListView<Portfolio> portfolioListView;
@@ -156,31 +156,6 @@ public class MyPortfoliosController {
         return false;
     }
 
-    /**
-     * Returns the ID of the currently logged-in user.
-     *
-     * @return the logged-in user ID, or {@code -1} if no user is logged in.
-     */
-    private int getLoggedInUserId() {
-        if (SessionManager.getInstance().getLoggedInUser() == null) {
-            return -1; // Indicates that no user is logged in
-        }
-        return SessionManager.getInstance().getLoggedInUser().getId();
-    }
-
-    /**
-     * Utility method to show alert dialogs.
-     *
-     * @param title   the title of the alert dialog.
-     * @param message the message content of the alert dialog.
-     */
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 
     /**
      * Custom ListCell class for displaying portfolio items with Open, Edit, and Delete buttons.
@@ -336,6 +311,9 @@ public class MyPortfoliosController {
      */
     @FXML
     public void onCreatePortfolio(ActionEvent event) {
+        // base controller doesnt quite work currently cos the dialog box should not be full screen:
+        //loadPage(event, "/com/example/addressbook/create-portfolio-popup.fxml");
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/create-portfolio-popup.fxml"));
             Parent root = loader.load();

@@ -10,13 +10,11 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 
-public class landingHomeController {
-
+public class landingHomeController extends BaseController {
     @FXML
     public void handleButtonClick(ActionEvent event) {
         // Determine which button was clicked by its fx:id
         String buttonId = ((Node) event.getSource()).getId();
-
         // Determine which FXML file to load based on the button clicked
         String fxmlFile = "";
         switch (buttonId) {
@@ -31,23 +29,7 @@ public class landingHomeController {
 //                fxmlFile = "/com/example/arttasker/profile-view.fxml";
 //                break;
         }
-
         // Load the corresponding FXML file and switch scenes
-        if (!fxmlFile.isEmpty()) {
-            try {
-                Parent newSceneRoot = FXMLLoader.load(getClass().getResource(fxmlFile));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(newSceneRoot));
-
-
-                if (!stage.isFullScreen()) {
-                    stage.setFullScreen(true); // Enter fullscreen if not already in fullscreen
-                }
-
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        loadPage(event, fxmlFile);
     }
 }
