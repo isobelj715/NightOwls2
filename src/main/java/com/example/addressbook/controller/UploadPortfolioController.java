@@ -19,6 +19,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * The UploadPortfolioController class manages the upload of new art pieces to a user's portfolio.
+ * It provides functionality for creating new portfolios, uploading art, previewing images, and managing input fields.
+ */
 public class UploadPortfolioController {
 
     // Portfolio Section
@@ -69,18 +73,27 @@ public class UploadPortfolioController {
     private final ArtManager artManager;
     private final SqlitePortfolioDAO portfolioDAO;
 
+    /**
+     * Constructor for UploadPortfolioController. Initialises the ArtManager and PortfolioDAO
+     * for managing art and portfolio data.
+     */
     public UploadPortfolioController() {
         artManager = new ArtManager(new SqliteArtDAO());
         portfolioDAO = new SqlitePortfolioDAO();
     }
 
-    // Initialise portfolios in the ComboBox when the UI is loaded
+    /**
+     * Initialises the controller, loading existing portfolios into the ComboBox for selection.
+     */
     @FXML
     public void initialize() {
         loadPortfolios();  // Load portfolios into the ComboBox
     }
 
-    // Load all portfolios into the ComboBox
+    /**
+     * Loads all portfolios belonging to the logged-in user into the ComboBox.
+     * If no user is logged in, an error alert is shown.
+     */
     private void loadPortfolios() {
         // Get the current logged-in user
         Contact loggedInUser = SessionManager.getInstance().getLoggedInUser();
@@ -126,7 +139,12 @@ public class UploadPortfolioController {
         });
     }
 
-    // Handle the creation of a new portfolio when the user clicks the "Create New Portfolio" button
+    /**
+     * Handles the creation of a new portfolio when the user clicks the "Create New Portfolio" button.
+     * Validates the input and adds the new portfolio to the database, then reloads the ComboBox with the updated list.
+     *
+     * @param event the event triggered by the "Create New Portfolio" button.
+     */
     @FXML
     public void onCreatePortfolio(ActionEvent event) {
         String portfolioName = portfolioNameTextField.getText().trim();
@@ -153,7 +171,12 @@ public class UploadPortfolioController {
         showAlert("Success", "Portfolio created successfully!");
     }
 
-    // Handle file selection and image preview
+    /**
+     * Handles file selection and image preview when the user clicks the "Browse" button.
+     * Allows users to select an image file for the art, displaying the selected image in the ImageView.
+     *
+     * @param actionEvent the event triggered by the "Browse" button.
+     */
     @FXML
     public void onBrowseFile(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
@@ -181,7 +204,12 @@ public class UploadPortfolioController {
         }
     }
 
-    // Handle the upload action
+    /**
+     * Handles the upload action when the user clicks the "Upload" button.
+     * Gathers all input data, validates required fields, and adds the new art to the selected portfolio.
+     *
+     * @param actionEvent the event triggered by the "Upload" button.
+     */
     @FXML
     public void onUpload(ActionEvent actionEvent) {
         // Get required inputs
@@ -259,7 +287,12 @@ public class UploadPortfolioController {
     }
 
 
-    // Cancel action
+    /**
+     * Handles the cancel action when the user clicks the "Cancel" button.
+     * Redirects the user back to the My Portfolios view without saving any changes.
+     *
+     * @param actionEvent the event triggered by the "Cancel" button.
+     */
     @FXML
     public void onCancel(ActionEvent actionEvent) {
         try {
@@ -284,7 +317,7 @@ public class UploadPortfolioController {
         }
     }
 
-    // Utility method to show alert dialogs
+
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
