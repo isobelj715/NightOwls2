@@ -29,6 +29,16 @@ public class UploadPortfolioController {
     @FXML
     private TextArea portfolioDescriptionTextArea;
 
+
+    @FXML
+    private ImageView portfolioImageView;  // for the portfolio image
+    @FXML
+    private TextField portfolioImagePathTextField;  //  portfolio image file path
+
+    private File selectedPortfolioImageFile;  // storing the portfolio image
+
+
+
     // Art Upload Section
     @FXML
     private ImageView imagePreview;
@@ -148,10 +158,49 @@ public class UploadPortfolioController {
         // Create a new portfolio with name, description, and contact ID
         Portfolio newPortfolio = new Portfolio(portfolioName, portfolioDescription, loggedInUser.getId());
         portfolioDAO.addPortfolio(newPortfolio);  // Add the new portfolio to the database
+
         loadPortfolios();  // Reload the portfolios into the ComboBox
         portfolioComboBox.getSelectionModel().select(newPortfolio);  // Select the newly created portfolio
         showAlert("Success", "Portfolio created successfully!");
     }
+
+    // for portfolio image selection **********************************
+
+    @FXML
+    public void onBrowsePortfolioImage(ActionEvent actionEvent) {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Portfolio Image");
+
+        // Optional file extension filters for image types
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.bmp", "*.gif")
+
+        );
+
+        Stage stage = (Stage) portfolioImageView.getScene().getWindow();
+        selectedPortfolioImageFile = fileChooser.showOpenDialog(stage);
+
+
+        if (selectedPortfolioImageFile != null) {
+            portfolioImagePathTextField.setText(selectedPortfolioImageFile.getAbsolutePath());
+
+
+            // loading image and getting a preview
+            try {
+                Image image = new Image(selectedPortfolioImageFile.toURI().toString());
+                portfolioImageView.setImage(image);  // Update the portfolio image preview
+
+            } catch (Exception e) {
+                showAlert("Error", "Selected file is not a valid image.");
+
+
+            }
+        }
+    }
+
+
+
 
     // Handle file selection and image preview
     @FXML
