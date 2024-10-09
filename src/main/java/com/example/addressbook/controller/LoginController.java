@@ -18,6 +18,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * The LoginController manages the login and account creation process in the application.
+ * It validates user credentials, allows navigation between the login screen and the
+ * account creation screen, and manages session data for logged-in users.
+ */
 public class LoginController {
 
     @FXML
@@ -31,19 +36,30 @@ public class LoginController {
 
     @FXML
     private Button createAccountButton;
-    @FXML
-    public void initialize() {
-        System.out.println("Create Account Button initialised: " + createAccountButton);
-    }
+
+
+//    @FXML
+//    public void initialize() {
+//        System.out.println("Create Account Button initialised: " + createAccountButton);
+//    }
 
     private ContactManager contactManager;
 
+    /**
+     * Initialises the controller and the ContactManager for handling contact-related
+     * database operations. The ContactManager is initialised with a SqliteContactDAO.
+     */
     public LoginController() {
-        // Initialize the ContactManager with SqliteContactDAO to handle database operations
         contactManager = new ContactManager(new SqliteContactDAO());
     }
 
-    // Handles the action when the "Log In" button is clicked
+    /**
+     * Handles the action when the "Log In" button is clicked.
+     * It validates the user's email and password, checks the database for the user,
+     * and if valid, logs the user into the application and navigates to the portfolios view.
+     *
+     * @param event the event triggered when the login button is clicked.
+     */
     @FXML
     private void onLogin(ActionEvent event) {
         String email = emailTextField.getText().trim();
@@ -88,7 +104,12 @@ public class LoginController {
         }
     }
 
-    // Handles the action when the "Create Account" button is clicked
+    /**
+     * Handles the action when the "Create Account" button is clicked.
+     * It navigates to the account creation screen by loading the relevant FXML file.
+     *
+     * @param event the event triggered when the create account button is clicked.
+     */
     @FXML
     private void onCreateAccount(ActionEvent event) {
         try {
@@ -116,7 +137,12 @@ public class LoginController {
 
 
 
-    // Utility method to show alert dialogs
+    /**
+     * Utility method to display alert dialogs.
+     *
+     * @param title   the title of the alert dialog.
+     * @param message the message content of the alert dialog.
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

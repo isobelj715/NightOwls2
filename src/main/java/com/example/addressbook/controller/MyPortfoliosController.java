@@ -23,6 +23,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
+
+/**
+ * The MyPortfoliosController manages the display and interaction of portfolios in the application.
+ * It allows users to view, create, edit, and delete portfolios. It also handles loading portfolios
+ * from the database and provides custom UI components for each portfolio.
+ */
 public class MyPortfoliosController {
 
     @FXML
@@ -41,31 +47,54 @@ public class MyPortfoliosController {
 
     // trying to get unit testing to work :
     // Default constructor
+
+    /**
+     * Default constructor for the controller. Initialises the DAO to interact with the database.
+     */
     public MyPortfoliosController() {
         this.portfolioDAO = new SqlitePortfolioDAO();
     }
 
-    // Constructor for dependency injection (used in testing)
+    /**
+     * Constructor for dependency injection, used for testing purposes.
+     *
+     * @param portfolioDAO DAO used to interact with portfolio data.
+     */
     public MyPortfoliosController(SqlitePortfolioDAO portfolioDAO) {
         this.portfolioDAO = portfolioDAO;
     }
 
-    // Setter for portfolioListView for testing purposes
+    /**
+     * Sets the ListView for testing purposes.
+     *
+     * @param portfolioListView the ListView to set.
+     */
     public void setPortfolioListView(ListView<Portfolio> portfolioListView) {
         this.portfolioListView = portfolioListView;
     }
 
+    /**
+     * Returns the portfolio ListView for testing.
+     *
+     * @return the portfolio ListView.
+     */
     public ListView<Portfolio> getPortfolioListView() {
         return portfolioListView;
     }
-    //
 
+
+    /**
+     * Initialises the controller by loading existing portfolios into the ListView.
+     */
     @FXML
     public void initialize() {
         loadPortfolios(); // Load existing portfolios into the ListView
     }
 
-    // Load the portfolios from the database into the ListView
+    /**
+     * Loads the portfolios from the database into the ListView.
+     * This method fetches all portfolios for the logged-in user.
+     */
     private void loadPortfolios() {
         if (getLoggedInUserId() == -1) {
             showAlert("Error", "No user is logged in. Please log in first.");
@@ -78,31 +107,11 @@ public class MyPortfoliosController {
     }
 
 
-
-
-
-    // Handle deleting a selected portfolio
-//    @FXML
-//    public void onDeletePortfolio(ActionEvent event) {
-//        Portfolio selectedPortfolio = portfolioListView.getSelectionModel().getSelectedItem();
-//
-//        if (selectedPortfolio == null) {
-//            showAlert("Error", "Please select a portfolio to delete.");
-//            return;
-//        }
-//
-//        // Show the delete confirmation dialog
-//        boolean confirmed = showDeleteConfirmationDialog();
-//
-//        // Proceed with deletion if confirmed
-//        if (confirmed) {
-//            portfolioDAO.deletePortfolio(selectedPortfolio);
-//            loadPortfolios(); // Reload the portfolio list
-//
-//        }
-//    }
-
-    // Handle deleting a portfolio (no need for it to be selected from the ListView)
+    /**
+     * Handles the deletion of a portfolio after confirmation.
+     *
+     * @param portfolio the portfolio to delete.
+     */
     public void onDeletePortfolio(Portfolio portfolio) {
         if (portfolio == null) {
             showAlert("Error", "Unable to delete portfolio.");
@@ -119,7 +128,11 @@ public class MyPortfoliosController {
         }
     }
 
-    // Show the delete confirmation dialog
+    /**
+     * Displays a confirmation dialog before deleting a portfolio.
+     *
+     * @return {@code true} if the user confirmed the deletion, otherwise {@code false}.
+     */
     private boolean showDeleteConfirmationDialog() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/delete-confirmation-popup.fxml"));
@@ -143,7 +156,11 @@ public class MyPortfoliosController {
         return false;
     }
 
-    // Get the logged-in user ID
+    /**
+     * Returns the ID of the currently logged-in user.
+     *
+     * @return the logged-in user ID, or {@code -1} if no user is logged in.
+     */
     private int getLoggedInUserId() {
         if (SessionManager.getInstance().getLoggedInUser() == null) {
             return -1; // Indicates that no user is logged in
@@ -151,7 +168,12 @@ public class MyPortfoliosController {
         return SessionManager.getInstance().getLoggedInUser().getId();
     }
 
-    // Utility method to show alert dialogs
+    /**
+     * Utility method to show alert dialogs.
+     *
+     * @param title   the title of the alert dialog.
+     * @param message the message content of the alert dialog.
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -160,7 +182,9 @@ public class MyPortfoliosController {
         alert.showAndWait();
     }
 
-    // Custom ListCell for portfolio items with "Open" and "Delete" buttons with a GridPane layout
+    /**
+     * Custom ListCell class for displaying portfolio items with Open, Edit, and Delete buttons.
+     */
     private class PortfolioListCell extends ListCell<Portfolio> {
         private final GridPane content;
         private final Label portfolioNameLabel;
@@ -238,6 +262,12 @@ public class MyPortfoliosController {
 
         }
 
+        /**
+         * Updates the item (portfolio) in the cell and sets the graphic content.
+         *
+         * @param portfolio the portfolio to display in the cell.
+         * @param empty     whether the cell is empty.
+         */
         @Override
         protected void updateItem(Portfolio portfolio, boolean empty) {
             super.updateItem(portfolio, empty);
@@ -250,7 +280,11 @@ public class MyPortfoliosController {
             }
         }
 
-        // Open the selected portfolio
+        /**
+         * Opens the selected portfolio, loading its contents into the Portfolio Overview scene.
+         *
+         * @param portfolio the portfolio to open.
+         */
         private void onOpenPortfolio(Portfolio portfolio) {
             try {
                 // Get the first artwork in the portfolio
@@ -294,7 +328,12 @@ public class MyPortfoliosController {
         }
     }
 
-
+    /**
+     * Handles the action when the "Create Portfolio" button is clicked.
+     * Opens the create portfolio dialog.
+     *
+     * @param event the event triggered when the create portfolio button is clicked.
+     */
     @FXML
     public void onCreatePortfolio(ActionEvent event) {
         try {
@@ -324,7 +363,13 @@ public class MyPortfoliosController {
     }
 
 
-    // Handle editing a portfolio
+    /**
+     * Handles the editing of a portfolio. Opens an edit dialog that allows the user to modify
+     * the selected portfolio's details. After editing, the portfolio list is refreshed if changes
+     * were made.
+     *
+     * @param portfolio the portfolio to be edited. If the portfolio is null, an error alert is shown.
+     */
     private void onEditPortfolio(Portfolio portfolio) {
         if (portfolio == null) {
             showAlert("Error", "Unable to edit portfolio.");
@@ -359,12 +404,4 @@ public class MyPortfoliosController {
             showAlert("Error", "Failed to open the edit portfolio dialog.");
         }
     }
-
-
-
-
-
-
-
-
 }

@@ -10,6 +10,12 @@ import javafx.scene.image.ImageView;
 
 import java.io.File;
 
+/**
+ * The DisplayArtController handles the presentation of artwork details in the application.
+ * It loads artwork information from an Art object and displays the relevant details,
+ * including the title, year, category, medium, material, dimensions, and description.
+ * It also displays an image of the artwork.
+ */
 public class DisplayArtController {
     @FXML
     private ImageView artImageView;
@@ -30,18 +36,29 @@ public class DisplayArtController {
     @FXML
     private Label portfolioTitleLabel;//This will need to change
 
+    /**
+     * Sets the title of the portfolio (or artwork) to display.
+     *
+     * @param portfolioTitle the title of the portfolio to set.
+     */
     public void setPortfolioTitle(String portfolioTitle) {// WIll need to change this to be set artwork title
         portfolioTitleLabel.setText(portfolioTitle);
     }
 
     private ArtManager artManager;
 
+    /**
+     * Constructor for the DisplayArtController.
+     * Initialises the ArtManager with a SqliteArtDAO for database operations.
+     */
     public DisplayArtController() {
         this.artManager = new ArtManager(new SqliteArtDAO());
     }
 
     /**
-     * Load and display the given artwork.
+     * Displays the details of the provided artwork object.
+     * It loads the artwork image from the file system if available and updates the labels
+     * to show the artwork's title, year, category, medium, material, dimensions, and description.
      *
      * @param art The artwork to display.
      */

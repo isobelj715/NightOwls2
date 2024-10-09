@@ -15,6 +15,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * The CreateAccountController handles the account creation logic within the application.
+ * It manages user input, validates the form, and performs the operation of adding
+ * new contacts to the database using the ContactManager.
+ */
 public class CreateAccountController {
     @FXML
     private TextField firstNameTextField;
@@ -29,12 +34,22 @@ public class CreateAccountController {
 
     private final ContactManager contactManager;
 
+    /**
+     * Constructor for CreateAccountController.
+     * Initialises the ContactManager with a SqliteContactDAO for database operations.
+     */
     public CreateAccountController() {
-        // Initialize the ContactManager with the SqliteContactDAO to handle database operations
+        // Initialise the ContactManager with the SqliteContactDAO to handle database operations
         contactManager = new ContactManager(new SqliteContactDAO());
     }
 
-    // Handles the action when the "Create Account" button is clicked
+    /**
+     * Handles the action when the "Create Account" button is clicked.
+     * Retrieves user input from text fields, performs basic validation,
+     * and if valid, adds a new contact to the database.
+     *
+     * @param actionEvent the event triggered by clicking the "Create Account" button.
+     */
     @FXML
     public void onCreateAccount(ActionEvent actionEvent) {
         // Get the input from the text fields
@@ -74,7 +89,12 @@ public class CreateAccountController {
         }
     }
 
-    // Handles the action when the "Cancel" button is clicked
+    /**
+     * Handles the action when the "Cancel" button is clicked.
+     * Returns the user to the login view without making changes.
+     *
+     * @param actionEvent the event triggered by clicking the "Cancel" button.
+     */
     @FXML
     public void onCancel(ActionEvent actionEvent) {
         try {
@@ -94,7 +114,12 @@ public class CreateAccountController {
         }
     }
 
-    // Utility method to show alert dialogs
+    /**
+     * Displays an alert dialog to the user.
+     *
+     * @param title   the title of the alert dialog.
+     * @param message the message content of the alert dialog.
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -104,12 +129,9 @@ public class CreateAccountController {
     }
 
     /**
-     * Handles the action of adding a new contact.
-     * Adds a new contact with default values to the database.
+     * Handles the action of adding a new contact with default values.
+     * This method can be triggered from the UI for test purposes.
      */
-
-    // USE ****************************************************
-    // ADD DEFAULT PASSWORD TO CONSTRUCTOR!! and then uncomment
     @FXML
     private void onCreateAccount() {
         // Default values for a new contact
