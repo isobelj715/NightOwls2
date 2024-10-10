@@ -116,7 +116,7 @@ public class UploadArtController extends BaseController{
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    setText(item.getPortfolioDescription());
+                    setText(item.getPortfolioName());
                 }
             }
         });
@@ -132,38 +132,6 @@ public class UploadArtController extends BaseController{
                 }
             }
         });
-    }
-
-    /**
-     * Handles the creation of a new portfolio when the user clicks the "Create New Portfolio" button.
-     * Validates the input and adds the new portfolio to the database, then reloads the ComboBox with the updated list.
-     *
-     * @param event the event triggered by the "Create New Portfolio" button.
-     */
-    @FXML
-    public void onCreatePortfolio(ActionEvent event) {
-        String portfolioName = portfolioNameTextField.getText().trim();
-        String portfolioDescription = portfolioDescriptionTextArea.getText().trim();
-
-        if (portfolioName.isEmpty()) {
-            showAlert("Error", "Portfolio name cannot be empty.");
-            return;
-        }
-
-        // Get the current logged-in user
-        Contact loggedInUser = SessionManager.getInstance().getLoggedInUser();
-
-        if (loggedInUser == null) {
-            showAlert("Error", "No user is logged in.");
-            return;
-        }
-
-        // Create a new portfolio with name, description, and contact ID
-        Portfolio newPortfolio = new Portfolio(portfolioName, portfolioDescription, loggedInUser.getId());
-        portfolioDAO.addPortfolio(newPortfolio);  // Add the new portfolio to the database
-        loadPortfolios();  // Reload the portfolios into the ComboBox
-        portfolioComboBox.getSelectionModel().select(newPortfolio);  // Select the newly created portfolio
-        showAlert("Success", "Portfolio created successfully!");
     }
 
     /**
