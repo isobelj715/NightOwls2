@@ -23,6 +23,9 @@ public class SqlitePortfolioDAO implements IPortfolioDAO {
                     + "portfolioName TEXT NOT NULL, "
                     + "portfolioDescription TEXT, "
                     + "contact_id INTEGER, "
+
+                    + "image_path TEXT, "  // to store image path
+
                     + "FOREIGN KEY(contact_id) REFERENCES contacts(id) ON DELETE CASCADE"
                     + ")";
             statement.execute(query);
@@ -40,6 +43,8 @@ public class SqlitePortfolioDAO implements IPortfolioDAO {
             statement.setString(1, portfolio.getPortfolioName());
             statement.setString(2, portfolio.getPortfolioDescription());
             statement.setInt(3, portfolio.getContactID());
+            statement.setString(4, portfolio.getImagePath());  // store the image path
+
             statement.executeUpdate();
 
             ResultSet generatedKeys = statement.getGeneratedKeys();
@@ -59,8 +64,12 @@ public class SqlitePortfolioDAO implements IPortfolioDAO {
             statement.setString(1, portfolio.getPortfolioName());
             statement.setString(2, portfolio.getPortfolioDescription());
             statement.setInt(3, portfolio.getContactID());
-            statement.setInt(4, portfolio.getId());
-            statement.setInt(5, sessionManager.getLoggedInUser().getId());
+
+            statement.setString(4, portfolio.getImagePath());  // Update the image path
+            statement.setInt(5, portfolio.getId());
+
+            statement.setInt(6, sessionManager.getLoggedInUser().getId()); // do we need this ?
+
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,7 +107,11 @@ public class SqlitePortfolioDAO implements IPortfolioDAO {
                 String portfolioDescription = resultSet.getString("portfolioDescription");
                 Integer contactID = resultSet.getInt("contact_id");
 
-                Portfolio portfolio = new Portfolio(portfolioName, portfolioDescription, contactID);
+                String imagePath = resultSet.getString("image_path");  //get the image path
+
+
+                Portfolio portfolio = new Portfolio(portfolioName, portfolioDescription, contactID, imagePath);
+
                 portfolio.setId(id);
                 return portfolio;
             }
@@ -122,7 +135,10 @@ public class SqlitePortfolioDAO implements IPortfolioDAO {
                 String portfolioDescription = resultSet.getString("portfolioDescription");
                 Integer contactID = resultSet.getInt("contact_id");
 
-                Portfolio portfolio = new Portfolio(portfolioName, portfolioDescription, contactID);
+                String imagePath = resultSet.getString("image_path");  // get the image path
+
+                Portfolio portfolio = new Portfolio(portfolioName, portfolioDescription, contactID, imagePath);
+
                 portfolio.setId(id);
                 portfolios.add(portfolio);
             }
