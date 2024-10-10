@@ -5,25 +5,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 /**
  * The UploadPortfolioController class manages the upload of new art pieces to a user's portfolio.
  * It provides functionality for creating new portfolios, uploading art, previewing images, and managing input fields.
  */
-public class UploadPortfolioController extends BaseController{
+public class UploadArtController extends BaseController{
 
     // Portfolio Section
     @FXML
@@ -77,7 +72,7 @@ public class UploadPortfolioController extends BaseController{
      * Constructor for UploadPortfolioController. Initialises the ArtManager and PortfolioDAO
      * for managing art and portfolio data.
      */
-    public UploadPortfolioController() {
+    public UploadArtController() {
         artManager = new ArtManager(new SqliteArtDAO());
         portfolioDAO = new SqlitePortfolioDAO();
     }

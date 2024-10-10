@@ -46,25 +46,6 @@ public class CreatePortfolioController extends BaseController {
 
 
     /**
-     * Sets the portfolio name input field.
-     *
-     * @param portfolioNameField the TextField for entering the portfolio name.
-     */
-    public void setPortfolioNameField(TextField portfolioNameField) {
-        this.portfolioNameField = portfolioNameField;
-    }
-
-    /**
-     * Sets the portfolio description input field.
-     *
-     * @param portfolioDescriptionField the TextField for entering the portfolio description.
-     */
-    public void setPortfolioDescriptionField(TextField portfolioDescriptionField) {
-        this.portfolioDescriptionField = portfolioDescriptionField;
-    }
-
-
-    /**
      * Handles the action of creating a portfolio when the user submits the form.
      * Validates the input fields and creates a new portfolio in the database if valid.
      */

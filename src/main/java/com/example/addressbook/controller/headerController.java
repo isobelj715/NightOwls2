@@ -1,14 +1,10 @@
 package com.example.addressbook.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
-import java.io.IOException;
+
 public class headerController extends BaseController{
     @FXML
     public void handleButtonClick(ActionEvent event) {
@@ -32,7 +28,7 @@ public class headerController extends BaseController{
                 fxmlFile = "/com/example/addressbook/my-portfolios-view.fxml";
                 break;
             case "headerUpload":
-                fxmlFile = "/com/example/addressbook/upload-portfolio-view.fxml";
+                fxmlFile = "/com/example/addressbook/upload-art-view.fxml";
                 break;
             case "headerProfile":
                 fxmlFile = "/com/example/addressbook/profile-views.fxml";
