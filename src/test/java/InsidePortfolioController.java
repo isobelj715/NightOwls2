@@ -23,7 +23,10 @@ public class InsidePortfolioControllerTest extends ApplicationTest {
 
 
         controller.portfolioImageView = mock(ImageView.class);
+
+
     }
+
 
     @Test
     public void testLoadPortfolioDetails_WithValidImagePath() {
