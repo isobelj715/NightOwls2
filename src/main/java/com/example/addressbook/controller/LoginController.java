@@ -73,26 +73,7 @@ public class LoginController extends BaseController{
             // Store the logged-in user in SessionManager
             SessionManager.getInstance().setLoggedInUser(contact);
 
-            try {
-                // switch the address between my-portfolios-view or upload-art-view
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/my-portfolios-view.fxml"));
-
-                AnchorPane myArtPane = loader.load(); // Anchorpane for portfolios view and Vbox for upload art
-                Scene myArtScene = new Scene(myArtPane);
-
-                // Get the current stage and set the new scene (My Art page)
-                Stage stage = (Stage) loginButton.getScene().getWindow();
-                stage.setScene(myArtScene);
-
-                // Disable the fullscreen exit hint
-                stage.setFullScreenExitHint("");
-                // Make the window fullscreen
-                stage.setFullScreen(true);
-
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            loadPage(event, "/com/example/addressbook/my-portfolios-view.fxml");
         } else {
             showAlert("Error", "Invalid email or password.");
         }
