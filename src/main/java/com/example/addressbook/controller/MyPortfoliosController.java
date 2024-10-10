@@ -226,7 +226,7 @@ public class MyPortfoliosController {
 
 
 
-//                controller.displayArt(firstArt); // Display the first piece of art --------------------------- All displayArt controler functions needs to be fucked off from here and moved into Portfolio Content Controller
+//               controller.displayArt(firstArt); // Display the first piece of art --------------------------- All displayArt controler functions needs to be fucked off from here and moved into Portfolio Content Controller
                 controller.setPortfolioTitle(portfolio.getPortfolioTitle());
                 controller.setPortfolioDescription(portfolio.getPortfolioDescription());
                 controller.loadPortfolioArtworks(artworks);
