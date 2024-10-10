@@ -12,7 +12,7 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.addressbook.controller.UploadPortfolioController" spacing="10" prefWidth="1280" prefHeight="720" stylesheets="@style.css, @login-buttons.css">
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.addressbook.controller.UploadArtController" spacing="10" prefWidth="1280" prefHeight="720" stylesheets="@style.css, @login-buttons.css">
 
     <!-- Include Header -->
     <fx:include source="header-template.fxml"/>

@@ -20,7 +20,7 @@ import java.io.IOException;
  * It manages user input, validates the form, and performs the operation of adding
  * new contacts to the database using the ContactManager.
  */
-public class CreateAccountController {
+public class CreateAccountController extends BaseController{
     @FXML
     private TextField firstNameTextField;
     @FXML
@@ -67,25 +67,9 @@ public class CreateAccountController {
             Contact newContact = new Contact(firstName, lastName, email, phone, password);
             contactManager.addContact(newContact);
 
+            // Load the login page using the loadPage method from BaseController
+            loadPage(actionEvent, "/com/example/addressbook/login-view.fxml");
 
-            //Stage stage = (Stage) firstNameTextField.getScene().getWindow();
-            //stage.close();
-            // Load the login page
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/login-view.fxml"));
-                AnchorPane loginPane = loader.load();
-                Scene loginScene = new Scene(loginPane);
-
-                // Get the current stage and set the new scene (Login page)
-                Stage stage = (Stage) firstNameTextField.getScene().getWindow();
-                stage.setScene(loginScene);
-
-                stage.setFullScreenExitHint("");
-                stage.setFullScreen(true);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 
@@ -97,35 +81,7 @@ public class CreateAccountController {
      */
     @FXML
     public void onCancel(ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/login-view.fxml"));
-            AnchorPane loginPane = loader.load();
-            Scene loginScene = new Scene(loginPane);
-
-            // Get the current stage and set the new scene (Login page)
-            Stage stage = (Stage) firstNameTextField.getScene().getWindow();
-            stage.setScene(loginScene);
-
-            stage.setFullScreenExitHint("");
-            stage.setFullScreen(true);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Displays an alert dialog to the user.
-     *
-     * @param title   the title of the alert dialog.
-     * @param message the message content of the alert dialog.
-     */
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+        loadPage(actionEvent, "/com/example/addressbook/login-view.fxml");
     }
 
     /**

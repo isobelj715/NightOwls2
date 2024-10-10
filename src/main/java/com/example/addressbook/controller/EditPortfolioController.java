@@ -11,7 +11,7 @@ import javafx.stage.Stage;
  * It allows users to update the name and description of a portfolio and persist these changes
  * to the database via the SqlitePortfolioDAO.
  */
-public class EditPortfolioController {
+public class EditPortfolioController extends BaseController{
 
     @FXML
     private TextField nameTextField;
@@ -96,13 +96,4 @@ public class EditPortfolioController {
         stage.close();
     }
 
-    /**
-     * Displays an alert dialog to the user for validation errors or messages.
-     *
-     * @param title   the title of the alert dialog.
-     * @param message the message content of the alert dialog.
-     */
-    private void showAlert(String title, String message) {
-        // Show an alert
-    }
 }

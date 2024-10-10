@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  * It manages user input, validates the form, and interacts with the SqlitePortfolioDAO
  * to store the newly created portfolio in the database.
  */
-public class CreatePortfolioController {
+public class CreatePortfolioController extends BaseController {
 
     @FXML
     private TextField portfolioNameField;
@@ -46,25 +46,6 @@ public class CreatePortfolioController {
 
 
     /**
-     * Sets the portfolio name input field.
-     *
-     * @param portfolioNameField the TextField for entering the portfolio name.
-     */
-    public void setPortfolioNameField(TextField portfolioNameField) {
-        this.portfolioNameField = portfolioNameField;
-    }
-
-    /**
-     * Sets the portfolio description input field.
-     *
-     * @param portfolioDescriptionField the TextField for entering the portfolio description.
-     */
-    public void setPortfolioDescriptionField(TextField portfolioDescriptionField) {
-        this.portfolioDescriptionField = portfolioDescriptionField;
-    }
-
-
-    /**
      * Handles the action of creating a portfolio when the user submits the form.
      * Validates the input fields and creates a new portfolio in the database if valid.
      */
@@ -93,31 +74,5 @@ public class CreatePortfolioController {
         // Close the dialog
         Stage stage = (Stage) portfolioNameField.getScene().getWindow();
         stage.close();
-    }
-
-    /**
-     * Retrieves the ID of the currently logged-in user.
-     *
-     * @return the ID of the logged-in user, or {@code -1} if no user is logged in.
-     */
-    private int getLoggedInUserId() {
-        if (SessionManager.getInstance().getLoggedInUser() == null) {
-            return -1; // Indicates that no user is logged in
-        }
-        return SessionManager.getInstance().getLoggedInUser().getId();
-    }
-
-    /**
-     * Displays an alert dialog to the user for validation errors or system messages.
-     *
-     * @param title   the title of the alert dialog.
-     * @param message the message content of the alert dialog.
-     */
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.WARNING); // Changed to WARNING for validation errors
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

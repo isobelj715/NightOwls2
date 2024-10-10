@@ -1,15 +1,11 @@
 package com.example.addressbook.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
-import java.io.IOException;
-public class headerController {
+
+public class headerController extends BaseController{
     @FXML
     public void handleButtonClick(ActionEvent event) {
         // Determine which button was clicked by its fx:id
@@ -19,22 +15,9 @@ public class headerController {
         String fxmlFile = fileLocation(buttonId);
 
         // Load the corresponding FXML file and switch scenes
-        if (!fxmlFile.isEmpty()) {
-            try {
-                Parent newSceneRoot = FXMLLoader.load(getClass().getResource(fxmlFile));
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(newSceneRoot));
+        loadPage(event, fxmlFile);
 
 
-                if (!stage.isFullScreen()) {
-                    stage.setFullScreen(true);
-                }
-
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     public String fileLocation(String id){
@@ -45,7 +28,7 @@ public class headerController {
                 fxmlFile = "/com/example/addressbook/my-portfolios-view.fxml";
                 break;
             case "headerUpload":
-                fxmlFile = "/com/example/addressbook/upload-portfolio-view.fxml";
+                fxmlFile = "/com/example/addressbook/upload-art-view.fxml";
                 break;
             case "headerProfile":
                 fxmlFile = "/com/example/addressbook/profile-views.fxml";
