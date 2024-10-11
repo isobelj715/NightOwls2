@@ -2,16 +2,27 @@ package com.example.addressbook.controller;
 
 import com.example.addressbook.model.Art;
 import com.example.addressbook.model.ArtManager;
+import com.example.addressbook.model.Contact;
 import com.example.addressbook.model.SqliteArtDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Optional;
 
 /**
  * The DisplayArtController handles the presentation of artwork details in the application.
@@ -56,6 +67,7 @@ public class DisplayArtController extends BaseController{
     private Text artDescriptionValue;
 
     private ArtManager artManager;
+    private SqliteArtDAO artDAO;
 
     /**
      * Constructor for the DisplayArtController.
@@ -73,6 +85,7 @@ public class DisplayArtController extends BaseController{
      * @param art The artwork to display.
      */
     public void displayArt(Art art) {
+        this.currentArt = art;
         if (art != null) {
             // Display the artwork title if available, otherwise hide the label
             if (art.getArtTitle() != null && !art.getArtTitle().isEmpty()) {
@@ -157,11 +170,64 @@ public class DisplayArtController extends BaseController{
         loadPage(event, "/com/example/addressbook/my-portfolios-view.fxml");
     }
 
+    @FXML
+    private void onDeleteArt(ActionEvent event) {
+        if (currentArt == null) {
+            return; // No art is selected, do nothing
+        }
+
+        // Confirm deletion with the user
+        boolean confirmed = confirmDeletion();
+        if (!confirmed) {
+            return; // User did not confirm, do nothing
+        }
+
+        // Delete the art from the database
+        artManager.deleteArt(currentArt);
+
+        // Navigate back to the "My Portfolios" view after deletion
+        loadPage(event, "/com/example/addressbook/my-portfolios-view.fxml");
+    }
+
+    /**
+     * Shows a confirmation dialog to confirm the deletion of the artwork.
+     *
+     * @return true if the user confirms, false otherwise.
+     */
+    private boolean confirmDeletion() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Art");
+        alert.setHeaderText("Are you sure you want to delete this artwork?");
+        alert.setContentText("This action cannot be undone.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == ButtonType.OK;
+    }
 
 
+    private Art currentArt;
 
+    @FXML
+    private void onEditArt(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/edit-art.fxml"));
+            Parent root = loader.load();
 
+            // Get the controller and set the current art and art manager
+            EditArtController controller = loader.getController();
+            controller.setArtManager(artManager);
+            controller.setArt(currentArt);
 
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Edit Art");
+            stage.showAndWait();
 
+            // Refresh the displayed art after editing
+            displayArt(currentArt);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
-

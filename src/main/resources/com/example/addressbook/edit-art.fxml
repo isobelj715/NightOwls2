@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.addressbook.controller.EditArtController">
+    <Label text="Edit Art"/>
+    <TextField fx:id="artTitleField" promptText="Art Title"/>
+    <TextField fx:id="artYearField" promptText="Year"/>
+    <TextField fx:id="artCategoryField" promptText="Category"/>
+    <TextField fx:id="artMediumField" promptText="Medium"/>
+    <TextField fx:id="artMaterialField" promptText="Material"/>
+    <TextField fx:id="artWidthField" promptText="Width"/>
+    <TextField fx:id="artHeightField" promptText="Height"/>
+    <TextField fx:id="artDepthField" promptText="Depth"/>
+    <TextField fx:id="artUnitsField" promptText="Units"/>
+    <TextArea fx:id="artDescriptionArea" promptText="Description"/>
+    <Button text="Save" onAction="#saveArt"/>
+    <Button text="Cancel" onAction="#cancel"/>
+</VBox>

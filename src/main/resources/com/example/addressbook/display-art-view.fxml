@@ -4,12 +4,16 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.HBox?>
 <AnchorPane fx:controller="com.example.addressbook.controller.DisplayArtController"
             prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -67,8 +71,8 @@
 
             <!-- Buttons Section, aligned at the bottom -->
             <HBox spacing="10.0" style="-fx-alignment: bottom-right;"> <!-- Aligning buttons at the bottom -->
-                <Button fx:id="editButton" text="Edit" prefWidth="100.0" styleClass="portfolio-open-button"/>
-                <Button fx:id="deleteButton" text="Delete" prefWidth="100.0" styleClass="delete-portfolio-button"/>
+                <Button fx:id="editButton" text="Edit" prefWidth="100.0" styleClass="portfolio-open-button" onAction="#onEditArt"/>
+                <Button fx:id="deleteButton" text="Delete" prefWidth="100.0" styleClass="delete-portfolio-button" onAction="#onDeleteArt"/>
                 <Button fx:id="backButton" text="Back" prefWidth="100.0" styleClass="portfolio-open-button" onAction="#onBack"/>
             </HBox>
 
