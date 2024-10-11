@@ -170,22 +170,22 @@ public class DisplayArtController extends BaseController{
         loadPage(event, "/com/example/addressbook/my-portfolios-view.fxml");
     }
 
+    /**
+     * Handles the delete action when users want to delete an artwork
+     */
     @FXML
     private void onDeleteArt(ActionEvent event) {
         if (currentArt == null) {
-            return; // No art is selected, do nothing
+            return;
         }
 
-        // Confirm deletion with the user
         boolean confirmed = confirmDeletion();
         if (!confirmed) {
-            return; // User did not confirm, do nothing
+            return;
         }
 
-        // Delete the art from the database
         artManager.deleteArt(currentArt);
 
-        // Navigate back to the "My Portfolios" view after deletion
         loadPage(event, "/com/example/addressbook/my-portfolios-view.fxml");
     }
 
@@ -213,7 +213,6 @@ public class DisplayArtController extends BaseController{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/edit-art.fxml"));
             Parent root = loader.load();
 
-            // Get the controller and set the current art and art manager
             EditArtController controller = loader.getController();
             controller.setArtManager(artManager);
             controller.setArt(currentArt);
@@ -224,7 +223,6 @@ public class DisplayArtController extends BaseController{
             stage.setTitle("Edit Art");
             stage.showAndWait();
 
-            // Refresh the displayed art after editing
             displayArt(currentArt);
         } catch (IOException e) {
             e.printStackTrace();
