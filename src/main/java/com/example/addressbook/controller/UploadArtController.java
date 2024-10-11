@@ -193,6 +193,7 @@ public class UploadArtController extends BaseController{
             return;
         }
 
+        // TODO: Apply this validation to width/height/depth as well
         Integer year;
         try {
             year = Integer.valueOf(yearString);

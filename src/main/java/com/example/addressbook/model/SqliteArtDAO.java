@@ -100,9 +100,21 @@ public class SqliteArtDAO implements IArtDAO {
             statement.setString(3, art.getCategory());
             statement.setString(4, art.getMedium());
             statement.setString(5, art.getMaterial());
-            statement.setInt(6, art.getWidth());
-            statement.setInt(7, art.getHeight());
-            statement.setInt(8, art.getDepth());
+            if (art.getWidth() != null) {
+                statement.setInt(6, art.getWidth());
+            } else {
+                statement.setNull(6, Types.INTEGER);
+            }
+            if (art.getHeight() != null) {
+                statement.setInt(7, art.getHeight());
+            } else {
+                statement.setNull(7, Types.INTEGER);
+            }
+            if (art.getDepth() != null) {
+                statement.setInt(8, art.getDepth());
+            } else {
+                statement.setNull(8, Types.INTEGER);
+            }
             statement.setString(9, art.getUnits());
             statement.setString(10, art.getDescription());
             statement.setString(11, art.getFilePath());
