@@ -30,6 +30,7 @@
             <VBox prefHeight="600" prefWidth="600" spacing="10" style="-fx-padding: 10 20 10 20;" styleClass="main-content" GridPane.columnIndex="1">
                 <Label  styleClass="landing-title" text="Description" />
             <Label fx:id="portfolioDescriptionLabel" alignment="TOP_LEFT" prefHeight="468.0" prefWidth="271.0" styleClass="header" stylesheets="@style.css" />
+                <Button fx:id="generatePdfButton" text="Share (PDF)" layoutX="900.0" layoutY="650.0" styleClass="signup-button" onAction="#handleGeneratePdfButtonClick"/>
             </VBox>
          <SplitPane dividerPositions="0.1588628762541806" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
            <items>
