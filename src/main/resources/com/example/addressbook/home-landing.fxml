@@ -23,7 +23,7 @@
             </ImageView>
 
             <!-- Text Underneath -->
-            <Label text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae eros eget tellus tristique bibendum. Donec rutrum sed sem quis venenatis." styleClass="image-text-label" wrapText="true" textAlignment="CENTER"/>
+            <Label text="Art..." styleClass="image-text-label" wrapText="true" textAlignment="CENTER"/>
 
         </VBox>
         <!--        Spacer box-->
