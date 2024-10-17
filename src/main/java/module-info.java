@@ -11,7 +11,6 @@ module com.example.addressbook {
     requires layout;
     requires io;
 
-
     opens com.example.addressbook to javafx.fxml;
     exports com.example.addressbook;
     exports com.example.addressbook.controller;
