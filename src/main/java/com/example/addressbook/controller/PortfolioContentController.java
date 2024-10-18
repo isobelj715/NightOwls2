@@ -35,7 +35,6 @@ public class PortfolioContentController extends BaseController {
      * It gets the current portfolio open via id, and generates the portfolio using the controller
      * and saves it under a certain file name, alerting the user with either a success or failure message
      *
-     * @throws Exception if any issue occurs during the PDF generation process.
      *
      */
     @FXML
