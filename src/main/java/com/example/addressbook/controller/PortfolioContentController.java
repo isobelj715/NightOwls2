@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,11 +15,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class PortfolioContentController {
+public class PortfolioContentController extends BaseController {
 
     @FXML
     private Label portfolioTitleLabel;
@@ -32,6 +30,14 @@ public class PortfolioContentController {
     private ArtManager artManager;
     private Portfolio currentPortfolio;
 
+    /**
+     * Handles the action of generating and saving the portfolio pdf when the "#generatePdfButton" is triggered
+     * It gets the current portfolio open via id, and generates the portfolio using the controller
+     * and saves it under a certain file name, alerting the user with either a success or failure message
+     *
+     * @throws Exception if any issue occurs during the PDF generation process.
+     *
+     */
     @FXML
     public void handleGeneratePdfButtonClick() {
         if (currentPortfolio == null) {
@@ -46,24 +52,23 @@ public class PortfolioContentController {
             PDFController pdfController = new PDFController();
             pdfController.generatePdf(destinationPath, currentPortfolio, artManager.getAllArtInPortfolio(currentPortfolio.getId()));
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Download Successful");
-            alert.setHeaderText(null);
-            alert.setContentText("The PDF has been successfully downloaded.");
-            alert.showAndWait();
-
+            showAlert("Download Successful","The PDF has been successfully downloaded.");
             System.out.println("PDF generated successfully: " + destinationPath);
         } catch (Exception e) {
             e.printStackTrace();
 
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Download Failed");
-            alert.setHeaderText(null);
-            alert.setContentText("There was an error generating the PDF. Please try again.");
-            alert.showAndWait();
+            showAlert("Download Failed","There was an error generating the PDF. Please try again.");
         }
     }
 
+    /**
+     * Sets the current portfolio that is open in the application.
+     * This method is used to set the portfolio that the user is looking at.
+     * It initializes the `artManager` and retrieves art pieces related to the portfolio
+     * It also updates the portfolio's title and description on the UI.
+     *
+     * @param portfolio The portfolio object that will be set as the current portfolio.
+     */
     public void setPortfolio(Portfolio portfolio) {
         this.currentPortfolio = portfolio;
         this.artManager = new ArtManager(new SqliteArtDAO());
