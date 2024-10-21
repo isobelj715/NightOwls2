@@ -284,14 +284,9 @@ public class MyPortfoliosController extends BaseController{
 
                 PortfolioContentController controller = loader.getController();
 
-
-
-                controller.setPortfolioTitle(portfolio.getPortfolioTitle());
-                controller.setPortfolioDescription(portfolio.getPortfolioDescription());
+                controller.setPortfolio(portfolio);
                 controller.loadPortfolioArtworks(artworks);
-                controller.setPortfolioContentControllerPortfolio(portfolio);
-                controller.setPortfolioContentControllerDAO(portfolioDAO);
-
+                controller.loadPortfolioArtworks(artworks);
 
                 // Get the current stage and set the new scene (Portfolio Overview page)
                 Scene displayArtScene = new Scene(enlargedArtRoot);
