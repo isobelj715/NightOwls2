@@ -1,8 +1,5 @@
 package com.example.addressbook.controller;
 
-
-import com.example.addressbook.model.*;
-import javafx.event.ActionEvent;
 import com.example.addressbook.model.Art;
 import com.example.addressbook.model.ArtManager;
 import com.example.addressbook.model.Portfolio;
@@ -16,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,27 +20,15 @@ import java.util.List;
 
 public class PortfolioContentController extends BaseController {
 
-    private SqlitePortfolioDAO portfolioDAO;
-    private Portfolio portfolio;
     @FXML
     private Label portfolioTitleLabel;
     @FXML
     private Label portfolioDescriptionLabel;
     @FXML
     private GridPane artGrid;
+
     private ArtManager artManager;
     private Portfolio currentPortfolio;
-
-
-
-    public void setPortfolioContentControllerDAO(SqlitePortfolioDAO portfolioDAO) {
-        this.portfolioDAO = portfolioDAO;
-    }
-
-    public void setPortfolioContentControllerPortfolio(Portfolio portfolio) {
-        this.portfolio = portfolio;
-    }
-
 
     /**
      * Handles the action of generating and saving the portfolio pdf when the "#generatePdfButton" is triggered
@@ -90,7 +74,6 @@ public class PortfolioContentController extends BaseController {
 
         setPortfolioTitle(portfolio.getPortfolioName());
         setPortfolioDescription(portfolio.getPortfolioDescription());
-
     }
 
     public void setPortfolioTitle(String portfolioTitle) {
@@ -106,7 +89,6 @@ public class PortfolioContentController extends BaseController {
         int row = 0;      // Current row
         int col = 0;      // Current column
 
-        artGrid.setVgap(60);
         for (Art art : artworks) {
             // Create an ImageView for the artwork's image (assuming Art class has a getImageURL method)
             ImageView imageView = new ImageView(new Image(art.getFilePath()));
@@ -118,16 +100,17 @@ public class PortfolioContentController extends BaseController {
 
             // Create a VBox to contain the ImageView and Label
             VBox artBox = new VBox(imageView, artLabel);
-            artBox.setPrefHeight(120);
             artBox.setSpacing(10);  // Optional: spacing between image and label
 
             // Add the VBox to the GridPane
             artGrid.add(artBox, col, row);
+
             // Add onClick event to the VBox
             artBox.setOnMouseClicked(event -> {
                 // Define the behavior when an artwork is clicked
                 System.out.println("Artwork clicked: " + art.getArtTitle());
                 // You can also trigger other actions, such as opening a detailed view
+//                openArtworkDetails(art);  // This is just an example of what you might do
 
 // Load the portfolio overview FXML file and switch the scene
                 try {
@@ -181,81 +164,6 @@ public class PortfolioContentController extends BaseController {
 //        }
         }
 
-    public void onEdit(ActionEvent actionEvent) {
-        if (portfolio == null) {
-            showAlert("Error", "Unable to edit portfolio.");
-            return;
-        }
-
-        try {
-            // Load the edit portfolio popup FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/edit-portfolio-view.fxml"));
-            Parent root = loader.load();
-
-            // Get the controller and pass the portfolio data
-            EditPortfolioController editController = loader.getController();
-            editController.setPortfolioDAO(portfolioDAO);
-            editController.setPortfolio(portfolio); // Pass the portfolio to the edit controller
-
-            // Create a new stage for the dialog
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Edit Portfolio");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            // Instead of using editButton, we use createPortfolioButton or portfolioListView to get the window
-//            dialogStage.initOwner(portfolioListView.getScene().getWindow());
-            dialogStage.setScene(new Scene(root));
-            dialogStage.showAndWait();
-
-            // After closing the dialog, check if the portfolio was updated and refresh the page
-            if (editController.isPortfolioUpdated()) {
-                portfolioDescriptionLabel.setText(portfolio.getPortfolioDescription());
-                portfolioTitleLabel.setText(portfolio.getPortfolioTitle());
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert("Error", "Failed to open the edit portfolio dialog.");
-        }
-    }
-
-    public void onDelete(ActionEvent actionEvent) {
-        if (portfolio == null) {
-            showAlert("Error", "Unable to delete portfolio.");
-            return;
-        }
-        // Show the delete confirmation dialog
-        boolean confirmed = showDeleteConfirmationDialog();
-
-        // Proceed with deletion if confirmed
-        if (confirmed) {
-            portfolioDAO.deletePortfolio(portfolio);
-            //redirect to myportfolios page
-            loadPage(actionEvent, "/com/example/addressbook/my-portfolios-view.fxml");
-        }
-    }
-
-
-    private boolean showDeleteConfirmationDialog() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/delete-confirmation-popup.fxml"));
-            Parent root = loader.load();
-
-            DeleteConfirmationController controller = loader.getController();
-
-            // Create a new stage for the dialog
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Confirm Delete");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.setScene(new Scene(root));
-            dialogStage.showAndWait();
-
-            // Return true if the user confirmed the deletion
-            return controller.isConfirmed();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
 
 // onClick of artwork function
 //                controller.displayArt(firstArt); // Display the first piece of art --------------------------- All displayArt controler functions needs to be fucked off from here and moved into Portfolio Content Controller

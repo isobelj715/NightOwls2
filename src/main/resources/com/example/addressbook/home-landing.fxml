@@ -19,11 +19,11 @@
 
             <!-- Image at the top -->
             <ImageView fitWidth="200" fitHeight="200">
-                <Image url="@img/logo2.png"/>
+                <Image url="@img/randomwebart.jpg"/>
             </ImageView>
 
             <!-- Text Underneath -->
-            <Label text="ArtTasker" styleClass="logo-text"/>
+            <Label text="Art..." styleClass="image-text-label" wrapText="true" textAlignment="CENTER"/>
 
         </VBox>
         <!--        Spacer box-->
