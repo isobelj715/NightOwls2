@@ -284,8 +284,10 @@ public class MyPortfoliosController extends BaseController{
 
                 PortfolioContentController controller = loader.getController();
 
-                controller.setPortfolio(portfolio);
-                controller.loadPortfolioArtworks(artworks);
+
+
+                controller.setPortfolioTitle(portfolio.getPortfolioTitle());
+                controller.setPortfolioDescription(portfolio.getPortfolioDescription());
                 controller.loadPortfolioArtworks(artworks);
                 controller.setPortfolioContentControllerPortfolio(portfolio);
                 controller.setPortfolioContentControllerDAO(portfolioDAO);

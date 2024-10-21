@@ -8,34 +8,17 @@
 
 <VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.addressbook.controller.EditArtController">
-
-    <GridPane
-            xmlns:fx="http://javafx.com/fxml/1"
-            alignment="CENTER"
-            hgap="10" vgap="10"
-            style="-fx-padding: 20;">
-    <Label text="Edit Art" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <Label text="Art Title:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-    <TextField fx:id="artTitleField" promptText="Art Title" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-        <Label text="Year:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-    <TextField fx:id="artYearField" promptText="Year" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-        <Label text="Category:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-    <TextField fx:id="artCategoryField" promptText="Category" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
-        <Label text="Medium:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-    <TextField fx:id="artMediumField" promptText="Medium" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
-        <Label text="Material:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
-    <TextField fx:id="artMaterialField" promptText="Material" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
-        <Label text="Width:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
-    <TextField fx:id="artWidthField" promptText="Width" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
-        <Label text="Height:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
-    <TextField fx:id="artHeightField" promptText="Height" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
-        <Label text="Depth:" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
-    <TextField fx:id="artDepthField" promptText="Depth" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
-        <Label text="Units:" GridPane.rowIndex="10" GridPane.columnIndex="0"/>
-    <TextField fx:id="artUnitsField" promptText="Units" GridPane.rowIndex="10" GridPane.columnIndex="1"/>
-        <Label text="Description:" GridPane.rowIndex="11" GridPane.columnIndex="0"/>
-    <TextArea fx:id="artDescriptionArea" promptText="Description" GridPane.rowIndex="11" GridPane.columnIndex="1"/>
-    </GridPane>
+    <Label text="Edit Art"/>
+    <TextField fx:id="artTitleField" promptText="Art Title"/>
+    <TextField fx:id="artYearField" promptText="Year"/>
+    <TextField fx:id="artCategoryField" promptText="Category"/>
+    <TextField fx:id="artMediumField" promptText="Medium"/>
+    <TextField fx:id="artMaterialField" promptText="Material"/>
+    <TextField fx:id="artWidthField" promptText="Width"/>
+    <TextField fx:id="artHeightField" promptText="Height"/>
+    <TextField fx:id="artDepthField" promptText="Depth"/>
+    <TextField fx:id="artUnitsField" promptText="Units"/>
+    <TextArea fx:id="artDescriptionArea" promptText="Description"/>
     <Button text="Save" onAction="#saveArt"/>
     <Button text="Cancel" onAction="#cancel"/>
 </VBox>

@@ -1,12 +1,7 @@
 package com.example.addressbook.controller;
 
-
 import com.example.addressbook.model.*;
 import javafx.event.ActionEvent;
-import com.example.addressbook.model.Art;
-import com.example.addressbook.model.ArtManager;
-import com.example.addressbook.model.Portfolio;
-import com.example.addressbook.model.SqliteArtDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -32,10 +28,6 @@ public class PortfolioContentController extends BaseController {
     private Label portfolioDescriptionLabel;
     @FXML
     private GridPane artGrid;
-    private ArtManager artManager;
-    private Portfolio currentPortfolio;
-
-
 
     public void setPortfolioContentControllerDAO(SqlitePortfolioDAO portfolioDAO) {
         this.portfolioDAO = portfolioDAO;
@@ -45,63 +37,15 @@ public class PortfolioContentController extends BaseController {
         this.portfolio = portfolio;
     }
 
-
-    /**
-     * Handles the action of generating and saving the portfolio pdf when the "#generatePdfButton" is triggered
-     * It gets the current portfolio open via id, and generates the portfolio using the controller
-     * and saves it under a certain file name, alerting the user with either a success or failure message
-     *
-     *
-     */
-    @FXML
-    public void handleGeneratePdfButtonClick() {
-        if (currentPortfolio == null) {
-            System.out.println("Error: No portfolio selected.");
-            return;
-        }
-
-        String destinationPath = "portfolio_" + currentPortfolio.getId() + ".pdf";
-
-        try {
-            // Generate the PDF using PortfolioPdfGenerator
-            PDFController pdfController = new PDFController();
-            pdfController.generatePdf(destinationPath, currentPortfolio, artManager.getAllArtInPortfolio(currentPortfolio.getId()));
-
-            showAlert("Download Successful","The PDF has been successfully downloaded.");
-            System.out.println("PDF generated successfully: " + destinationPath);
-        } catch (Exception e) {
-            e.printStackTrace();
-
-            showAlert("Download Failed","There was an error generating the PDF. Please try again.");
-        }
-    }
-
-    /**
-     * Sets the current portfolio that is open in the application.
-     * This method is used to set the portfolio that the user is looking at.
-     * It initializes the `artManager` and retrieves art pieces related to the portfolio
-     * It also updates the portfolio's title and description on the UI.
-     *
-     * @param portfolio The portfolio object that will be set as the current portfolio.
-     */
-    public void setPortfolio(Portfolio portfolio) {
-        this.currentPortfolio = portfolio;
-        this.artManager = new ArtManager(new SqliteArtDAO());
-
-        setPortfolioTitle(portfolio.getPortfolioName());
-        setPortfolioDescription(portfolio.getPortfolioDescription());
-
-    }
-
     public void setPortfolioTitle(String portfolioTitle) {
         portfolioTitleLabel.setText(portfolioTitle);
     }
 
-    public void setPortfolioDescription(String portfolioDescription) {
+    public void setPortfolioDescription(String portfolioDescription){
         portfolioDescriptionLabel.setText(portfolioDescription);
     }
 
-    public void loadPortfolioArtworks(List<Art> artworks) {
+    public void loadPortfolioArtworks(List<Art> artworks){
         int columns = 3;  // Number of columns in the grid
         int row = 0;      // Current row
         int col = 0;      // Current column
@@ -165,10 +109,11 @@ public class PortfolioContentController extends BaseController {
                 col = 0;
                 row++;
             }
+        }
 
 
 //This code in a for loop for each artwork
-            // Load and display the artwork image
+        // Load and display the artwork image
 //        if (art.getFilePath() != null && !art.getFilePath().isEmpty()) {
 //            File file = new File(art.getFilePath());
 //            if (file.exists()) {
@@ -179,7 +124,7 @@ public class PortfolioContentController extends BaseController {
 //        } else {
 //            artImageView.setImage(new Image("path/to/placeholder/image.png")); // Replace with a valid placeholder image path
 //        }
-        }
+    }
 
     public void onEdit(ActionEvent actionEvent) {
         if (portfolio == null) {
@@ -259,5 +204,4 @@ public class PortfolioContentController extends BaseController {
 
 // onClick of artwork function
 //                controller.displayArt(firstArt); // Display the first piece of art --------------------------- All displayArt controler functions needs to be fucked off from here and moved into Portfolio Content Controller
-    }
 }
