@@ -89,6 +89,7 @@ public class PortfolioContentController extends BaseController {
         int row = 0;      // Current row
         int col = 0;      // Current column
 
+        artGrid.setVgap(60);
         for (Art art : artworks) {
             // Create an ImageView for the artwork's image (assuming Art class has a getImageURL method)
             ImageView imageView = new ImageView(new Image(art.getFilePath()));
@@ -104,13 +105,11 @@ public class PortfolioContentController extends BaseController {
 
             // Add the VBox to the GridPane
             artGrid.add(artBox, col, row);
-
             // Add onClick event to the VBox
             artBox.setOnMouseClicked(event -> {
                 // Define the behavior when an artwork is clicked
                 System.out.println("Artwork clicked: " + art.getArtTitle());
                 // You can also trigger other actions, such as opening a detailed view
-//                openArtworkDetails(art);  // This is just an example of what you might do
 
 // Load the portfolio overview FXML file and switch the scene
                 try {
