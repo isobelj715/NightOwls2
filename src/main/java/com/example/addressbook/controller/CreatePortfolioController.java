@@ -8,7 +8,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class CreatePortfolioController {
+/**
+ * The CreatePortfolioController handles the creation of new portfolios in the application.
+ * It manages user input, validates the form, and interacts with the SqlitePortfolioDAO
+ * to store the newly created portfolio in the database.
+ */
+public class CreatePortfolioController extends BaseController {
 
     @FXML
     private TextField portfolioNameField;
@@ -20,22 +25,30 @@ public class CreatePortfolioController {
 
     private boolean portfolioCreated = false;
 
+    /**
+     * Sets the Portfolio Data Access Object (DAO) used to manage portfolios in the database.
+     *
+     * @param portfolioDAO the DAO to interact with portfolio data.
+     */
     public void setPortfolioDAO(SqlitePortfolioDAO portfolioDAO) {
         this.portfolioDAO = portfolioDAO;
     }
 
+
+    /**
+     * Indicates whether a portfolio has been successfully created.
+     *
+     * @return {@code true} if a portfolio has been created, otherwise {@code false}.
+     */
     public boolean isPortfolioCreated() {
         return portfolioCreated;
     }
 
-    public void setPortfolioNameField(TextField portfolioNameField) {
-        this.portfolioNameField = portfolioNameField;
-    }
 
-    public void setPortfolioDescriptionField(TextField portfolioDescriptionField) {
-        this.portfolioDescriptionField = portfolioDescriptionField;
-    }
-
+    /**
+     * Handles the action of creating a portfolio when the user submits the form.
+     * Validates the input fields and creates a new portfolio in the database if valid.
+     */
     @FXML
     private void onCreate() {
         String name = portfolioNameField.getText().trim();
@@ -61,22 +74,5 @@ public class CreatePortfolioController {
         // Close the dialog
         Stage stage = (Stage) portfolioNameField.getScene().getWindow();
         stage.close();
-    }
-
-    // Get the logged-in user ID
-    private int getLoggedInUserId() {
-        if (SessionManager.getInstance().getLoggedInUser() == null) {
-            return -1; // Indicates that no user is logged in
-        }
-        return SessionManager.getInstance().getLoggedInUser().getId();
-    }
-
-    // Utility method to show alert dialogs
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.WARNING); // Changed to WARNING for validation errors
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

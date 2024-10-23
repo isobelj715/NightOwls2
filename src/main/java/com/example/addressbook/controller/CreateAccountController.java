@@ -15,7 +15,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class CreateAccountController {
+/**
+ * The CreateAccountController handles the account creation logic within the application.
+ * It manages user input, validates the form, and performs the operation of adding
+ * new contacts to the database using the ContactManager.
+ */
+public class CreateAccountController extends BaseController{
     @FXML
     private TextField firstNameTextField;
     @FXML
@@ -29,12 +34,22 @@ public class CreateAccountController {
 
     private final ContactManager contactManager;
 
+    /**
+     * Constructor for CreateAccountController.
+     * Initialises the ContactManager with a SqliteContactDAO for database operations.
+     */
     public CreateAccountController() {
-        // Initialize the ContactManager with the SqliteContactDAO to handle database operations
+        // Initialise the ContactManager with the SqliteContactDAO to handle database operations
         contactManager = new ContactManager(new SqliteContactDAO());
     }
 
-    // Handles the action when the "Create Account" button is clicked
+    /**
+     * Handles the action when the "Create Account" button is clicked.
+     * Retrieves user input from text fields, performs basic validation,
+     * and if valid, adds a new contact to the database.
+     *
+     * @param actionEvent the event triggered by clicking the "Create Account" button.
+     */
     @FXML
     public void onCreateAccount(ActionEvent actionEvent) {
         // Get the input from the text fields
@@ -52,64 +67,27 @@ public class CreateAccountController {
             Contact newContact = new Contact(firstName, lastName, email, phone, password);
             contactManager.addContact(newContact);
 
+            // Load the login page using the loadPage method from BaseController
+            loadPage(actionEvent, "/com/example/addressbook/login-view.fxml");
 
-            //Stage stage = (Stage) firstNameTextField.getScene().getWindow();
-            //stage.close();
-            // Load the login page
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/login-view.fxml"));
-                AnchorPane loginPane = loader.load();
-                Scene loginScene = new Scene(loginPane);
-
-                // Get the current stage and set the new scene (Login page)
-                Stage stage = (Stage) firstNameTextField.getScene().getWindow();
-                stage.setScene(loginScene);
-
-                stage.setFullScreenExitHint("");
-                stage.setFullScreen(true);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
-    }
-
-    // Handles the action when the "Cancel" button is clicked
-    @FXML
-    public void onCancel(ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/login-view.fxml"));
-            AnchorPane loginPane = loader.load();
-            Scene loginScene = new Scene(loginPane);
-
-            // Get the current stage and set the new scene (Login page)
-            Stage stage = (Stage) firstNameTextField.getScene().getWindow();
-            stage.setScene(loginScene);
-
-            stage.setFullScreenExitHint("");
-            stage.setFullScreen(true);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Utility method to show alert dialogs
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 
     /**
-     * Handles the action of adding a new contact.
-     * Adds a new contact with default values to the database.
+     * Handles the action when the "Cancel" button is clicked.
+     * Returns the user to the login view without making changes.
+     *
+     * @param actionEvent the event triggered by clicking the "Cancel" button.
      */
+    @FXML
+    public void onCancel(ActionEvent actionEvent) {
+        loadPage(actionEvent, "/com/example/addressbook/login-view.fxml");
+    }
 
-    // USE ****************************************************
-    // ADD DEFAULT PASSWORD TO CONSTRUCTOR!! and then uncomment
+    /**
+     * Handles the action of adding a new contact with default values.
+     * This method can be triggered from the UI for test purposes.
+     */
     @FXML
     private void onCreateAccount() {
         // Default values for a new contact

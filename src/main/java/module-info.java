@@ -7,7 +7,9 @@ module com.example.addressbook {
     requires javafx.fxml;
     requires java.sql;
     requires java.desktop;
-
+    requires kernel;
+    requires layout;
+    requires io;
 
     opens com.example.addressbook to javafx.fxml;
     exports com.example.addressbook;

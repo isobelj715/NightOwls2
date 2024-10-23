@@ -30,9 +30,8 @@ public class PortfolioDatabaseTest {
 
     @Test
     public void testSetPortfolioName() {
-        artPortfolio.setPortfolioName("Contemporary Art", "A portfolio showcasing contemporary art pieces");
+        artPortfolio.setPortfolioName("Contemporary Art");
         assertEquals("Contemporary Art", artPortfolio.getPortfolioName());
-        assertEquals("A portfolio showcasing contemporary art pieces", artPortfolio.getPortfolioDescription());
     }
 
     @Test
@@ -58,23 +57,10 @@ public class PortfolioDatabaseTest {
     }
 
     @Test
-    public void testGetPortfolioTitle() {
-        assertEquals("Modern Art Collection", artPortfolio.getPortfolioTitle());
-    }
-
-    @Test
-    public void testSetPortfolioTitle() {
-        artPortfolio.setPortfolioTitle("Abstract Art Showcase");
-        assertEquals("Abstract Art Showcase", artPortfolio.getPortfolioTitle());
-    }
-
-
-
-
-    @Test
     public void testSetNullValues() {
         // Setting both the name and description to null
-        artPortfolio.setPortfolioName(null, null);
+        artPortfolio.setPortfolioName(null);
+        artPortfolio.setPortfolioDescription(null);
 
         assertEquals(null, artPortfolio.getPortfolioName());
         assertEquals(null, artPortfolio.getPortfolioDescription());
@@ -82,12 +68,10 @@ public class PortfolioDatabaseTest {
 
     @Test
     public void testSetEmptyValues() {
-        artPortfolio.setPortfolioName("", "");
+        artPortfolio.setPortfolioName("");
+        artPortfolio.setPortfolioDescription("");
 
         assertEquals("", artPortfolio.getPortfolioName());
         assertEquals("", artPortfolio.getPortfolioDescription());
     }
-
-
-
 }

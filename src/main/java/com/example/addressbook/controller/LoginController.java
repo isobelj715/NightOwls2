@@ -18,7 +18,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LoginController {
+/**
+ * The LoginController manages the login and account creation process in the application.
+ * It validates user credentials, allows navigation between the login screen and the
+ * account creation screen, and manages session data for logged-in users.
+ */
+public class LoginController extends BaseController{
 
     @FXML
     private TextField emailTextField;
@@ -31,19 +36,24 @@ public class LoginController {
 
     @FXML
     private Button createAccountButton;
-    @FXML
-    public void initialize() {
-        System.out.println("Create Account Button initialised: " + createAccountButton);
-    }
 
     private ContactManager contactManager;
 
+    /**
+     * Initialises the controller and the ContactManager for handling contact-related
+     * database operations. The ContactManager is initialised with a SqliteContactDAO.
+     */
     public LoginController() {
-        // Initialize the ContactManager with SqliteContactDAO to handle database operations
         contactManager = new ContactManager(new SqliteContactDAO());
     }
 
-    // Handles the action when the "Log In" button is clicked
+    /**
+     * Handles the action when the "Log In" button is clicked.
+     * It validates the user's email and password, checks the database for the user,
+     * and if valid, logs the user into the application and navigates to the portfolios view.
+     *
+     * @param event the event triggered when the login button is clicked.
+     */
     @FXML
     private void onLogin(ActionEvent event) {
         String email = emailTextField.getText().trim();
@@ -63,65 +73,21 @@ public class LoginController {
             // Store the logged-in user in SessionManager
             SessionManager.getInstance().setLoggedInUser(contact);
 
-            try {
-                // switch the address between my-portfolios-view or upload-art-view
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/my-portfolios-view.fxml"));
-
-                AnchorPane myArtPane = loader.load(); // Anchorpane for portfolios view and Vbox for upload art
-                Scene myArtScene = new Scene(myArtPane);
-
-                // Get the current stage and set the new scene (My Art page)
-                Stage stage = (Stage) loginButton.getScene().getWindow();
-                stage.setScene(myArtScene);
-
-                // Disable the fullscreen exit hint
-                stage.setFullScreenExitHint("");
-                // Make the window fullscreen
-                stage.setFullScreen(true);
-
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            loadPage(event, "/com/example/addressbook/my-portfolios-view.fxml");
         } else {
             showAlert("Error", "Invalid email or password.");
         }
     }
 
-    // Handles the action when the "Create Account" button is clicked
+    /**
+     * Handles the action when the "Create Account" button is clicked.
+     * It navigates to the account creation screen by loading the relevant FXML file.
+     *
+     * @param event the event triggered when the create account button is clicked.
+     */
     @FXML
     private void onCreateAccount(ActionEvent event) {
-        try {
-            // Load the "Create Account" FXML file and switch the scene
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/createaccount-view.fxml"));
-
-            AnchorPane createAccountPane = loader.load();  // Use VBox since your root element is VBox in the FXML
-            Scene createAccountScene = new Scene(createAccountPane);
-
-            // Get the current stage and set the new scene (Create Account page)
-            Stage stage = (Stage) createAccountButton.getScene().getWindow();
-            stage.setScene(createAccountScene);
-
-            // Disable the fullscreen exit hint
-            stage.setFullScreenExitHint("");
-            // Make the window fullscreen
-            stage.setFullScreen(true);
-
-
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-    // Utility method to show alert dialogs
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+        // Load the "Create Account" view using the loadPage method from BaseController
+        loadPage(event, "/com/example/addressbook/createaccount-view.fxml");
     }
 }

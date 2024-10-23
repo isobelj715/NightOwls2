@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane
+        fx:controller="com.example.addressbook.controller.EditPortfolioController"
+        xmlns="http://javafx.com/javafx/17"
+        xmlns:fx="http://javafx.com/fxml/1"
+        alignment="CENTER"
+        hgap="10" vgap="10"
+        style="-fx-padding: 20;">
+
+    <!-- Label for Portfolio Name -->
+    <Label text="Portfolio Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <TextField fx:id="nameTextField" promptText="Enter Portfolio Name" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+    <!-- Label for Portfolio Description -->
+    <Label text="Portfolio Description:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <TextField fx:id="descriptionTextField" promptText="Enter Portfolio Description" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+    <!-- Save Button -->
+    <Button text="Save" onAction="#onSave" GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.halignment="RIGHT"/>
+
+    <!-- Cancel Button -->
+    <Button text="Cancel" onAction="#onCancel" GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.halignment="LEFT"/>
+
+</GridPane>

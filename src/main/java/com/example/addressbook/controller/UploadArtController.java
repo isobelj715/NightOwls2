@@ -5,21 +5,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
-public class UploadPortfolioController {
+/**
+ * The UploadPortfolioController class manages the upload of new art pieces to a user's portfolio.
+ * It provides functionality for creating new portfolios, uploading art, previewing images, and managing input fields.
+ */
+public class UploadArtController extends BaseController{
 
     // Portfolio Section
     @FXML
@@ -69,18 +68,27 @@ public class UploadPortfolioController {
     private final ArtManager artManager;
     private final SqlitePortfolioDAO portfolioDAO;
 
-    public UploadPortfolioController() {
+    /**
+     * Constructor for UploadPortfolioController. Initialises the ArtManager and PortfolioDAO
+     * for managing art and portfolio data.
+     */
+    public UploadArtController() {
         artManager = new ArtManager(new SqliteArtDAO());
         portfolioDAO = new SqlitePortfolioDAO();
     }
 
-    // Initialise portfolios in the ComboBox when the UI is loaded
+    /**
+     * Initialises the controller, loading existing portfolios into the ComboBox for selection.
+     */
     @FXML
     public void initialize() {
         loadPortfolios();  // Load portfolios into the ComboBox
     }
 
-    // Load all portfolios into the ComboBox
+    /**
+     * Loads all portfolios belonging to the logged-in user into the ComboBox.
+     * If no user is logged in, an error alert is shown.
+     */
     private void loadPortfolios() {
         // Get the current logged-in user
         Contact loggedInUser = SessionManager.getInstance().getLoggedInUser();
@@ -108,7 +116,7 @@ public class UploadPortfolioController {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    setText(item.getPortfolioDescription());
+                    setText(item.getPortfolioName());
                 }
             }
         });
@@ -126,34 +134,12 @@ public class UploadPortfolioController {
         });
     }
 
-    // Handle the creation of a new portfolio when the user clicks the "Create New Portfolio" button
-    @FXML
-    public void onCreatePortfolio(ActionEvent event) {
-        String portfolioName = portfolioNameTextField.getText().trim();
-        String portfolioDescription = portfolioDescriptionTextArea.getText().trim();
-
-        if (portfolioName.isEmpty()) {
-            showAlert("Error", "Portfolio name cannot be empty.");
-            return;
-        }
-
-        // Get the current logged-in user
-        Contact loggedInUser = SessionManager.getInstance().getLoggedInUser();
-
-        if (loggedInUser == null) {
-            showAlert("Error", "No user is logged in.");
-            return;
-        }
-
-        // Create a new portfolio with name, description, and contact ID
-        Portfolio newPortfolio = new Portfolio(portfolioName, portfolioDescription, loggedInUser.getId());
-        portfolioDAO.addPortfolio(newPortfolio);  // Add the new portfolio to the database
-        loadPortfolios();  // Reload the portfolios into the ComboBox
-        portfolioComboBox.getSelectionModel().select(newPortfolio);  // Select the newly created portfolio
-        showAlert("Success", "Portfolio created successfully!");
-    }
-
-    // Handle file selection and image preview
+    /**
+     * Handles file selection and image preview when the user clicks the "Browse" button.
+     * Allows users to select an image file for the art, displaying the selected image in the ImageView.
+     *
+     * @param actionEvent the event triggered by the "Browse" button.
+     */
     @FXML
     public void onBrowseFile(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
@@ -181,7 +167,12 @@ public class UploadPortfolioController {
         }
     }
 
-    // Handle the upload action
+    /**
+     * Handles the upload action when the user clicks the "Upload" button.
+     * Gathers all input data, validates required fields, and adds the new art to the selected portfolio.
+     *
+     * @param actionEvent the event triggered by the "Upload" button.
+     */
     @FXML
     public void onUpload(ActionEvent actionEvent) {
         // Get required inputs
@@ -202,6 +193,7 @@ public class UploadPortfolioController {
             return;
         }
 
+        // TODO: Apply this validation to width/height/depth as well
         Integer year;
         try {
             year = Integer.valueOf(yearString);
@@ -238,58 +230,20 @@ public class UploadPortfolioController {
         // Add the new art to the database
         artManager.addArt(newArt);
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/my-portfolios-view.fxml"));
-            AnchorPane myArtPane = loader.load(); // AnchorPane for portfolios view and VBox for upload art
-            Scene myArtScene = new Scene(myArtPane);
-
-            // Get the current stage and set the new scene (My Art page)
-            Stage stage = (Stage) uploadButton.getScene().getWindow();
-            stage.setScene(myArtScene);
-
-            // Disable the fullscreen exit hint
-            stage.setFullScreenExitHint("");
-            // Make the window fullscreen
-            stage.setFullScreen(true);
-
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        loadPage(actionEvent, "/com/example/addressbook/my-portfolios-view.fxml");
     }
 
 
-    // Cancel action
+    /**
+     * Handles the cancel action when the user clicks the "Cancel" button.
+     * Redirects the user back to the My Portfolios view without saving any changes.
+     *
+     * @param actionEvent the event triggered by the "Cancel" button.
+     */
     @FXML
     public void onCancel(ActionEvent actionEvent) {
-        try {
-            // switch the address between my-portfolios-view or upload-art-view
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/my-portfolios-view.fxml"));
+        loadPage(actionEvent, "/com/example/addressbook/my-portfolios-view.fxml");
 
-            AnchorPane myArtPane = loader.load(); // Anchorpane for portfolios view and Vbox for upload art
-            Scene myArtScene = new Scene(myArtPane);
-
-            // Get the current stage and set the new scene (My Art page)
-            Stage stage = (Stage) cancelButton.getScene().getWindow();
-            stage.setScene(myArtScene);
-
-            // Disable the fullscreen exit hint
-            stage.setFullScreenExitHint("");
-            // Make the window fullscreen
-            stage.setFullScreen(true);
-
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
-    // Utility method to show alert dialogs
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 }
