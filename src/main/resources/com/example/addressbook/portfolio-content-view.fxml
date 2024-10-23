@@ -12,32 +12,35 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #E9E5F7;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.addressbook.controller.PortfolioContentController">
+<AnchorPane prefHeight="809.0" prefWidth="1333.0" style="-fx-background-color: #E9E5F7;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.addressbook.controller.PortfolioContentController">
 
     <!-- Include Header -->
     <fx:include source="header-template.fxml" />
 
     <!-- Main Container VBox -->
-    <Pane layoutX="100.0" layoutY="150.0" prefHeight="720.0" prefWidth="1280.0">
+    <Pane layoutX="56.0" layoutY="127.0" prefHeight="0.0" prefWidth="0.0">
 
         <!-- Main Content Area in a GridPane -->
-        <GridPane hgap="20" vgap="20">
+        <GridPane alignment="TOP_CENTER" hgap="20" stylesheets="@style.css" vgap="20">
 
             <!-- ImageView for Art Image -->
             <ImageView fitHeight="600" fitWidth="908.0" preserveRatio="true" GridPane.columnIndex="0" />
 
             <!-- VBox for Art Information -->
-            <VBox prefHeight="600" prefWidth="600" spacing="10" style="-fx-padding: 10 20 10 20;" styleClass="main-content" GridPane.columnIndex="1">
-                <Label  styleClass="landing-title" text="Description" />
-            <Label fx:id="portfolioDescriptionLabel" alignment="TOP_LEFT" prefHeight="468.0" prefWidth="271.0" styleClass="header" stylesheets="@style.css" />
+    <VBox spacing="10" style="-fx-padding: 10 20 10 20;" styleClass="main-content" GridPane.columnIndex="1">
+        <Label styleClass="landing-title" text="Description" />
+        <Label fx:id="portfolioDescriptionLabel" alignment="TOP_LEFT" prefHeight="468.0" prefWidth="271.0" styleClass="header" stylesheets="@style.css" wrapText="true" />
                 <Button fx:id="generatePdfButton" text="Share (PDF)" layoutX="900.0" layoutY="650.0" styleClass="signup-button" onAction="#handleGeneratePdfButtonClick"/>
             </VBox>
          <SplitPane dividerPositions="0.1588628762541806" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
            <items>
              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                   <children>
-                      <Button layoutX="775.0" layoutY="34.0" onAction="#onDelete" mnemonicParsing="false" styleClass="nav-button" stylesheets="@style.css" text="Delete" />
-                      <Button layoutX="675.0" layoutY="34.0" onAction="#onEdit" mnemonicParsing="false" prefHeight="45.0" prefWidth="75.0" styleClass="nav-button" stylesheets="@style.css" text="Edit" />
+                  
+                                         <!-- Portfolio Title Label -->
+                       <Label fx:id="portfolioTitleLabel" layoutX="27.0" layoutY="3.0" styleClass="landing-title" />
+                      <Button layoutX="739.0" layoutY="29.0" mnemonicParsing="false" styleClass="create-portfolio-button" stylesheets="@style.css" text="Delete" onAction="#onDelete"/>
+                      <Button layoutX="617.0" layoutY="28.0" mnemonicParsing="false" styleClass="create-portfolio-button" stylesheets="@style.css" text="Edit"  onAction="#onEdit"/>
                   </children>
              </AnchorPane>
              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -73,9 +76,6 @@
             <RowConstraints />
          </rowConstraints>
         </GridPane>
-   
-        <!-- Portfolio Title Label -->
-        <Label fx:id="portfolioTitleLabel" styleClass="landing-title" />
     </Pane>
     <!-- Include Footer -->
     <fx:include source="footer-template.fxml" />
