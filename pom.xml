@@ -58,6 +58,18 @@
             <artifactId>io</artifactId>
             <version>8.0.5</version>
         </dependency>
+
+        <!-- Monocle for headless testing -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>openjfx-monocle</artifactId>
+            <version>4.0.16-alpha</version>
+            <scope>test</scope>
+        </dependency>
+
+
+
+
     </dependencies>
 
     <build>
