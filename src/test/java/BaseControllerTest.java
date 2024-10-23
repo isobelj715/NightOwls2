@@ -3,14 +3,13 @@ package com.example.addressbook.controller;
 import com.example.addressbook.model.Contact;
 import com.example.addressbook.model.SessionManager;
 import javafx.application.Platform;
+import javafx.scene.Scene;
 
 import javafx.scene.control.Alert;
-import javafx.stage.Stage;
-
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.event.ActionEvent;
+
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,16 +26,12 @@ public class BaseControllerTest {
     @BeforeAll
     public static void setupHeadless() throws InterruptedException {
 
+
         System.setProperty("java.awt.headless", "true");
 
 
         CountDownLatch latch = new CountDownLatch(1);
-        Platform.startup(() -> {
-
-            latch.countDown();
-
-        });
-
+        Platform.startup(() -> latch.countDown());
         latch.await();
 
 
@@ -45,11 +40,11 @@ public class BaseControllerTest {
     @BeforeEach
     public void setUp() {
         baseController = new BaseController();
+
     }
 
     @Test
     public void testGetLoggedInUserIdNoUser() {
-
         SessionManager.getInstance().clearSession();
         int userId = baseController.getLoggedInUserId();
         assertEquals(-1, userId);
@@ -58,7 +53,6 @@ public class BaseControllerTest {
 
     @Test
     public void testGetLoggedInUserIdWithUser() {
-
 
         Contact loggedInUser = new Contact("John", "Doe", "john@example.com", "1234567890", "password");
         loggedInUser.setId(1);
@@ -69,19 +63,16 @@ public class BaseControllerTest {
 
     }
 
-
     @Test
     public void testShowAlert() throws InterruptedException {
+
         CountDownLatch latch = new CountDownLatch(1);
         Platform.runLater(() -> {
+
             baseController.showAlert("Test Alert", "This is a test message.");
             latch.countDown();
-
-
         });
-
         latch.await();
-
 
         assertTrue(true);
 
@@ -89,12 +80,11 @@ public class BaseControllerTest {
 
     @Test
     public void testLoadPage() throws Exception {
-        CountDownLatch latch = new CountDownLatch(1);
 
+        CountDownLatch latch = new CountDownLatch(1);
         Platform.runLater(() -> {
 
             try {
-
 
                 Pane root = new Pane(new Label("Test"));
                 Scene scene = new Scene(root);
@@ -113,6 +103,7 @@ public class BaseControllerTest {
         });
 
         latch.await();
+
 
     }
 
