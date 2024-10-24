@@ -36,29 +36,32 @@
         <VBox alignment="CENTER" spacing="10" styleClass="main-content, transparent-box" HBox.hgrow="ALWAYS">
             <GridPane alignment="CENTER" hgap="20.0" style="-fx-padding: 20 20 20 20;" vgap="10.0" GridPane.hgrow="ALWAYS">
                 <!-- Column 1 -->
-                <Label text="Title*:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label text="Title*:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-size: 20px;" />
                 <TextField fx:id="artTitleTextField" promptText="Enter Art Title" styleClass="input-field" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" />
 
-                <Label text="Category:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label text="Category:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-size: 20px;"  />
                 <TextField fx:id="categoryTextField" promptText="Enter Category" styleClass="input-field" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
 
-                <Label text="Material:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <Label text="Material:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-size: 20px;" />
                 <TextField fx:id="materialTextField" promptText="Enter Material" styleClass="input-field" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
 
                 <!-- Description field extended to fill the entire row -->
-                <Label text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <Label text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-font-size: 20px;" />
                 <TextArea fx:id="descriptionTextField" promptText="Enter Description" styleClass="input-field" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
 
                 <!-- Column 2 -->
-                <Label text="Year*:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                <Label text="Year*:" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-font-size: 20px;" />
                 <TextField fx:id="yearTextField" promptText="Enter Year" styleClass="input-field" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" />
 
-                <Label text="Medium:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Label text="Medium:" GridPane.columnIndex="2" GridPane.rowIndex="1" style="-fx-font-size: 20px;" />
                 <TextField fx:id="mediumContainer" promptText="Enter Medium" styleClass="input-field" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
 
                 <!-- Portfolio Section -->
-                <Label text="Select Portfolio:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                <ComboBox fx:id="portfolioComboBox" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" />
+                <Label text="Select Portfolio:" GridPane.columnIndex="0" GridPane.rowIndex="4" style="-fx-font-size: 20px;" />
+                <ComboBox fx:id="portfolioComboBox" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" promptText="" styleClass="input-field"/>
+
+
+
 
                 <!-- <Label text="New Portfolio Name:" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
                 <TextField fx:id="portfolioNameTextField" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.hgrow="ALWAYS" promptText="Enter Portfolio Name" styleClass="input-field"/>
@@ -69,7 +72,7 @@
                 <Button text="Create Portfolio" onAction="#onCreatePortfolio" GridPane.columnIndex="3" GridPane.rowIndex="6" styleClass="confirm-button"/> -->
 
                 <!-- Dimensions fields stretched across the row with even spacing -->
-                <Label text="Dimensions:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+                <Label text="Dimensions:" GridPane.columnIndex="0" GridPane.rowIndex="7" style="-fx-font-size: 20px;" />
                 <HBox spacing="20" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7">
                     <TextField fx:id="widthTextField" promptText="Width" styleClass="input-field" HBox.hgrow="ALWAYS" />
                     <TextField fx:id="heightTextField" promptText="Height" styleClass="input-field" HBox.hgrow="ALWAYS" />
@@ -78,7 +81,7 @@
                 </HBox>
 
                 <!-- File Path display -->
-                <Label text="File Path:" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="8" />
+                <Label text="File Path:" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="8" style="-fx-font-size: 20px;" />
                 <TextField fx:id="filePathTextField" editable="false" promptText="Selected file path" styleClass="input-field" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" />
 
                 <!-- Buttons for upload and cancel -->

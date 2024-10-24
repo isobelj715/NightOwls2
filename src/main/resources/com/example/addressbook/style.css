@@ -67,6 +67,26 @@
     -fx-border-radius: 0;
 }
 
+
+.combo-box {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DADADA;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 14px;
+    -fx-padding: 10;
+}
+
+.combo-box:focused {
+    -fx-border-color: #804c99;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0, 0, 5);
+}
+
+
+
+
+
+
 /* Landing Page Title */
 .landing-title {
     -fx-font-size: 32px;

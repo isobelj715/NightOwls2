@@ -39,6 +39,8 @@ public class MyPortfoliosController extends BaseController{
 
 
 
+
+
     private final SqlitePortfolioDAO portfolioDAO;
 
     //public MyPortfoliosController() {
@@ -83,6 +85,7 @@ public class MyPortfoliosController extends BaseController{
     }
 
 
+
     /**
      * Initialises the controller by loading existing portfolios into the ListView.
      */
@@ -95,7 +98,7 @@ public class MyPortfoliosController extends BaseController{
      * Loads the portfolios from the database into the ListView.
      * This method fetches all portfolios for the logged-in user.
      */
-    private void loadPortfolios() {
+    public void loadPortfolios() {
         if (getLoggedInUserId() == -1) {
             showAlert("Error", "No user is logged in. Please log in first.");
             return;
@@ -351,7 +354,7 @@ public class MyPortfoliosController extends BaseController{
      *
      * @param portfolio the portfolio to be edited. If the portfolio is null, an error alert is shown.
      */
-    private void onEditPortfolio(Portfolio portfolio) {
+    public void onEditPortfolio(Portfolio portfolio) {
         if (portfolio == null) {
             showAlert("Error", "Unable to edit portfolio.");
             return;
