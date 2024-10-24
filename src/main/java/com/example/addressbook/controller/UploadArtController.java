@@ -128,7 +128,7 @@ public class UploadArtController extends BaseController{
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    setText(item.getPortfolioDescription());
+                    setText(item.getPortfolioName());
                 }
             }
         });

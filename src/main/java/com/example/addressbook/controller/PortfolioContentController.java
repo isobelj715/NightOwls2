@@ -138,8 +138,15 @@ public class PortfolioContentController extends BaseController {
                     // Optionally, set the window title
                     stage.setTitle("Artwork");
 
+
+
                     // Switch to the new scene
                     stage.setScene(scene);
+
+                    if (!stage.isFullScreen()) {
+                        stage.setFullScreen(true);
+                    }
+
 
                     // Optionally, show the stage (though it's usually not necessary as the stage is already shown)
                     stage.show();
