@@ -144,8 +144,6 @@ public class UploadArtController extends BaseController{
     public void onBrowseFile(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Art File");
-
-        // Optional file extension filters
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.bmp", "*.gif"),
                 new FileChooser.ExtensionFilter("All Files", "*.*")

@@ -143,7 +143,6 @@ public class MyPortfoliosController extends BaseController{
 
             DeleteConfirmationController controller = loader.getController();
 
-            // Create a new stage for the dialog
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Confirm Delete");
             dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -189,13 +188,7 @@ public class MyPortfoliosController extends BaseController{
             portfolioNameLabel.setWrapText(true);
             portfolioDescriptionLabel.setWrapText(true);
 
-            // Set alignment for description label to the left
-            //portfolioNameLabel.setAlignment(Pos.CENTER_LEFT);
-            //GridPane.setHalignment(portfolioNameLabel, HPos.LEFT); // Align the name to the left
-            // Set alignment for description label to the left
             portfolioDescriptionLabel.setAlignment(Pos.CENTER_LEFT);
-            //GridPane.setHalignment(portfolioDescriptionLabel, HPos.LEFT); // Align the description to the left
-
 
             // Setting up the GridPane layout
             content = new GridPane();
@@ -203,12 +196,8 @@ public class MyPortfoliosController extends BaseController{
             content.setHgap(10); // Horizontal gap between columns
 
             // Set maximum width for the title and description to allow wrapping
-            portfolioNameLabel.setMaxWidth(200); // Adjust as needed
-            portfolioDescriptionLabel.setMaxWidth(200); // Adjust as needed
-
-            // Allow labels to grow in the GridPane
-            //GridPane.setHgrow(portfolioNameLabel, Priority.ALWAYS);
-            //GridPane.setHgrow(portfolioDescriptionLabel, Priority.ALWAYS);
+            portfolioNameLabel.setMaxWidth(200);
+            portfolioDescriptionLabel.setMaxWidth(500);
 
             // Set column constraints to align the description correctly
             // Make the first column (description) fixed-width
@@ -216,17 +205,13 @@ public class MyPortfoliosController extends BaseController{
             descriptionCol.setMinWidth(300); // Set minimum width for the description column
             descriptionCol.setHalignment(HPos.LEFT); // Align content to the left
 
-            // Set the second column (title) to grow if needed
             ColumnConstraints titleCol = new ColumnConstraints();
             titleCol.setHgrow(Priority.ALWAYS);
             titleCol.setHalignment(HPos.LEFT);
 
-            // Add column constraints to the GridPane
             content.getColumnConstraints().addAll(descriptionCol, titleCol);
 
 
-
-            // Adding elements to the GridPane with flipped order: Title first, then Description
             content.add(portfolioNameLabel, 0, 0);       // Title on the left
             content.add(portfolioDescriptionLabel, 1, 0); // Description next to title
             HBox buttonBox = new HBox(10, openButton, editButton, deleteButton); // HBox for buttons with spacing
@@ -267,8 +252,7 @@ public class MyPortfoliosController extends BaseController{
             try {
                 // Get the first artwork in the portfolio
                 ArtManager artManager = new ArtManager(new SqliteArtDAO());
-                List <Art> artworks = artManager.getAllArtInPortfolio(portfolio.getId());//This needs to be changed----------------------------------------------------------------------------------------------------------------------------
-
+                List <Art> artworks = artManager.getAllArtInPortfolio(portfolio.getId());
                 // Check if the list is empty or contains artworks
                 if (artworks.isEmpty()) {
                     System.out.println("No artworks found for portfolio ID: " + portfolio.getId());
@@ -276,7 +260,7 @@ public class MyPortfoliosController extends BaseController{
                     // Loop through the artworks and print each one
                     System.out.println("Artworks for portfolio ID: " + portfolio.getId());
                     for (Art artwork : artworks) {
-                        System.out.println(artwork);  // Assuming Art has a meaningful toString() method
+                        System.out.println(artwork);
                     }
                 }
 
@@ -317,8 +301,6 @@ public class MyPortfoliosController extends BaseController{
      */
     @FXML
     public void onCreatePortfolio(ActionEvent event) {
-        // base controller doesnt quite work currently cos the dialog box should not be full screen:
-        //loadPage(event, "/com/example/addressbook/create-portfolio-popup.fxml");
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/addressbook/create-portfolio-popup.fxml"));
@@ -374,12 +356,11 @@ public class MyPortfoliosController extends BaseController{
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Edit Portfolio");
             dialogStage.initModality(Modality.WINDOW_MODAL);
-            // Instead of using editButton, we use createPortfolioButton or portfolioListView to get the window
+
             dialogStage.initOwner(portfolioListView.getScene().getWindow());
             dialogStage.setScene(new Scene(root));
             dialogStage.showAndWait();
 
-            // After closing the dialog, check if the portfolio was updated and refresh the list
             if (editController.isPortfolioUpdated()) {
                 loadPortfolios(); // Reload the updated portfolio list
             }
